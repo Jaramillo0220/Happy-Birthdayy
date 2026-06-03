@@ -1,431 +1,1066 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paradigma Ambiental: Carta de la Tierra, Agenda 21 y Política Global</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Open Sans', sans-serif; background-color: #fdfbf7; color: #2d3748; }
-        h1, h2, h3, h4, .font-serif { font-family: 'Merriweather', serif; }
-        
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 60vh;
-            max-height: 450px;
-            min-height: 300px;
-        }
-        
-        @media (max-width: 768px) {
-            .chart-container { height: 40vh; max-height: 350px; }
-        }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.4s ease-in-out; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .pillar-card { transition: all 0.3s ease; }
-        .pillar-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: #4a5d23; }
-        
-        .nav-link.active { border-bottom: 2px solid #4a5d23; color: #1a202c; font-weight: 600; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Misión de Miki ✦ Para Alison</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+ 
+:root{
+  --paper:#fffdf9;
+  --cream:#fdf5ec;
+  --ink:#4a3a34;
+  --ink-soft:#8a766c;
+  --pink:#f6c9d4; --pink-deep:#ec9fb0; --pink-ink:#b85d76;
+  --lav:#d9cef2; --lav-deep:#b9a8ea; --lav-ink:#7a64b0;
+  --mint:#cae9d8; --mint-deep:#8fcfa8;
+  --peach:#f8d3b6; --peach-deep:#eab78a;
+  --sky:#cfe3f5; --sky-deep:#9cc6ec;
+  --gold:#ecc285;
+  --orange:#f0a868;
+}
+ 
+html,body{
+  width:100%;min-height:100vh;
+  background:var(--cream);
+  font-family:'Quicksand',sans-serif;
+  color:var(--ink);
+  overflow-x:hidden;
+}
+ 
+/* fondo de la página completa */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 50% 40% at 12% 10%, rgba(217,206,242,.45) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 35% at 88% 18%, rgba(246,201,212,.45) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 35% at 85% 88%, rgba(202,233,216,.4) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 35% at 10% 90%, rgba(248,211,182,.4) 0%, transparent 65%);
+}
+#pagestars{position:fixed;inset:0;z-index:1;pointer-events:none;}
+.pstar{position:absolute;color:var(--pink-deep);animation:twinkle 3.5s ease-in-out infinite;}
+ 
+/* ════════ TÍTULO ════════ */
+#title-screen{
+  position:relative;z-index:10;
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:2rem;text-align:center;
+}
+.title-tag{
+  font-family:'Quicksand',sans-serif;font-weight:600;
+  font-size:12px;letter-spacing:7px;text-transform:uppercase;
+  color:var(--pink-deep);margin-bottom:1.5rem;
+  opacity:0;animation:floatUp .9s .2s forwards;
+}
+#title-cat{
+  margin-bottom:.5rem;opacity:0;
+  animation:floatUp 1s .4s forwards, bob 3.5s 1.4s ease-in-out infinite;
+}
+.title-main{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:clamp(44px,9vw,82px);color:var(--ink);
+  line-height:.95;letter-spacing:-1.5px;margin-bottom:.6rem;
+  opacity:0;animation:floatUp .9s .6s forwards;
+}
+.title-main em{color:var(--pink-deep);font-style:italic;}
+.title-sub{
+  font-family:'Quicksand',sans-serif;font-weight:500;
+  font-size:clamp(14px,2.5vw,17px);letter-spacing:2px;
+  color:var(--ink-soft);margin-bottom:2.8rem;
+  opacity:0;animation:floatUp .9s .8s forwards;
+}
+.start-btn{
+  font-family:'Baloo 2',cursive;font-weight:700;
+  font-size:17px;letter-spacing:1px;
+  color:#fff;border:none;cursor:pointer;
+  padding:15px 46px;border-radius:40px;
+  background:linear-gradient(135deg,var(--pink-deep) 0%,var(--lav-deep) 100%);
+  box-shadow:0 12px 30px rgba(236,159,176,.35);
+  opacity:0;animation:floatUp .9s 1s forwards;
+  transition:transform .18s,box-shadow .25s;
+}
+.start-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 16px 38px rgba(236,159,176,.45);}
+.title-hint{
+  margin-top:1.4rem;font-size:12px;letter-spacing:1px;color:var(--ink-soft);
+  opacity:0;animation:floatUp .9s 1.2s forwards;
+}
+ 
+/* ════════ NOVELA VISUAL ════════ */
+#vn{
+  display:none;position:relative;z-index:10;
+  width:min(840px,96vw);
+  aspect-ratio:4/3;
+  margin:1.6rem auto;
+  border-radius:26px;overflow:hidden;
+  background:var(--cream);
+  border:3px solid #fff;
+  box-shadow:0 28px 70px rgba(120,90,80,.22), 0 6px 16px rgba(0,0,0,.07);
+  cursor:pointer;
+  user-select:none;
+}
+ 
+#bg-layer{position:absolute;inset:0;transition:opacity .55s ease;}
+#bg-layer svg{width:100%;height:100%;display:block;}
+ 
+/* screentone manhwa */
+#screentone{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle, rgba(120,90,80,.5) 0.7px, transparent 0.9px);
+  background-size:7px 7px;
+  opacity:.05;mix-blend-mode:multiply;
+}
+#vignette{
+  position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 90px rgba(120,90,80,.12), inset 0 -40px 60px rgba(120,90,80,.06);
+  border-radius:26px;
+}
+ 
+#char-layer{
+  position:absolute;inset:0;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:30%;
+  pointer-events:none;
+  transition:transform .5s cubic-bezier(.2,.8,.3,1), opacity .45s ease;
+}
+#char-layer svg{
+  height:62%;width:auto;max-height:430px;
+  filter:drop-shadow(0 14px 22px rgba(120,90,80,.18));
+  animation:bob 3.6s ease-in-out infinite;
+}
+#char-layer.pop svg{animation:bob 3.6s ease-in-out infinite, popIn .42s cubic-bezier(.3,1.5,.5,1);}
+#char-layer.hide{opacity:0;transform:translateY(30px);}
+ 
+/* SFX manhwa */
+#sfx-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.sfx{
+  position:absolute;
+  font-family:'Baloo 2',cursive;font-weight:800;
+  font-size:clamp(38px,8vw,68px);
+  color:var(--pink-deep);
+  text-shadow:
+    -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff, 3px 3px 0 #fff,
+    0 -3px 0 #fff, 0 3px 0 #fff, -3px 0 0 #fff, 3px 0 0 #fff,
+    0 8px 14px rgba(120,90,80,.25);
+  animation:sfxPop .5s cubic-bezier(.3,1.6,.5,1) forwards;
+}
+ 
+/* toast de fragmento */
+#toast{
+  position:absolute;top:18px;left:50%;transform:translate(-50%,-80px);
+  background:#fff;border:2px solid var(--pink);
+  border-radius:30px;padding:9px 22px;
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;
+  color:var(--pink-ink);
+  box-shadow:0 10px 26px rgba(236,159,176,.3);
+  opacity:0;transition:all .5s cubic-bezier(.3,1.4,.5,1);
+  z-index:30;white-space:nowrap;
+}
+#toast.show{transform:translate(-50%,0);opacity:1;}
+ 
+/* caja de diálogo */
+#dialogue{
+  position:absolute;left:14px;right:14px;bottom:14px;
+  background:rgba(255,253,249,.97);
+  border-radius:20px;
+  padding:18px 24px 22px;
+  min-height:118px;
+  box-shadow:0 -2px 0 rgba(236,159,176,.25), 0 16px 36px rgba(120,90,80,.16);
+  backdrop-filter:blur(4px);
+}
+#dialogue::before{
+  content:'';position:absolute;top:0;left:30px;right:30px;height:4px;
+  background:linear-gradient(90deg,var(--pink) 0%,var(--lav) 50%,var(--peach) 100%);
+  border-radius:0 0 5px 5px;
+}
+#nametag{
+  display:inline-block;
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:15px;
+  color:#fff;background:var(--pink-deep);
+  padding:3px 18px;border-radius:18px;
+  margin-bottom:9px;
+  box-shadow:0 4px 10px rgba(236,159,176,.3);
+}
+#nametag.narr{background:var(--lav-deep);box-shadow:0 4px 10px rgba(185,168,234,.3);}
+#nametag.hidden{visibility:hidden;}
+#dtext{
+  font-size:clamp(15px,2.3vw,18px);line-height:1.55;
+  color:var(--ink);font-weight:500;min-height:2.6em;
+}
+#dtext.narr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.6vw,21px);color:var(--ink-soft);}
+#advance{
+  position:absolute;right:22px;bottom:14px;
+  font-family:'Baloo 2',cursive;color:var(--pink-deep);font-size:16px;
+  animation:bounceArrow 1s ease-in-out infinite;opacity:0;transition:opacity .3s;
+}
+#advance.show{opacity:1;}
+ 
+/* opciones */
+#choices{
+  position:absolute;left:0;right:0;bottom:150px;
+  display:flex;flex-direction:column;gap:10px;align-items:center;
+  padding:0 30px;z-index:25;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+}
+#choices.show{opacity:1;pointer-events:auto;}
+.choice-btn{
+  font-family:'Quicksand',sans-serif;font-weight:600;font-size:15px;
+  color:var(--ink);background:rgba(255,253,249,.97);
+  border:2px solid var(--pink);border-radius:16px;
+  padding:13px 28px;cursor:pointer;
+  min-width:min(420px,80%);text-align:center;
+  box-shadow:0 8px 22px rgba(120,90,80,.14);
+  transition:all .18s;
+}
+.choice-btn:hover{
+  background:var(--pink);color:var(--pink-ink);
+  transform:scale(1.03);border-color:var(--pink-deep);
+}
+ 
+#endbtn-wrap{
+  position:absolute;right:22px;bottom:18px;z-index:25;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+}
+#endbtn-wrap.show{opacity:1;pointer-events:auto;}
+.end-btn{
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;color:#fff;
+  background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));
+  border:none;border-radius:24px;padding:10px 24px;cursor:pointer;
+  box-shadow:0 8px 20px rgba(236,159,176,.35);transition:transform .15s;
+}
+.end-btn:hover{transform:scale(1.05);}
+ 
+/* progreso de escenas */
+#scene-pips{
+  position:absolute;top:14px;left:18px;z-index:30;
+  display:flex;gap:7px;
+}
+.pip{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.7);
+  border:1.5px solid var(--pink-deep);transition:all .3s;}
+.pip.active{background:var(--pink-deep);transform:scale(1.3);}
+ 
+/* botón de sonido */
+#sound-toggle{
+  position:absolute;top:12px;right:14px;z-index:30;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,253,249,.92);border:1.5px solid var(--pink);
+  cursor:pointer;font-size:15px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 10px rgba(120,90,80,.12);transition:transform .15s;
+}
+#sound-toggle:hover{transform:scale(1.1);}
+ 
+/* ════════ FINAL ════════ */
+#finale{
+  display:none;position:relative;z-index:10;
+  min-height:100vh;
+  flex-direction:column;align-items:center;justify-content:center;
+  padding:3rem 1.5rem 4rem;text-align:center;
+}
+.fin-tag{font-family:'Quicksand',sans-serif;font-weight:600;font-size:12px;
+  letter-spacing:6px;text-transform:uppercase;color:var(--pink-deep);
+  margin-bottom:1rem;opacity:0;animation:floatUp .8s .2s forwards;}
+.fin-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:clamp(34px,7vw,62px);color:var(--ink);line-height:1;
+  margin-bottom:.4rem;opacity:0;animation:floatUp .8s .4s forwards;}
+.fin-title em{color:var(--pink-deep);}
+.fin-sub{font-family:'Quicksand',sans-serif;font-weight:500;font-size:13px;
+  letter-spacing:2px;color:var(--ink-soft);margin-bottom:2rem;
+  opacity:0;animation:floatUp .8s .6s forwards;}
+#fin-cat{margin-bottom:1.5rem;opacity:0;
+  animation:floatUp .9s .7s forwards, bob 3.6s 1.6s ease-in-out infinite;}
+#fin-cat svg{height:150px;filter:drop-shadow(0 12px 20px rgba(120,90,80,.18));}
+.letter{
+  background:var(--paper);border-radius:24px;
+  border:2px solid var(--pink);
+  padding:2.2rem 2.4rem;max-width:560px;width:100%;
+  box-shadow:0 18px 50px rgba(120,90,80,.16);
+  position:relative;text-align:left;
+  opacity:0;animation:floatUp .9s .9s forwards;
+}
+.letter::before{content:'✦';position:absolute;top:18px;right:24px;color:var(--pink);font-size:22px;}
+.letter h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:24px;color:var(--pink-deep);margin-bottom:1rem;}
+.letter p{font-family:'Quicksand',sans-serif;font-weight:500;
+  font-size:15.5px;line-height:1.85;color:var(--ink);margin-bottom:1rem;}
+.letter .msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;
+  color:var(--ink);line-height:1.7;
+  border-left:3px solid var(--pink);padding-left:16px;margin:1.2rem 0;}
+.letter .firma{font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:19px;color:var(--pink-deep);margin-top:.6rem;margin-bottom:0;}
+.fin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+  max-width:560px;width:100%;margin-top:1.4rem;
+  opacity:0;animation:floatUp .8s 1.2s forwards;}
+.fstat{background:var(--paper);border:1.5px solid var(--pink);border-radius:16px;
+  padding:.9rem .4rem;}
+.fstat-n{font-family:'Baloo 2',cursive;font-weight:800;font-size:clamp(18px,4vw,26px);
+  color:var(--pink-deep);line-height:1;}
+.fstat-l{font-family:'Quicksand',sans-serif;font-weight:600;font-size:10px;
+  letter-spacing:.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:5px;}
+.fin-btns{display:flex;gap:12px;margin-top:1.8rem;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:floatUp .8s 1.4s forwards;}
+.celebrate-btn{font-family:'Baloo 2',cursive;font-weight:700;font-size:15px;letter-spacing:1px;
+  color:#fff;border:none;cursor:pointer;padding:13px 36px;border-radius:30px;
+  background:linear-gradient(135deg,var(--pink-deep),var(--lav-deep));
+  box-shadow:0 10px 26px rgba(236,159,176,.35);transition:transform .15s;}
+.celebrate-btn:hover{transform:translateY(-2px) scale(1.04);}
+.replay-btn{font-family:'Baloo 2',cursive;font-weight:600;font-size:14px;
+  color:var(--ink-soft);background:transparent;border:2px solid var(--pink);
+  border-radius:30px;padding:13px 28px;cursor:pointer;transition:all .15s;}
+.replay-btn:hover{border-color:var(--pink-deep);color:var(--pink-ink);}
+.fin-sign{margin-top:2.2rem;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:14px;color:var(--ink-soft);opacity:0;animation:floatUp .8s 1.6s forwards;}
+ 
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:0;transition:opacity .3s;}
+#confetti.active{opacity:1;}
+ 
+/* animaciones */
+@keyframes floatUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-9px) rotate(1deg);}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.75);}50%{opacity:1;transform:scale(1.15);}}
+@keyframes popIn{0%{transform:scale(.7);}60%{transform:scale(1.08);}100%{transform:scale(1);}}
+@keyframes sfxPop{0%{transform:scale(.3) rotate(-8deg);opacity:0;}55%{transform:scale(1.15) rotate(-8deg);opacity:1;}100%{transform:scale(1) rotate(-8deg);opacity:1;}}
+@keyframes bounceArrow{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+ 
+@media (max-width:560px){
+  #char-layer{padding-bottom:34%;}
+  #char-layer svg{height:54%;}
+  #dialogue{padding:14px 18px 20px;min-height:108px;}
+  .fin-stats{grid-template-columns:repeat(2,1fr);}
+  .letter{padding:1.6rem 1.5rem;}
+}
+</style>
 </head>
-<body class="antialiased flex flex-col min-h-screen">
-
-    <!-- Chosen Palette: Warm Institutional (Background: #fdfbf7 Off-white, Primary Text: #2d3748 Slate, Accents: #4a5d23 Olive Green, #8b5e34 Earthy Brown, #e2e8f0 Light Gray for borders) -->
-
-    <!-- Application Structure Plan: The SPA is structured as a continuous scrolling interactive report with a sticky navigation bar. It moves logically from an introduction (context) -> The Ethical Framework (Carta de la Tierra, using interactive tabs to avoid text overload) -> The Action Plan (Agenda 21, using a timeline chart to show evolution to SDGs) -> The Regulatory Framework (Política Ambiental, using cards and a doughnut chart for instrument distribution) -> Synthesis (A visual interactive triad). This structure breaks down complex academic information into digestible, task-oriented exploration views, improving comprehension for students and the general public. -->
-
-    <!-- Visualization & Content Choices: 
-         1. Carta de la Tierra -> Goal: Organize 16 principles -> Method: Interactive Tabs -> Justification: Prevents cognitive overload, allows user-driven exploration of ethics. 
-         2. Agenda 21 -> Goal: Show evolution/change over time -> Method: Chart.js Line Chart (Adoption Timeline) -> Justification: Visually demonstrates the transition from 1992 to Agenda 2030, highlighting momentum. 
-         3. Política Ambiental -> Goal: Categorize instruments -> Method: Chart.js Doughnut Chart & Detail Cards -> Justification: Clearly compares proportional use of regulatory vs economic tools. 
-         4. Synthesis -> Goal: Show relationships -> Method: CSS Interactive Grid (The Triad) -> Justification: Visually cements how ethics, strategy, and law interlock without using external SVG assets.
-    -->
-
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-[#fdfbf7] border-b border-gray-200 shadow-sm transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center overflow-x-auto whitespace-nowrap hide-scrollbar">
-                <div class="font-serif font-bold text-[#4a5d23] text-lg mr-6">Gobernanza Ambiental</div>
-                <div class="flex space-x-6 text-sm">
-                    <a href="#intro" class="nav-link active text-gray-600 hover:text-[#4a5d23] py-2 transition-colors">Introducción</a>
-                    <a href="#carta" class="nav-link text-gray-600 hover:text-[#4a5d23] py-2 transition-colors">Carta de la Tierra</a>
-                    <a href="#agenda" class="nav-link text-gray-600 hover:text-[#4a5d23] py-2 transition-colors">Agenda 21</a>
-                    <a href="#politica" class="nav-link text-gray-600 hover:text-[#4a5d23] py-2 transition-colors">Política Ambiental</a>
-                    <a href="#sintesis" class="nav-link text-gray-600 hover:text-[#4a5d23] py-2 transition-colors">Síntesis</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="flex-grow">
-        <!-- Intro Section -->
-        <section id="intro" class="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <span class="text-sm font-bold tracking-wider text-[#8b5e34] uppercase">Análisis Académico Global</span>
-                <h1 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mt-4 mb-6 leading-tight">La Arquitectura del Desarrollo Sostenible</h1>
-                <p class="text-xl text-gray-600 font-light">Una investigación sobre los marcos éticos, estratégicos y regulatorios que moldean nuestro paradigma ambiental moderno.</p>
-            </div>
-            <div class="prose prose-lg text-gray-700 max-w-none">
-                <p>La necesidad de acuerdos internacionales para el desarrollo sostenible surgió formalmente a finales del siglo XX, catalizada por la crisis ecológica documentada en el Informe Brundtland de 1987 [1]. La comunidad internacional reconoció que los problemas ambientales (cambio climático, pérdida de biodiversidad) no respetan fronteras soberanas.</p>
-                <p>Para abordar esto, se construyó una arquitectura global basada en tres pilares fundamentales que analizaremos en este documento interactivo: un marco ético universal, un plan de acción territorial y mecanismos legales coercitivos y persuasivos.</p>
-            </div>
-        </section>
-
-        <!-- Carta de la Tierra Section -->
-        <section id="carta" class="py-20 bg-white border-y border-gray-100">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12">
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-4 border-l-4 border-[#4a5d23] pl-4">3.6.1 La Carta de la Tierra: El Marco Ético</h2>
-                    <p class="text-gray-700 text-lg">Esta sección explora el origen y los principios fundamentales de la Carta de la Tierra. Navegue por las pestañas interactivas para descubrir cómo este documento se consolidó como la declaración de principios éticos fundamentales para la construcción de una sociedad global justa, sostenible y pacífica [2].</p>
-                </div>
-
-                <div class="bg-[#fdfbf7] rounded-xl p-6 md:p-8 shadow-sm border border-gray-200">
-                    <div class="mb-8 border-b border-gray-300 pb-4">
-                        <h3 class="text-xl font-bold text-[#8b5e34] mb-2">Origen y Autores</h3>
-                        <p class="text-sm text-gray-600">Iniciada tras la Cumbre de la Tierra de Río (1992) por <strong>Maurice Strong</strong> y <strong>Mijaíl Gorbachov</strong>, redactada mediante el proceso de consulta global más abierto y participativo de la historia, y lanzada oficialmente en el año 2000 en el Palacio de la Paz, La Haya [3].</p>
-                    </div>
-
-                    <div class="flex flex-col md:flex-row gap-8">
-                        <!-- Tabs Navigation -->
-                        <div class="md:w-1/3 flex flex-col space-y-2">
-                            <h4 class="font-serif font-bold text-gray-800 mb-3">Los 4 Pilares Fundamentales:</h4>
-                            <button onclick="openTab('pilar1')" class="tab-btn active text-left px-4 py-3 rounded-lg font-semibold bg-[#4a5d23] text-white transition-colors">I. Respeto y Cuidado de la Vida</button>
-                            <button onclick="openTab('pilar2')" class="tab-btn text-left px-4 py-3 rounded-lg font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">II. Integridad Ecológica</button>
-                            <button onclick="openTab('pilar3')" class="tab-btn text-left px-4 py-3 rounded-lg font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">III. Justicia Social y Económica</button>
-                            <button onclick="openTab('pilar4')" class="tab-btn text-left px-4 py-3 rounded-lg font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors">IV. Democracia, No Violencia y Paz</button>
-                        </div>
-
-                        <!-- Tabs Content -->
-                        <div class="md:w-2/3 bg-white p-6 rounded-lg border border-gray-100 shadow-inner min-h-[250px]">
-                            <div id="pilar1" class="tab-content active">
-                                <h3 class="text-xl font-serif font-bold text-[#4a5d23] mb-4">I. Respeto y Cuidado de la Comunidad de la Vida</h3>
-                                <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                                    <li><strong>Respetar la Tierra</strong> y la vida en toda su diversidad. Reconocer que todos los seres son interdependientes y toda forma de vida tiene valor independientemente de su utilidad humana.</li>
-                                    <li><strong>Cuidar la comunidad de la vida</strong> con entendimiento, compasión y amor.</li>
-                                    <li>Construir sociedades democráticas que sean justas, participativas, sostenibles y pacíficas.</li>
-                                    <li>Asegurar que los frutos y la belleza de la Tierra se preserven para las <strong>generaciones presentes y futuras</strong>.</li>
-                                </ul>
-                            </div>
-                            <div id="pilar2" class="tab-content">
-                                <h3 class="text-xl font-serif font-bold text-[#4a5d23] mb-4">II. Integridad Ecológica</h3>
-                                <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                                    <li>Proteger y restaurar la integridad de los sistemas ecológicos de la Tierra, enfocándose en la diversidad biológica y los procesos naturales.</li>
-                                    <li>Evitar dañar como el mejor método de protección ambiental (Principio de Precaución).</li>
-                                    <li>Adoptar patrones de producción, consumo y reproducción que salvaguarden las capacidades regenerativas de la Tierra.</li>
-                                    <li>Avanzar en el estudio de la sustentabilidad ecológica y promover el intercambio abierto del conocimiento adquirido.</li>
-                                </ul>
-                            </div>
-                            <div id="pilar3" class="tab-content">
-                                <h3 class="text-xl font-serif font-bold text-[#4a5d23] mb-4">III. Justicia Social y Económica</h3>
-                                <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                                    <li>Erradicar la pobreza como un imperativo ético, social y ambiental.</li>
-                                    <li>Asegurar que las actividades e instituciones económicas promuevan el desarrollo humano de forma equitativa y sostenible.</li>
-                                    <li>Afirmar la igualdad de género y el empoderamiento de la mujer como prerrequisito para el desarrollo sostenible.</li>
-                                    <li>Defender el derecho de todos a un entorno natural y social que apoye la dignidad humana, salud física y bienestar.</li>
-                                </ul>
-                            </div>
-                            <div id="pilar4" class="tab-content">
-                                <h3 class="text-xl font-serif font-bold text-[#4a5d23] mb-4">IV. Democracia, No Violencia y Paz</h3>
-                                <ul class="list-disc pl-5 space-y-3 text-gray-700">
-                                    <li>Fortalecer instituciones democráticas, proveer transparencia y rendición de cuentas en la gobernanza.</li>
-                                    <li>Integrar en la educación formal el conocimiento, valores y habilidades para un estilo de vida sostenible.</li>
-                                    <li>Tratar a todos los seres vivos con respeto y consideración.</li>
-                                    <li>Promover una cultura de tolerancia, no violencia y paz (la paz es la plenitud creada por relaciones correctas con uno mismo, otras personas, culturas y la Tierra).</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Agenda 21 Section -->
-        <section id="agenda" class="py-20 bg-[#f8fafc]">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12 max-w-4xl mx-auto">
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-4 border-l-4 border-[#8b5e34] pl-4">3.6.2 La Agenda 21: El Plan de Acción</h2>
-                    <p class="text-gray-700 text-lg">Mientras la Carta de la Tierra provee la ética, la Agenda 21 es el manual operativo. Adoptada en la Cumbre de la Tierra de Río (1992), representó el primer plan de acción exhaustivo global, nacional y local para organizaciones de la ONU, gobiernos y grupos principales [4]. El siguiente gráfico interactivo muestra su impacto histórico y evolución.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-12">
-                    <div class="lg:col-span-1 space-y-6">
-                        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                            <div class="text-[#8b5e34] font-bold text-xl mb-2">Alcance</div>
-                            <p class="text-sm text-gray-600"><strong>Global:</strong> Acuerdos multilaterales (ej. Convención Marco sobre el Cambio Climático).<br><strong>Nacional:</strong> Creación de Ministerios de Medio Ambiente.<br><strong>Local:</strong> "Agenda 21 Local" - El mayor éxito, involucrando municipios en el desarrollo sostenible comunitario [5].</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                            <div class="text-[#8b5e34] font-bold text-xl mb-2">Limitaciones</div>
-                            <p class="text-sm text-gray-600">Su naturaleza jurídica <em>"Soft Law"</em> (no vinculante legalmente) y la falta de mecanismos de financiamiento obligatorios limitaron su implementación estricta en países en desarrollo [6].</p>
-                        </div>
-                    </div>
-                    
-                    <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <h3 class="text-center font-serif font-bold text-gray-800 mb-2">Evolución de Agendas Globales de Sostenibilidad</h3>
-                        <p class="text-center text-xs text-gray-500 mb-6">Métrica indicativa del volumen de adopción y alcance temático (1992 - 2030)</p>
-                        <div class="chart-container">
-                            <canvas id="agendaChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Política Ambiental Section -->
-        <section id="politica" class="py-20 bg-white border-y border-gray-100">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12 max-w-4xl mx-auto text-center">
-                    <h2 class="text-3xl font-serif font-bold text-gray-900 mb-4 inline-block border-b-4 border-gray-800 pb-2">3.6.3 Política Ambiental Global: El Marco Regulatorio</h2>
-                    <p class="text-gray-700 text-lg mt-4 text-left">La política ambiental se define como el conjunto de directrices, leyes e instrumentos públicos y corporativos diseñados para proteger el medio ambiente y gestionar los recursos de forma sostenible [7]. Es la manifestación legal de la ética y la estrategia.</p>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-12 items-center">
-                    <!-- Donut Chart -->
-                    <div class="w-full md:w-1/2 p-4">
-                        <h3 class="text-center font-bold text-gray-700 mb-4">Distribución Típica de Instrumentos de Política</h3>
-                        <div class="chart-container" style="height: 40vh; max-height: 350px;">
-                            <canvas id="policyChart"></canvas>
-                        </div>
-                        <p class="text-xs text-center text-gray-500 mt-4">*Basado en marcos regulatorios de la OCDE [8]</p>
-                    </div>
-
-                    <!-- Cards -->
-                    <div class="w-full md:w-1/2 space-y-4">
-                        <h3 class="font-serif font-bold text-xl text-gray-800 mb-4 border-b pb-2">Instrumentos Clave</h3>
-                        
-                        <div class="pillar-card bg-[#f8fafc] p-4 rounded-lg border-l-4 border-red-500">
-                            <h4 class="font-bold text-gray-900">1. Comando y Control (Regulatorios)</h4>
-                            <p class="text-sm text-gray-600 mt-1">Leyes directas, prohibiciones, estándares de emisiones y zonificación. <em>Ejemplo: Prohibición global de los CFCs bajo el Protocolo de Montreal.</em></p>
-                        </div>
-                        
-                        <div class="pillar-card bg-[#f8fafc] p-4 rounded-lg border-l-4 border-blue-500">
-                            <h4 class="font-bold text-gray-900">2. Instrumentos Económicos (Mercado)</h4>
-                            <p class="text-sm text-gray-600 mt-1">Impuestos al carbono, mercados de bonos de carbono (Cap-and-Trade), subsidios a energías renovables. Buscan internalizar las externalidades negativas.</p>
-                        </div>
-                        
-                        <div class="pillar-card bg-[#f8fafc] p-4 rounded-lg border-l-4 border-green-500">
-                            <h4 class="font-bold text-gray-900">3. Educativos e Informativos</h4>
-                            <p class="text-sm text-gray-600 mt-1">Eco-etiquetado (ej. Energy Star, certificaciones FSC), campañas de concientización, auditorías ambientales voluntarias (ISO 14001).</p>
-                        </div>
-
-                        <div class="mt-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <h4 class="font-bold text-red-700 flex items-center">
-                                <span class="text-xl mr-2">⚠</span> Retos Contemporáneos
-                            </h4>
-                            <ul class="text-sm text-gray-700 mt-2 list-disc pl-5 space-y-1">
-                                <li><strong>Tragedia de los Comunes Globales:</strong> Dificultad para regular altamar o la atmósfera.</li>
-                                <li><strong>Geopolítica:</strong> Priorización del crecimiento económico sobre metas climáticas a corto plazo.</li>
-                                <li><strong>Ejecución (Enforcement):</strong> Leyes fuertes en papel, pero instituciones débiles para aplicarlas en el Sur Global [9].</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Síntesis Section -->
-        <section id="sintesis" class="py-20 bg-[#1c2c26] text-white">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">Síntesis Integrador: El Paradigma Moderno</h2>
-                    <p class="text-gray-300 text-lg max-w-2xl mx-auto">Ninguno de estos pilares funciona de manera aislada. Interactúe con los componentes abajo para entender su sinergia vital.</p>
-                </div>
-
-                <!-- Interactive Triad (CSS Grid + Hover States) -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    
-                    <div class="group relative p-8 rounded-xl bg-[#2a4037] border border-[#3e5e51] hover:bg-[#4a5d23] transition-all duration-300 cursor-default">
-                        <div class="text-4xl mb-4">⚖️</div>
-                        <h3 class="text-xl font-bold mb-2">Carta de la Tierra</h3>
-                        <span class="inline-block bg-[#1c2c26] text-xs px-2 py-1 rounded text-gray-300 mb-4">El Alma (La Ética)</span>
-                        <p class="text-sm text-gray-300 group-hover:text-white transition-colors">Provee los <strong>valores innegociables</strong> y la visión moral. Responde a la pregunta: <em>¿Por qué debemos actuar?</em></p>
-                    </div>
-
-                    <div class="group relative p-8 rounded-xl bg-[#2a4037] border border-[#3e5e51] hover:bg-[#8b5e34] transition-all duration-300 cursor-default">
-                        <div class="text-4xl mb-4">🗺️</div>
-                        <h3 class="text-xl font-bold mb-2">Agenda 21 / ODS</h3>
-                        <span class="inline-block bg-[#1c2c26] text-xs px-2 py-1 rounded text-gray-300 mb-4">El Cerebro (La Estrategia)</span>
-                        <p class="text-sm text-gray-300 group-hover:text-white transition-colors">Traduce la ética en <strong>metas estructuradas</strong> y cronogramas. Responde a la pregunta: <em>¿Qué debemos hacer y cuándo?</em></p>
-                    </div>
-
-                    <div class="group relative p-8 rounded-xl bg-[#2a4037] border border-[#3e5e51] hover:bg-[#2c5282] transition-all duration-300 cursor-default">
-                        <div class="text-4xl mb-4">📜</div>
-                        <h3 class="text-xl font-bold mb-2">Política Ambiental</h3>
-                        <span class="inline-block bg-[#1c2c26] text-xs px-2 py-1 rounded text-gray-300 mb-4">El Músculo (La Ejecución)</span>
-                        <p class="text-sm text-gray-300 group-hover:text-white transition-colors">Provee la <strong>fuerza legal y económica</strong> para obligar o incentivar el cambio. Responde a: <em>¿Cómo obligamos a que suceda?</em></p>
-                    </div>
-                </div>
-
-                <div class="mt-12 p-6 bg-white/10 rounded-lg text-center backdrop-blur-sm">
-                    <p class="text-lg italic font-light">"Sin la ética (Carta), la acción es ciega. Sin la estrategia (Agenda 21/ODS), la ética es un sueño. Sin la política ambiental, ambas carecen de impacto real en la sociedad."</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Referencias -->
-        <footer class="py-12 bg-gray-900 text-gray-400 text-sm">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h4 class="text-gray-200 font-bold mb-4 uppercase tracking-wider text-xs">Referencias Académicas y Fuentes Oficiales</h4>
-                <ol class="list-decimal pl-5 space-y-2 marker:text-gray-500">
-                    <li><a href="https://sustainabledevelopment.un.org/content/documents/5987our-common-future.pdf" target="_blank" class="hover:text-white underline decoration-gray-600">Comisión Mundial sobre el Medio Ambiente y el Desarrollo (1987). "Nuestro Futuro Común" (Informe Brundtland). ONU.</a></li>
-                    <li><a href="https://earthcharter.org/read-the-earth-charter/" target="_blank" class="hover:text-white underline decoration-gray-600">Earth Charter International (2000). "La Carta de la Tierra".</a></li>
-                    <li><a href="https://earthcharter.org/about-ecp/history/" target="_blank" class="hover:text-white underline decoration-gray-600">Vilela, M. (2012). "La historia de la iniciativa de la Carta de la Tierra". Earth Charter International.</a></li>
-                    <li><a href="https://sustainabledevelopment.un.org/outcomedocuments/agenda21" target="_blank" class="hover:text-white underline decoration-gray-600">Programa de las Naciones Unidas para el Medio Ambiente - PNUMA (1992). "Agenda 21". Conferencia de la ONU sobre el Medio Ambiente y el Desarrollo, Río de Janeiro.</a></li>
-                    <li><a href="https://habitat.igc.org/agenda21/a21-28.htm" target="_blank" class="hover:text-white underline decoration-gray-600">Naciones Unidas (1992). Agenda 21, Capítulo 28: "Iniciativas de las autoridades locales en apoyo del Programa 21".</a></li>
-                    <li><a href="https://www.unep.org/resources/report/global-environment-outlook-5" target="_blank" class="hover:text-white underline decoration-gray-600">UNEP (2012). "Global Environment Outlook 5 (GEO-5)". Evaluación del éxito del derecho ambiental internacional ("Soft Law" vs "Hard Law").</a></li>
-                    <li><a href="https://www.oecd.org/env/tools-evaluation/" target="_blank" class="hover:text-white underline decoration-gray-600">OCDE (2020). "Instrumentos de Política Ambiental y Evaluación".</a></li>
-                    <li><a href="https://www.oecd-ilibrary.org/environment/environmental-policy-stringency-index_2d40f5a7-en" target="_blank" class="hover:text-white underline decoration-gray-600">OCDE (2021). "Índice de Rigurosidad de la Política Ambiental (EPS)".</a></li>
-                    <li><a href="https://academic.oup.com/yel/article/38/1/144/5863640" target="_blank" class="hover:text-white underline decoration-gray-600">Bodansky, D. (2010). "The Art and Craft of International Environmental Law". Oxford University Press.</a></li>
-                </ol>
-            </div>
-        </footer>
-    </main>
-
-    <!-- JavaScript Logic -->
-    <script>
-        // Tab functionality for Carta de la Tierra
-        function openTab(tabId) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            // Remove active class from buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-[#4a5d23]', 'text-white');
-                btn.classList.add('bg-gray-100', 'text-gray-700');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabId).classList.add('active');
-            // Style active button
-            const activeBtn = event.currentTarget;
-            activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
-            activeBtn.classList.add('bg-[#4a5d23]', 'text-white');
-        }
-
-        // Active Navigation Highlight on Scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Initialize Charts when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Chart 1: Agenda 21 Evolution (Line Chart)
-            const ctxAgenda = document.getElementById('agendaChart').getContext('2d');
-            new Chart(ctxAgenda, {
-                type: 'line',
-                data: {
-                    labels: ['Río 1992 (Agenda 21)', 'MDGs (2000)', 'Río+20 (2012)', 'Agenda 2030 (ODS)', 'Visión 2050'],
-                    datasets: [{
-                        label: 'Complejidad y Alcance Institucional',
-                        data: [20, 45, 60, 90, 100],
-                        borderColor: '#8b5e34',
-                        backgroundColor: 'rgba(139, 94, 52, 0.1)',
-                        borderWidth: 3,
-                        pointBackgroundColor: '#4a5d23',
-                        pointRadius: 6,
-                        pointHoverRadius: 8,
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const notes = [
-                                        "Lanzamiento de Agenda 21. Enfoque fundacional.",
-                                        "Objetivos de Desarrollo del Milenio. Enfoque en pobreza.",
-                                        "Renovación del compromiso. Economía Verde.",
-                                        "17 ODS. Universal, integral y vinculante moralmente.",
-                                        "Carbono Neutralidad y Vida en Armonía con la Naturaleza."
-                                    ];
-                                    return notes[context.dataIndex];
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: { display: true, text: 'Índice de Alcance Global' }
-                        }
-                    }
-                }
-            });
-
-            // Chart 2: Política Ambiental (Doughnut Chart)
-            const ctxPolicy = document.getElementById('policyChart').getContext('2d');
-            new Chart(ctxPolicy, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Comando y Control (Leyes)', 'Instrumentos Económicos', 'Educación / Voluntarios'],
-                    datasets: [{
-                        data: [50, 30, 20],
-                        backgroundColor: [
-                            '#ef4444', // Red for regulatory
-                            '#3b82f6', // Blue for economic
-                            '#22c55e'  // Green for educational
-                        ],
-                        borderWidth: 2,
-                        borderColor: '#ffffff'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '65%',
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { padding: 20, font: { family: "'Open Sans', sans-serif" } }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ' ' + context.label + ': ' + context.raw + '% del uso global aprox.';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        });
-    </script>
+<body>
+ 
+<div id="pagestars"></div>
+<canvas id="confetti"></canvas>
+ 
+<!-- ═══ TÍTULO ═══ -->
+<div id="title-screen">
+  <div class="title-tag">una novela visual de cumpleaños</div>
+  <div id="title-cat"></div>
+  <h1 class="title-main">La misión<br>de <em>Miki</em></h1>
+  <p class="title-sub">Un mensaje muy especial para Alison Vega ✦</p>
+  <button class="start-btn" onclick="startGame()">Comenzar la historia ✦</button>
+  <p class="title-hint">toca la pantalla o presiona espacio para avanzar el diálogo</p>
+</div>
+ 
+<!-- ═══ NOVELA VISUAL ═══ -->
+<div id="vn" onclick="advance()">
+  <div id="bg-layer"></div>
+  <div id="screentone"></div>
+  <div id="char-layer"></div>
+  <div id="sfx-layer"></div>
+  <div id="vignette"></div>
+ 
+  <div id="scene-pips">
+    <div class="pip active"></div><div class="pip"></div>
+    <div class="pip"></div><div class="pip"></div>
+  </div>
+  <button id="sound-toggle" onclick="toggleSound(event)" aria-label="sonido">🔈</button>
+ 
+  <div id="toast"></div>
+ 
+  <div id="choices"></div>
+  <div id="endbtn-wrap"><button class="end-btn" onclick="goFinale(event)">Ver el mensaje ✦</button></div>
+ 
+  <div id="dialogue">
+    <div id="nametag">Miki</div>
+    <div id="dtext"></div>
+    <div id="advance">▼</div>
+  </div>
+</div>
+ 
+<!-- ═══ FINAL ═══ -->
+<div id="finale">
+  <div class="fin-tag">✦ fin de la misión ✦</div>
+  <h1 class="fin-title">¡Feliz cumpleaños,<br><em>Alison</em>!</h1>
+  <p class="fin-sub" id="fin-sub"></p>
+  <div id="fin-cat"></div>
+ 
+  <div class="letter">
+    <h3>Querida Alison,</h3>
+    <p>Hoy cumples 21 años, y Miki cruzó media ciudad para reunir, fragmento por fragmento, este mensaje hecho solo para ti:</p>
+    <p class="msg">"Que tus días tengan siempre la calidez de tu café favorito, y que cada capítulo de este nuevo año te lleve a lugares maravillosos... porque cuando tú brillas, iluminas a todos a tu alrededor."</p>
+    <p>Gracias por ser tan auténticamente tú: la que baila sin miedo en el escenario, la que se pierde durante horas entre libros, la que cuida de Miki como nadie más podría. Que este año esté lleno de escenarios, páginas nuevas y muchas tazas de café compartidas.</p>
+    <p class="firma">Con todo el cariño, Ángel 🧡</p>
+  </div>
+ 
+  <div class="fin-stats">
+    <div class="fstat"><div class="fstat-n">21</div><div class="fstat-l">Años</div></div>
+    <div class="fstat"><div class="fstat-n" id="s-days">—</div><div class="fstat-l">Días vividos</div></div>
+    <div class="fstat"><div class="fstat-n" id="s-coffee">—</div><div class="fstat-l">Cafés ☕</div></div>
+    <div class="fstat"><div class="fstat-n" id="s-songs">—</div><div class="fstat-l">Canciones ♪</div></div>
+  </div>
+ 
+  <div class="fin-btns">
+    <button class="celebrate-btn" onclick="launchConfetti()">✦ celebrar ✦</button>
+    <button class="replay-btn" onclick="location.reload()">↺ volver a empezar</button>
+  </div>
+  <p class="fin-sign">— hecho con cariño por Ángel, para Alison</p>
+</div>
+ 
+<script>
+/* ══════════ MIKI — gato naranja con 9 expresiones ══════════ */
+ 
+const NOSE = '<path d="M103 96 Q110 91 117 96 Q114 105 110 106 Q106 105 103 96 Z" fill="#ef96a6"/>';
+const WHISK = '<g stroke="#d8c6b6" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".85">'+
+  '<path d="M122 99 L162 91"/><path d="M122 104 L164 106"/>'+
+  '<path d="M98 99 L58 91"/><path d="M98 104 L56 106"/></g>';
+ 
+function eyesRound(big){
+  const rx = big?13:11, ry = big?16:14;
+  return '<ellipse cx="84" cy="80" rx="'+rx+'" ry="'+ry+'" fill="#3f312b"/>'+
+         '<ellipse cx="136" cy="80" rx="'+rx+'" ry="'+ry+'" fill="#3f312b"/>'+
+         '<circle cx="89" cy="74" r="'+(big?5:4)+'" fill="#fff"/>'+
+         '<circle cx="141" cy="74" r="'+(big?5:4)+'" fill="#fff"/>'+
+         '<circle cx="80" cy="86" r="2.4" fill="#fff" opacity=".55"/>'+
+         '<circle cx="132" cy="86" r="2.4" fill="#fff" opacity=".55"/>';
+}
+function blush(big){
+  const rx=big?13:10, op=big?.7:.5;
+  return '<ellipse cx="62" cy="98" rx="'+rx+'" ry="6.5" fill="#f5a4b6" opacity="'+op+'"/>'+
+         '<ellipse cx="158" cy="98" rx="'+rx+'" ry="6.5" fill="#f5a4b6" opacity="'+op+'"/>';
+}
+ 
+const FACES = {
+  sleep:
+    '<path d="M73 81 Q84 89 95 81" stroke="#3f312b" stroke-width="4" fill="none" stroke-linecap="round"/>'+
+    '<path d="M125 81 Q136 89 147 81" stroke="#3f312b" stroke-width="4" fill="none" stroke-linecap="round"/>'+
+    NOSE+'<path d="M105 106 Q110 110 115 106" stroke="#7a4a3a" stroke-width="2.2" fill="none" stroke-linecap="round"/>'+
+    '<text x="150" y="46" font-family="Baloo 2,cursive" font-size="20" fill="#b9a8ea" font-weight="800" opacity=".8">z</text>'+
+    '<text x="166" y="32" font-family="Baloo 2,cursive" font-size="14" fill="#b9a8ea" font-weight="800" opacity=".6">z</text>'+WHISK,
+  wake:
+    '<path d="M72 78 Q84 73 96 78" stroke="#3f312b" stroke-width="3.5" fill="none" stroke-linecap="round"/>'+
+    '<path d="M124 78 Q136 73 148 78" stroke="#3f312b" stroke-width="3.5" fill="none" stroke-linecap="round"/>'+
+    '<ellipse cx="84" cy="84" rx="7" ry="5" fill="#3f312b"/><ellipse cx="136" cy="84" rx="7" ry="5" fill="#3f312b"/>'+
+    NOSE+'<path d="M104 106 Q110 112 116 106" stroke="#7a4a3a" stroke-width="2.2" fill="none" stroke-linecap="round"/>'+WHISK,
+  neutral:
+    eyesRound(false)+NOSE+
+    '<path d="M110 106 Q103 113 97 110 M110 106 Q117 113 123 110" stroke="#7a4a3a" stroke-width="2.4" fill="none" stroke-linecap="round"/>'+WHISK,
+  happy:
+    '<path d="M73 84 Q84 71 95 84" stroke="#3f312b" stroke-width="4.5" fill="none" stroke-linecap="round"/>'+
+    '<path d="M125 84 Q136 71 147 84" stroke="#3f312b" stroke-width="4.5" fill="none" stroke-linecap="round"/>'+
+    NOSE+'<path d="M97 107 Q110 120 123 107" stroke="#7a4a3a" stroke-width="3" fill="none" stroke-linecap="round"/>'+
+    blush(false)+WHISK,
+  excited:
+    eyesRound(true)+
+    '<path d="M84 70 l2 4 4 0 -3 3 1 4 -4 -2 -4 2 1 -4 -3 -3 4 0 z" fill="#fff" transform="translate(-2,-2) scale(.9)"/>'+
+    NOSE+
+    '<path d="M91 104 Q110 130 129 104 Q119 112 110 112 Q101 112 91 104 Z" fill="#fff" stroke="#7a4a3a" stroke-width="2.4" stroke-linejoin="round"/>'+
+    '<path d="M101 110 Q110 116 119 110 Q110 114 101 110 Z" fill="#f29bb0"/>'+
+    blush(true)+WHISK,
+  surprised:
+    '<path d="M72 60 Q84 53 96 60" stroke="#3f312b" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>'+
+    '<path d="M124 60 Q136 53 148 60" stroke="#3f312b" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>'+
+    '<ellipse cx="84" cy="82" rx="12" ry="15" fill="#3f312b"/><ellipse cx="136" cy="82" rx="12" ry="15" fill="#3f312b"/>'+
+    '<circle cx="89" cy="76" r="5" fill="#fff"/><circle cx="141" cy="76" r="5" fill="#fff"/>'+
+    NOSE+'<ellipse cx="110" cy="113" rx="7" ry="9" fill="#7a4a3a"/>'+WHISK,
+  thinking:
+    '<ellipse cx="84" cy="78" rx="10" ry="13" fill="#3f312b"/><ellipse cx="136" cy="78" rx="10" ry="13" fill="#3f312b"/>'+
+    '<circle cx="80" cy="71" r="4" fill="#fff"/><circle cx="132" cy="71" r="4" fill="#fff"/>'+
+    NOSE+'<path d="M100 108 q5 -4 9 0 q4 4 9 0" stroke="#7a4a3a" stroke-width="2.4" fill="none" stroke-linecap="round"/>'+
+    '<text x="152" y="48" font-family="Baloo 2,cursive" font-size="26" fill="#b9a8ea" font-weight="800">?</text>'+WHISK,
+  determined:
+    '<path d="M70 64 L96 72" stroke="#3f312b" stroke-width="3.5" stroke-linecap="round"/>'+
+    '<path d="M150 64 L124 72" stroke="#3f312b" stroke-width="3.5" stroke-linecap="round"/>'+
+    '<path d="M74 84 Q84 75 96 82 Q90 88 84 88 Q78 88 74 84 Z" fill="#3f312b"/>'+
+    '<path d="M124 82 Q136 75 146 84 Q142 88 136 88 Q130 88 124 82 Z" fill="#3f312b"/>'+
+    '<circle cx="88" cy="80" r="3" fill="#fff"/><circle cx="140" cy="80" r="3" fill="#fff"/>'+
+    NOSE+'<path d="M99 107 Q110 114 121 107" stroke="#7a4a3a" stroke-width="2.6" fill="none" stroke-linecap="round"/>'+
+    '<path d="M114 108 l3 6 -5 -1 z" fill="#fff" stroke="#7a4a3a" stroke-width="1"/>'+WHISK,
+  love:
+    '<path d="M84 71 C 79 64, 69 66, 69 74 C 69 82, 84 92, 84 92 C 84 92, 99 82, 99 74 C 99 66, 89 64, 84 71 Z" fill="#ec6f8e"/>'+
+    '<path d="M136 71 C 131 64, 121 66, 121 74 C 121 82, 136 92, 136 92 C 136 92, 151 82, 151 74 C 151 66, 141 64, 136 71 Z" fill="#ec6f8e"/>'+
+    '<circle cx="78" cy="73" r="3" fill="#fff" opacity=".8"/><circle cx="130" cy="73" r="3" fill="#fff" opacity=".8"/>'+
+    NOSE+'<path d="M99 107 Q110 117 121 107" stroke="#7a4a3a" stroke-width="3" fill="none" stroke-linecap="round"/>'+
+    blush(true)+WHISK
+};
+ 
+function miki(expr, opts){
+  opts = opts || {};
+  const acc = opts.acc, pose = opts.pose;
+  let s = '<svg viewBox="0 0 220 290" xmlns="http://www.w3.org/2000/svg">';
+ 
+  /* cola */
+  s += '<path d="M170 224 C 208 214, 212 158, 182 148 C 162 142, 156 170, 172 178 C 184 184, 182 204, 168 208 Z" fill="#f0a868"/>';
+  s += '<path d="M178 156 C 196 162, 196 192, 182 200" fill="none" stroke="#e08c45" stroke-width="2.5" opacity=".35"/>';
+ 
+  /* cuerpo */
+  s += '<ellipse cx="110" cy="204" rx="66" ry="76" fill="#f0a868"/>';
+  /* sombra lateral cuerpo */
+  s += '<path d="M110 130 C 150 130, 176 170, 176 206 C 176 250, 148 280, 110 280 L110 130 Z" fill="#e69a52" opacity=".14"/>';
+  /* pecho blanco */
+  s += '<path d="M110 146 C 82 146, 72 188, 76 224 C 80 258, 96 280, 110 280 C 124 280, 140 258, 144 224 C 148 188, 138 146, 110 146 Z" fill="#fffdf9"/>';
+ 
+  /* brazo derecho levantado (dance) o pata normal */
+  if(pose === 'dance'){
+    s += '<path d="M150 196 Q188 150 180 112" stroke="#f0a868" stroke-width="20" fill="none" stroke-linecap="round"/>';
+    s += '<ellipse cx="180" cy="106" rx="16" ry="14" fill="#fffdf9"/>';
+    /* pata izquierda hacia afuera */
+    s += '<path d="M70 200 Q44 196 36 178" stroke="#f0a868" stroke-width="20" fill="none" stroke-linecap="round"/>';
+    s += '<ellipse cx="36" cy="174" rx="15" ry="13" fill="#fffdf9"/>';
+  }
+ 
+  /* patas frontales (sentado) */
+  s += '<ellipse cx="86" cy="262" rx="17" ry="22" fill="#f0a868"/>';
+  s += '<ellipse cx="134" cy="262" rx="17" ry="22" fill="#f0a868"/>';
+  s += '<ellipse cx="86" cy="276" rx="17" ry="12" fill="#fffdf9"/>';
+  s += '<ellipse cx="134" cy="276" rx="17" ry="12" fill="#fffdf9"/>';
+  s += '<g stroke="#e0cdb8" stroke-width="1.5" opacity=".5"><path d="M86 270 v10"/><path d="M80 271 v9"/><path d="M92 271 v9"/><path d="M134 270 v10"/><path d="M128 271 v9"/><path d="M140 271 v9"/></g>';
+ 
+  /* orejas */
+  s += '<path d="M62 50 L44 6 L98 44 Z" fill="#f0a868"/>';
+  s += '<path d="M158 50 L176 6 L122 44 Z" fill="#f0a868"/>';
+  s += '<path d="M66 47 L54 19 L90 43 Z" fill="#f6bcc6"/>';
+  s += '<path d="M154 47 L166 19 L130 43 Z" fill="#f6bcc6"/>';
+ 
+  /* cabeza */
+  s += '<ellipse cx="110" cy="86" rx="62" ry="55" fill="#f0a868"/>';
+  /* tabby forehead */
+  s += '<g stroke="#e08c45" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".45">'+
+       '<path d="M98 38 Q110 30 122 38"/><path d="M110 34 L110 50"/><path d="M90 44 L84 56"/><path d="M130 44 L136 56"/></g>';
+  /* sombra cara derecha */
+  s += '<path d="M110 32 C 148 32, 172 58, 172 86 C 172 118, 146 141, 110 141 L110 32 Z" fill="#e69a52" opacity=".1"/>';
+ 
+  /* collar */
+  s += '<path d="M64 128 Q110 156 156 128" fill="none" stroke="#85c8ea" stroke-width="10" stroke-linecap="round"/>';
+  s += '<path d="M64 128 Q110 156 156 128" fill="none" stroke="#5aa9d4" stroke-width="3" stroke-linecap="round" opacity=".5"/>';
+  s += '<circle cx="110" cy="156" r="9" fill="#ecc285" stroke="#d4a85f" stroke-width="2"/>';
+  s += '<circle cx="110" cy="156" r="3.5" fill="#f7dca8"/>';
+ 
+  /* cara */
+  s += '<g class="face">'+(FACES[expr]||FACES.neutral)+'</g>';
+ 
+  /* accesorios */
+  if(acc === 'coffee'){
+    s += '<g transform="translate(0,4)">'+
+      '<path d="M92 232 h36 l-4 34 q-1 6 -7 6 h-14 q-6 0 -7 -6 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2"/>'+
+      '<ellipse cx="110" cy="233" rx="18" ry="4.5" fill="#c68a5a"/>'+
+      '<path d="M110 229 C 106 226, 100 228, 102 232 C 103 235, 110 240, 110 240 C 110 240, 117 235, 118 232 C 120 228, 114 226, 110 229 Z" fill="#fffdf9" opacity=".85" transform="scale(.55) translate(90,188)"/>'+
+      '<path d="M128 240 q12 2 12 13 q0 9 -9 10" fill="none" stroke="#e0cdb8" stroke-width="3"/>'+
+      '<path d="M100 224 Q102 216 100 210" stroke="#e6d4c2" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".8"><animate attributeName="opacity" values=".8;.2;.8" dur="2s" repeatCount="indefinite"/></path>'+
+      '<path d="M120 224 Q122 216 120 210" stroke="#e6d4c2" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".7"><animate attributeName="opacity" values=".7;.15;.7" dur="2.4s" repeatCount="indefinite"/></path>'+
+      '</g>';
+  } else if(acc === 'book'){
+    s += '<g transform="translate(0,2)">'+
+      '<path d="M110 214 L72 224 L72 264 L110 256 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2"/>'+
+      '<path d="M110 214 L148 224 L148 264 L110 256 Z" fill="#fdf5ec" stroke="#e0cdb8" stroke-width="2"/>'+
+      '<g stroke="#d9b9c8" stroke-width="1.6" opacity=".7"><path d="M80 232 L104 226"/><path d="M80 240 L104 234"/><path d="M80 248 L104 242"/><path d="M116 226 L140 232"/><path d="M116 234 L140 240"/><path d="M116 242 L140 248"/></g>'+
+      '<text x="100" y="210" font-family="Baloo 2,cursive" font-size="16" fill="#b9a8ea" font-weight="800">✦</text>'+
+      '</g>';
+  } else if(acc === 'glasses'){
+    s += '<g fill="none" stroke="#8a6f5f" stroke-width="2.6" opacity=".9">'+
+      '<circle cx="84" cy="80" r="19"/><circle cx="136" cy="80" r="19"/>'+
+      '<path d="M103 80 q7 -5 14 0"/><path d="M65 78 L52 72"/><path d="M155 78 L168 72"/></g>'+
+      '<circle cx="84" cy="80" r="18" fill="#cfe3f5" opacity=".22"/><circle cx="136" cy="80" r="18" fill="#cfe3f5" opacity=".22"/>'+
+      '<path d="M76 70 q6 -5 14 -2" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>';
+  } else if(acc === 'lightstick'){
+    s += '<g transform="translate(0,0)">'+
+      '<rect x="176" y="92" width="9" height="38" rx="4" fill="#e0cdb8"/>'+
+      '<circle cx="180" cy="70" r="26" fill="#f6c9d4" opacity=".5"/>'+
+      '<circle cx="180" cy="70" r="17" fill="#fce8ee"/>'+
+      '<circle cx="180" cy="70" r="17" fill="none" stroke="#ec9fb0" stroke-width="2"/>'+
+      '<text x="174" y="75" font-family="Baloo 2,cursive" font-size="14" fill="#ec9fb0" font-weight="800">✦</text>'+
+      '</g>';
+  } else if(acc === 'letter'){
+    s += '<g transform="translate(0,4)">'+
+      '<rect x="78" y="222" width="64" height="44" rx="6" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2"/>'+
+      '<path d="M78 226 L110 248 L142 226" fill="none" stroke="#e0cdb8" stroke-width="2"/>'+
+      '<circle cx="110" cy="244" r="9" fill="#f6c9d4"/>'+
+      '<path d="M110 240 C 107 237, 102 239, 103 243 C 104 246, 110 250, 110 250 C 110 250, 116 246, 117 243 C 118 239, 113 237, 110 240 Z" fill="#ec6f8e"/>'+
+      '</g>';
+  }
+ 
+  s += '</svg>';
+  return s;
+}
+ 
+/* ══════════ ESCENAS (fondos SVG) ══════════ */
+ 
+function sparkleField(n, color){
+  let s='';
+  for(let i=0;i<n;i++){
+    const x=Math.random()*800, y=Math.random()*420, sz=6+Math.random()*12, o=.3+Math.random()*.5;
+    s+='<text x="'+x.toFixed(0)+'" y="'+y.toFixed(0)+'" font-size="'+sz.toFixed(0)+'" fill="'+color+'" opacity="'+o.toFixed(2)+'">✦</text>';
+  }
+  return s;
+}
+ 
+const SCENES = {
+  bedroom: function(){
+    return '<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'+
+      '<defs>'+
+      '<linearGradient id="bw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff8f0"/><stop offset="1" stop-color="#fdeede"/></linearGradient>'+
+      '<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe6c6"/><stop offset=".5" stop-color="#ffd2da"/><stop offset="1" stop-color="#fbe8e2"/></linearGradient>'+
+      '<radialGradient id="sg"><stop offset="0" stop-color="#fff3d6" stop-opacity=".95"/><stop offset="1" stop-color="#fff3d6" stop-opacity="0"/></radialGradient>'+
+      '</defs>'+
+      '<rect width="800" height="600" fill="url(#bw)"/>'+
+      '<rect y="466" width="800" height="134" fill="#f3e0cc"/>'+
+      '<rect y="466" width="800" height="7" fill="#e7d0b8" opacity=".6"/>'+
+      /* ventana */
+      '<rect x="466" y="64" width="278" height="306" rx="18" fill="#f1d9c0"/>'+
+      '<rect x="480" y="78" width="250" height="278" rx="12" fill="url(#sun)"/>'+
+      '<circle cx="610" cy="196" r="120" fill="url(#sg)"/>'+
+      '<circle cx="610" cy="196" r="44" fill="#ffd98e"/>'+
+      '<ellipse cx="540" cy="348" rx="120" ry="48" fill="#f6c6bd" opacity=".6"/>'+
+      '<ellipse cx="690" cy="352" rx="110" ry="42" fill="#f3b6ad" opacity=".5"/>'+
+      '<path d="M520 150 q9 -9 18 0 q9 -9 18 0" stroke="#d8a89c" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".7"/>'+
+      '<rect x="600" y="78" width="14" height="278" fill="#f1d9c0"/>'+
+      '<rect x="480" y="210" width="250" height="14" fill="#f1d9c0"/>'+
+      /* haz de luz */
+      '<polygon points="480,356 730,356 800,600 380,600" fill="#fff1d4" opacity=".4"/>'+
+      /* cortinas */
+      '<path d="M448 56 q22 170 -8 326 q44 -12 64 -326 Z" fill="#ffffff" opacity=".75"/>'+
+      '<path d="M762 56 q-22 170 8 326 q-44 -12 -64 -326 Z" fill="#ffffff" opacity=".75"/>'+
+      /* cama */
+      '<rect x="-30" y="416" width="340" height="200" rx="26" fill="#e6d6f0"/>'+
+      '<rect x="-30" y="416" width="340" height="46" rx="22" fill="#d6c0ec"/>'+
+      '<ellipse cx="78" cy="436" rx="76" ry="36" fill="#fffdf9"/>'+
+      '<ellipse cx="78" cy="436" rx="58" ry="24" fill="#fbe9f0"/>'+
+      '<path d="M120 470 q60 -16 180 6 q-6 60 -16 90 l-180 0 q8 -50 16 -96 Z" fill="#cfe3f5" opacity=".7"/>'+
+      /* planta */
+      '<rect x="360" y="486" width="56" height="50" rx="8" fill="#eab78a"/>'+
+      '<path d="M388 486 q-30 -46 -8 -78 q14 22 8 78" fill="#9fcfae"/>'+
+      '<path d="M388 486 q26 -40 6 -70 q-12 20 -6 70" fill="#8fc6a0"/>'+
+      '<path d="M388 486 q2 -56 -22 -64 q8 30 22 64" fill="#aedabb"/>'+
+      /* reloj */
+      '<circle cx="248" cy="128" r="44" fill="#fffdf9" stroke="#e7d0b8" stroke-width="4"/>'+
+      '<circle cx="248" cy="128" r="4" fill="#b85d76"/>'+
+      '<path d="M248 128 L248 100" stroke="#b85d76" stroke-width="3.5" stroke-linecap="round"/>'+
+      '<path d="M248 128 L268 136" stroke="#b85d76" stroke-width="3" stroke-linecap="round"/>'+
+      sparkleField(7,'#ec9fb0')+
+      '</svg>';
+  },
+  cafe: function(){
+    return '<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'+
+      '<defs>'+
+      '<linearGradient id="cw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdf2e6"/><stop offset="1" stop-color="#f8e6d2"/></linearGradient>'+
+      '<radialGradient id="lampg"><stop offset="0" stop-color="#fff0cc" stop-opacity=".9"/><stop offset="1" stop-color="#fff0cc" stop-opacity="0"/></radialGradient>'+
+      '</defs>'+
+      '<rect width="800" height="600" fill="url(#cw)"/>'+
+      /* ventana lateral */
+      '<rect x="40" y="80" width="180" height="220" rx="14" fill="#e9f1e2"/>'+
+      '<rect x="52" y="92" width="156" height="196" rx="8" fill="#dcecf4"/>'+
+      '<rect x="124" y="92" width="10" height="196" fill="#e9f1e2"/>'+
+      '<rect x="52" y="182" width="156" height="10" fill="#e9f1e2"/>'+
+      /* repisa con tazas/frascos */
+      '<rect x="500" y="120" width="270" height="14" rx="4" fill="#dcb98e"/>'+
+      '<rect x="520" y="86" width="30" height="34" rx="5" fill="#f6c9d4"/>'+
+      '<rect x="560" y="80" width="26" height="40" rx="5" fill="#d9cef2"/>'+
+      '<rect x="596" y="90" width="28" height="30" rx="5" fill="#cae9d8"/>'+
+      '<ellipse cx="660" cy="104" rx="20" ry="16" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2"/>'+
+      '<path d="M680 100 q12 2 12 10 q0 8 -10 9" fill="none" stroke="#e0cdb8" stroke-width="3"/>'+
+      '<rect x="708" y="84" width="30" height="36" rx="5" fill="#f8d3b6"/>'+
+      /* pizarra menú */
+      '<rect x="290" y="74" width="200" height="150" rx="12" fill="#bcd6c2"/>'+
+      '<rect x="302" y="86" width="176" height="126" rx="6" fill="#a9c8b0"/>'+
+      '<text x="390" y="124" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="30" fill="#fdf5ec">Café ✦</text>'+
+      '<g stroke="#fdf5ec" stroke-width="3" opacity=".7" stroke-linecap="round"><path d="M324 150 L456 150"/><path d="M324 168 L430 168"/><path d="M324 186 L446 186"/></g>'+
+      /* lámparas colgantes */
+      '<g><line x1="200" y1="0" x2="200" y2="64" stroke="#caa583" stroke-width="3"/><circle cx="200" cy="120" r="60" fill="url(#lampg)"/><path d="M178 50 h44 l-10 26 h-24 Z" fill="#eab78a"/></g>'+
+      '<g><line x1="600" y1="0" x2="600" y2="44" stroke="#caa583" stroke-width="3"/><circle cx="600" cy="100" r="56" fill="url(#lampg)"/><path d="M580 30 h40 l-9 24 h-22 Z" fill="#f0a868"/></g>'+
+      /* mostrador */
+      '<rect y="440" width="800" height="160" fill="#dcb98e"/>'+
+      '<rect y="440" width="800" height="14" fill="#caa078"/>'+
+      '<rect y="454" width="800" height="6" fill="#b88f63" opacity=".5"/>'+
+      /* taza grande sobre mostrador */
+      '<ellipse cx="400" cy="438" rx="70" ry="14" fill="#caa078" opacity=".4"/>'+
+      '<path d="M356 388 h88 l-9 50 q-2 8 -10 8 h-50 q-8 0 -10 -8 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2.5"/>'+
+      '<ellipse cx="400" cy="390" rx="44" ry="9" fill="#c68a5a"/>'+
+      '<path d="M400 384 C 393 379, 381 382, 384 389 C 386 394, 400 402, 400 402 C 400 402, 414 394, 416 389 C 419 382, 407 379, 400 384 Z" fill="#fffdf9" opacity=".85"/>'+
+      '<path d="M444 398 q22 3 22 22 q0 16 -18 18" fill="none" stroke="#e0cdb8" stroke-width="5"/>'+
+      '<path d="M384 372 Q387 360 384 350" stroke="#e6d4c2" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"><animate attributeName="opacity" values=".8;.2;.8" dur="2.2s" repeatCount="indefinite"/></path>'+
+      '<path d="M416 372 Q419 360 416 350" stroke="#e6d4c2" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"><animate attributeName="opacity" values=".7;.15;.7" dur="2.6s" repeatCount="indefinite"/></path>'+
+      /* bokeh */
+      '<circle cx="120" cy="360" r="22" fill="#fbe2c4" opacity=".5"/>'+
+      '<circle cx="700" cy="300" r="28" fill="#f6dcc0" opacity=".4"/>'+
+      '<circle cx="660" cy="380" r="16" fill="#fbe2c4" opacity=".5"/>'+
+      sparkleField(6,'#eab78a')+
+      '</svg>';
+  },
+  library: function(){
+    let shelves='';
+    const cols=['#f6c9d4','#d9cef2','#cae9d8','#f8d3b6','#cfe3f5','#ecc285','#f0b8c6','#bcd6f0'];
+    function row(y){
+      let r=''; let x=70;
+      while(x<300){ const w=18+Math.random()*16, h=58+Math.random()*16, c=cols[Math.floor(Math.random()*cols.length)];
+        r+='<rect x="'+x.toFixed(0)+'" y="'+(y-h).toFixed(0)+'" width="'+w.toFixed(0)+'" height="'+h.toFixed(0)+'" rx="3" fill="'+c+'"/>';
+        x+=w+4; }
+      return r;
+    }
+    function row2(y){
+      let r=''; let x=520;
+      while(x<760){ const w=18+Math.random()*16, h=58+Math.random()*16, c=cols[Math.floor(Math.random()*cols.length)];
+        r+='<rect x="'+x.toFixed(0)+'" y="'+(y-h).toFixed(0)+'" width="'+w.toFixed(0)+'" height="'+h.toFixed(0)+'" rx="3" fill="'+c+'"/>';
+        x+=w+4; }
+      return r;
+    }
+    shelves = row(150)+row(252)+row(354)+row2(150)+row2(252)+row2(354);
+    return '<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'+
+      '<defs>'+
+      '<linearGradient id="lw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff9f1"/><stop offset="1" stop-color="#fbeee0"/></linearGradient>'+
+      '<radialGradient id="rg"><stop offset="0" stop-color="#ffeccb" stop-opacity=".85"/><stop offset="1" stop-color="#ffeccb" stop-opacity="0"/></radialGradient>'+
+      '</defs>'+
+      '<rect width="800" height="600" fill="url(#lw)"/>'+
+      '<rect y="470" width="800" height="130" fill="#ecd6bd"/>'+
+      /* estantes */
+      '<g>'+shelves+'</g>'+
+      '<rect x="60" y="150" width="248" height="9" rx="3" fill="#caa078"/>'+
+      '<rect x="60" y="252" width="248" height="9" rx="3" fill="#caa078"/>'+
+      '<rect x="60" y="354" width="248" height="9" rx="3" fill="#caa078"/>'+
+      '<rect x="510" y="150" width="258" height="9" rx="3" fill="#caa078"/>'+
+      '<rect x="510" y="252" width="258" height="9" rx="3" fill="#caa078"/>'+
+      '<rect x="510" y="354" width="258" height="9" rx="3" fill="#caa078"/>'+
+      /* ventana central arriba */
+      '<circle cx="400" cy="150" r="150" fill="url(#rg)"/>'+
+      '<rect x="356" y="60" width="88" height="120" rx="44" fill="#e6eef6"/>'+
+      '<rect x="366" y="70" width="68" height="100" rx="34" fill="#dcecf4"/>'+
+      '<path d="M400 70 L400 170 M366 120 L434 120" stroke="#e6eef6" stroke-width="6"/>'+
+      /* libro abierto flotante mágico */
+      '<g transform="translate(400,250)">'+
+      '<path d="M0 -8 L-58 6 L-58 46 L0 34 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2.5"/>'+
+      '<path d="M0 -8 L58 6 L58 46 L0 34 Z" fill="#fdf5ec" stroke="#e0cdb8" stroke-width="2.5"/>'+
+      '<g stroke="#d9b9c8" stroke-width="1.8" opacity=".7"><path d="M-46 14 L-12 6"/><path d="M-46 24 L-12 16"/><path d="M-46 34 L-12 26"/><path d="M12 6 L46 14"/><path d="M12 16 L46 24"/><path d="M12 26 L46 34"/></g>'+
+      '<text x="0" y="-18" text-anchor="middle" font-family="Baloo 2,cursive" font-size="22" fill="#b9a8ea" font-weight="800">✦</text>'+
+      '</g>'+
+      /* sillón pista */
+      '<path d="M610 470 q0 -70 70 -70 q70 0 70 70 Z" fill="#e6d6f0"/>'+
+      '<rect x="600" y="450" width="160" height="40" rx="14" fill="#d6c0ec"/>'+
+      /* planta */
+      '<rect x="120" y="430" width="48" height="42" rx="7" fill="#eab78a"/>'+
+      '<path d="M144 430 q-26 -40 -6 -68 q12 20 6 68" fill="#9fcfae"/>'+
+      '<path d="M144 430 q24 -36 4 -64 q-10 18 -4 64" fill="#8fc6a0"/>'+
+      sparkleField(8,'#b9a8ea')+
+      '</svg>';
+  },
+  stage: function(){
+    let crowd='';
+    for(let i=0;i<14;i++){
+      const x=40+i*54, h=40+Math.random()*24;
+      crowd+='<ellipse cx="'+x+'" cy="'+(580).toFixed(0)+'" rx="26" ry="'+h+'" fill="#e7d6ea" opacity=".55"/>';
+      const lc=['#f6c9d4','#d9cef2','#cae9d8','#f8d3b6','#cfe3f5'][i%5];
+      crowd+='<line x1="'+(x+14)+'" y1="540" x2="'+(x+18)+'" y2="500" stroke="'+lc+'" stroke-width="4" stroke-linecap="round"/>';
+      crowd+='<circle cx="'+(x+19)+'" cy="498" r="6" fill="'+lc+'"/>';
+    }
+    return '<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'+
+      '<defs>'+
+      '<linearGradient id="sb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdeef2"/><stop offset=".6" stop-color="#fbe6ec"/><stop offset="1" stop-color="#f3ddec"/></linearGradient>'+
+      '</defs>'+
+      '<rect width="800" height="600" fill="url(#sb)"/>'+
+      /* conos de luz */
+      '<polygon points="180,0 80,420 280,420" fill="#f6c9d4" opacity=".28"/>'+
+      '<polygon points="400,0 300,420 500,420" fill="#d9cef2" opacity=".28"/>'+
+      '<polygon points="620,0 520,420 720,420" fill="#cae9d8" opacity=".28"/>'+
+      /* focos */
+      '<circle cx="180" cy="0" r="20" fill="#f6c9d4"/>'+
+      '<circle cx="400" cy="0" r="20" fill="#d9cef2"/>'+
+      '<circle cx="620" cy="0" r="20" fill="#cae9d8"/>'+
+      /* banner */
+      '<path d="M120 60 L680 60 L660 110 L140 110 Z" fill="#fffdf9" stroke="#f6c9d4" stroke-width="3"/>'+
+      '<path d="M120 60 L100 96 L140 110 Z" fill="#ec9fb0"/>'+
+      '<path d="M680 60 L700 96 L660 110 Z" fill="#ec9fb0"/>'+
+      '<text x="400" y="96" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="36" fill="#b85d76">Happy Birthday ✦</text>'+
+      /* piso escenario */
+      '<rect y="430" width="800" height="170" fill="#f0dce4"/>'+
+      '<rect y="430" width="800" height="10" fill="#e6c8d4"/>'+
+      '<polygon points="0,440 800,440 800,470 0,470" fill="#fff" opacity=".25"/>'+
+      /* público */
+      '<g>'+crowd+'</g>'+
+      /* notas musicales */
+      '<text x="120" y="200" font-family="Baloo 2,cursive" font-size="34" fill="#b9a8ea" font-weight="800" opacity=".7">♪</text>'+
+      '<text x="660" y="170" font-family="Baloo 2,cursive" font-size="30" fill="#ec9fb0" font-weight="800" opacity=".7">♫</text>'+
+      '<text x="240" y="150" font-family="Baloo 2,cursive" font-size="24" fill="#8fcfa8" font-weight="800" opacity=".6">♩</text>'+
+      sparkleField(9,'#ec9fb0')+
+      '</svg>';
+  }
+};
+ 
+/* ══════════ GUION ══════════ */
+ 
+const beats = [
+  /* DORMITORIO */
+  {sc:'bedroom', expr:'sleep', narr:true, text:'Amanece despacio. La primera luz se cuela por la ventana y cae justo sobre una bolita naranja que duerme hecha un ovillo.'},
+  {sc:'bedroom', expr:'sleep', name:'Miki', text:'...mnh... cinco minutos más, humana...'},
+  {sc:'bedroom', expr:'wake', name:'Miki', text:'...¿Eh? Espera. ¿Qué día es hoy?'},
+  {sc:'bedroom', expr:'surprised', name:'Miki', text:'¡La fecha del calendario! Hoy es... ¡2 de junio!', sfx:'¡PUM!'},
+  {sc:'bedroom', expr:'excited', name:'Miki', text:'¡ES EL CUMPLEAÑOS DE ALISON! ¡Mi humana favorita en todo el universo cumple 21 años!', sfx:'✦✦✦'},
+  {sc:'bedroom', expr:'determined', name:'Miki', text:'Un día así no puede pasar sin un regalo digno. Y yo, Miki, el mejor gato del mundo, le tengo el plan perfecto.'},
+  {sc:'bedroom', expr:'thinking', name:'Miki', text:'Cuentan que hay un mensaje secreto, partido en tres fragmentos, escondido en sus tres lugares favoritos...'},
+  {sc:'bedroom', expr:'happy', name:'Miki', text:'Si reúno los tres, podré entregarle el mensaje de cumpleaños más bonito de su vida. ¡Misión en marcha!'},
+  {sc:'bedroom', expr:'neutral', name:'Miki', choice:{q:'¿Por dónde empezamos la aventura?', opts:[
+    {label:'☕  Por la cafetería', reply:'¡Buena idea! Nada como arrancar el día con olor a café. ¡Vamos!', expr:'happy'},
+    {label:'📚  Por la biblioteca', reply:'Mmm... aunque pensándolo bien, el aroma del café me llama primero. ¡Empecemos por ahí!', expr:'happy'}
+  ]}},
+ 
+  /* CAFETERÍA */
+  {sc:'cafe', expr:'neutral', narr:true, text:'La cafetería del barrio huele a granos recién tostados y a mañanas tranquilas. Aquí Alison siempre pide lo mismo.'},
+  {sc:'cafe', expr:'excited', name:'Miki', acc:'coffee', text:'¡Ahí está! Una taza recién servida... y mira, hay algo escrito en el vapor.'},
+  {sc:'cafe', expr:'happy', name:'Miki', acc:'coffee', text:'El primer fragmento dice: «Que tus días tengan siempre la calidez de tu café favorito...»', toast:'💌 Fragmento 1 de 3 reunido'},
+  {sc:'cafe', expr:'determined', name:'Miki', text:'¡Una parte lista! Ahora, al lugar donde viven todas las historias.'},
+ 
+  /* BIBLIOTECA */
+  {sc:'library', expr:'neutral', narr:true, text:'Estanterías que llegan hasta el techo. Aquí Alison se pierde durante horas, viajando entre mundos de papel.'},
+  {sc:'library', expr:'thinking', name:'Miki', acc:'glasses', text:'Un mensaje escondido entre miles de libros... esto requiere toda mi concentración de gato lector.'},
+  {sc:'library', expr:'surprised', name:'Miki', acc:'glasses', text:'¡Ahí! Un libro brilla en el estante más alto, como llamándome.', sfx:'✦'},
+  {sc:'library', expr:'happy', name:'Miki', acc:'book', text:'El segundo fragmento: «...y que cada capítulo de este nuevo año te lleve a lugares maravillosos...»', toast:'💌 Fragmento 2 de 3 reunido'},
+  {sc:'library', expr:'excited', name:'Miki', text:'¡Dos de tres! Solo falta el lugar donde Alison brilla más que nadie en el mundo.'},
+ 
+  /* ESCENARIO */
+  {sc:'stage', expr:'neutral', narr:true, text:'Las luces del escenario se encienden. Aquí, bailando K-pop, Alison se transforma en pura energía y luz.'},
+  {sc:'stage', expr:'determined', name:'Miki', pose:'dance', acc:'lightstick', text:'El último fragmento no se entrega gratis... ¡aquí hay que ganárselo bailando! Muy bien, a calentar las patitas.'},
+  {sc:'stage', expr:'excited', name:'Miki', pose:'dance', acc:'lightstick', text:'¡Cinco, seis, siete, ocho! 🐾✨', sfx:'♪ ♫ ♪'},
+  {sc:'stage', expr:'love', name:'Miki', text:'¡El público enloquece! Y entre todas las luces de colores aparece, brillando, el tercer fragmento...'},
+  {sc:'stage', expr:'happy', name:'Miki', text:'«...porque cuando tú brillas, iluminas a todos a tu alrededor.»', toast:'💌 Fragmento 3 de 3 reunido'},
+  {sc:'stage', expr:'excited', name:'Miki', acc:'letter', text:'¡Los tres fragmentos, completos! Ya puedo unirlos en un solo mensaje. Acompáñame al gran final...', endBtn:true}
+];
+ 
+/* ══════════ MOTOR ══════════ */
+ 
+let idx=0, typing=false, fullText='', typeTimer=null;
+let curScene=null, awaitChoice=false, pendingNext=false, endLocked=false;
+let soundOn=false, audioCtx=null;
+ 
+const bgLayer=document.getElementById('bg-layer');
+const charLayer=document.getElementById('char-layer');
+const sfxLayer=document.getElementById('sfx-layer');
+const nametag=document.getElementById('nametag');
+const dtext=document.getElementById('dtext');
+const advance_=document.getElementById('advance');
+const choicesEl=document.getElementById('choices');
+const endbtnWrap=document.getElementById('endbtn-wrap');
+const toastEl=document.getElementById('toast');
+const pips=document.querySelectorAll('.pip');
+const sceneOrder=['bedroom','cafe','library','stage'];
+ 
+/* portada y final: dibujar gatos */
+document.getElementById('title-cat').innerHTML =
+  '<div style="width:170px">'+miki('happy')+'</div>';
+document.getElementById('fin-cat').innerHTML = miki('love',{acc:'letter'});
+ 
+/* estrellas de la página */
+(function(){
+  const pf=document.getElementById('pagestars');
+  const cs=['#ec9fb0','#b9a8ea','#8fcfa8','#eab78a','#9cc6ec'];
+  for(let i=0;i<28;i++){
+    const s=document.createElement('div'); s.className='pstar'; s.textContent='✦';
+    s.style.left=(Math.random()*100)+'%'; s.style.top=(Math.random()*100)+'%';
+    s.style.color=cs[i%cs.length]; s.style.fontSize=(8+Math.random()*15)+'px';
+    s.style.animationDelay=(Math.random()*3.5)+'s'; s.style.animationDuration=(2.5+Math.random()*3)+'s';
+    s.style.opacity=(.25+Math.random()*.4); pf.appendChild(s);
+  }
+})();
+ 
+function startGame(){
+  initAudio();
+  document.getElementById('title-screen').style.display='none';
+  document.getElementById('vn').style.display='block';
+  idx=0; render(idx);
+  document.getElementById('vn').scrollIntoView({behavior:'smooth',block:'center'});
+}
+ 
+function setScene(scene){
+  bgLayer.style.opacity='0';
+  charLayer.classList.add('hide');
+  setTimeout(()=>{
+    bgLayer.innerHTML = SCENES[scene]();
+    bgLayer.style.opacity='1';
+    charLayer.classList.remove('hide');
+  },300);
+  const si=sceneOrder.indexOf(scene);
+  pips.forEach((p,i)=>p.classList.toggle('active', i===si));
+}
+ 
+function setChar(beat){
+  if(beat.hideChar){ charLayer.style.opacity='0'; return; }
+  charLayer.style.opacity='1';
+  charLayer.innerHTML = miki(beat.expr||'neutral', {acc:beat.acc, pose:beat.pose});
+  charLayer.classList.remove('pop'); void charLayer.offsetWidth; charLayer.classList.add('pop');
+}
+ 
+function render(i){
+  const beat = beats[i];
+  if(beat.sc !== curScene){ setScene(beat.sc); curScene=beat.sc; }
+  setChar(beat);
+ 
+  /* nombre */
+  if(beat.narr){
+    nametag.classList.add('hidden'); nametag.classList.add('narr');
+    dtext.classList.add('narr');
+  } else {
+    nametag.classList.remove('hidden'); nametag.classList.remove('narr');
+    nametag.textContent = beat.name || 'Miki';
+    dtext.classList.remove('narr');
+  }
+ 
+  awaitChoice=false; endLocked=false;
+  choicesEl.classList.remove('show'); choicesEl.innerHTML='';
+  endbtnWrap.classList.remove('show');
+  advance_.classList.remove('show');
+ 
+  typewrite(beat.text, ()=>{
+    if(beat.choice){ showChoices(beat.choice); }
+    else if(beat.endBtn){ endbtnWrap.classList.add('show'); endLocked=true; }
+    else { advance_.classList.add('show'); }
+  });
+ 
+  if(beat.sfx) setTimeout(()=>showSfx(beat.sfx), 250);
+  if(beat.toast) setTimeout(()=>showToast(beat.toast), 500);
+}
+ 
+function typewrite(text, done){
+  clearInterval(typeTimer);
+  typing=true; fullText=text; dtext.textContent='';
+  let i=0;
+  typeTimer=setInterval(()=>{
+    dtext.textContent += text[i]; i++;
+    if(i%2===0) blip();
+    if(i>=text.length){ clearInterval(typeTimer); typing=false; done&&done(); }
+  }, 22);
+}
+function finishTyping(){
+  clearInterval(typeTimer); dtext.textContent=fullText; typing=false;
+  const beat=beats[idx];
+  if(beat.choice) showChoices(beat.choice);
+  else if(beat.endBtn){ endbtnWrap.classList.add('show'); endLocked=true; }
+  else advance_.classList.add('show');
+}
+ 
+function showChoices(choice){
+  awaitChoice=true;
+  nametag.classList.remove('hidden','narr');
+  nametag.textContent='Miki';
+  dtext.classList.remove('narr');
+  dtext.textContent=choice.q;
+  choicesEl.innerHTML='';
+  choice.opts.forEach(opt=>{
+    const b=document.createElement('button');
+    b.className='choice-btn'; b.textContent=opt.label;
+    b.onclick=(e)=>{ e.stopPropagation(); pickChoice(opt); };
+    choicesEl.appendChild(b);
+  });
+  choicesEl.classList.add('show');
+}
+ 
+function pickChoice(opt){
+  awaitChoice=false;
+  choicesEl.classList.remove('show'); choicesEl.innerHTML='';
+  charLayer.innerHTML = miki(opt.expr||'happy',{});
+  charLayer.classList.remove('pop'); void charLayer.offsetWidth; charLayer.classList.add('pop');
+  typewrite(opt.reply, ()=>{ advance_.classList.add('show'); });
+  pendingNext=true;
+}
+ 
+function advance(){
+  if(typing){ finishTyping(); return; }
+  if(awaitChoice) return;
+  if(endLocked) return;
+  if(pendingNext){ pendingNext=false; idx++; render(idx); return; }
+  if(idx < beats.length-1){ idx++; render(idx); }
+}
+ 
+function showSfx(txt){
+  const el=document.createElement('div');
+  el.className='sfx'; el.textContent=txt;
+  el.style.left=(20+Math.random()*45)+'%';
+  el.style.top=(16+Math.random()*22)+'%';
+  const cols=['#ec9fb0','#b9a8ea','#8fcfa8','#eab78a'];
+  el.style.color=cols[Math.floor(Math.random()*cols.length)];
+  sfxLayer.appendChild(el);
+  ding();
+  setTimeout(()=>{ el.style.transition='opacity .4s'; el.style.opacity='0'; },1100);
+  setTimeout(()=>el.remove(),1600);
+}
+ 
+function showToast(txt){
+  toastEl.textContent=txt;
+  toastEl.classList.add('show');
+  sparkleSound();
+  setTimeout(()=>toastEl.classList.remove('show'),2400);
+}
+ 
+function goFinale(e){
+  if(e) e.stopPropagation();
+  document.getElementById('vn').style.display='none';
+  document.getElementById('finale').style.display='flex';
+  computeStats();
+  document.getElementById('finale').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(launchConfetti,800);
+  finaleSound();
+}
+ 
+function computeStats(){
+  const birth=new Date('2005-06-02T00:00:00');
+  const now=new Date();
+  const days=Math.floor((now-birth)/86400000);
+  document.getElementById('s-days').textContent=days.toLocaleString('es-MX');
+  document.getElementById('s-coffee').textContent=Math.floor(days*1.4).toLocaleString('es-MX');
+  document.getElementById('s-songs').textContent=Math.floor(days*0.3).toLocaleString('es-MX');
+  document.getElementById('fin-sub').textContent='21 vueltas al sol · '+days.toLocaleString('es-MX')+' días siendo increíble ✦';
+}
+ 
+/* teclado */
+document.addEventListener('keydown',(e)=>{
+  if(document.getElementById('vn').style.display==='block'){
+    if(e.code==='Space'||e.code==='Enter'){ e.preventDefault(); advance(); }
+  }
+});
+ 
+/* ══════════ SONIDO (opcional, off por defecto) ══════════ */
+function initAudio(){ try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+function toggleSound(e){
+  if(e) e.stopPropagation();
+  soundOn=!soundOn;
+  document.getElementById('sound-toggle').textContent = soundOn?'🔊':'🔈';
+  if(soundOn && audioCtx && audioCtx.state==='suspended') audioCtx.resume();
+}
+function tone(freq,dur,vol,type){
+  if(!soundOn||!audioCtx) return;
+  try{
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.type=type||'sine'; o.frequency.value=freq;
+    g.gain.value=0; o.connect(g); g.connect(audioCtx.destination);
+    const t=audioCtx.currentTime;
+    g.gain.linearRampToValueAtTime(vol||.05,t+.01);
+    g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    o.start(t); o.stop(t+dur);
+  }catch(e){}
+}
+function blip(){ if(Math.random()<.5) tone(620+Math.random()*60,.05,.018,'sine'); }
+function ding(){ tone(880,.18,.06,'triangle'); }
+function sparkleSound(){ [880,1100,1320].forEach((f,i)=>setTimeout(()=>tone(f,.18,.05,'sine'),i*70)); }
+function finaleSound(){ [523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.4,.06,'triangle'),i*140)); }
+ 
+/* ══════════ CONFETTI (estrellas) ══════════ */
+function launchConfetti(){
+  const canvas=document.getElementById('confetti');
+  canvas.classList.add('active');
+  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const ctx=canvas.getContext('2d');
+  const pal=['#f6c9d4','#d9cef2','#cae9d8','#f8d3b6','#cfe3f5','#ecc285','#ec9fb0'];
+  function star(ctx,x,y,r,rot,c){
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.fillStyle=c; ctx.beginPath();
+    for(let i=0;i<10;i++){ const a=(Math.PI/5)*i, rr=i%2===0?r:r*.45; ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr); }
+    ctx.closePath(); ctx.fill(); ctx.restore();
+  }
+  const ps=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:-30-Math.random()*240,r:6+Math.random()*9,
+    c:pal[Math.floor(Math.random()*pal.length)],vy:1.4+Math.random()*2.4,vx:(Math.random()-.5)*1.4,
+    rot:Math.random()*6.28,rs:(Math.random()-.5)*.12}));
+  let f=0;
+  function tick(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ps.forEach(p=>{ star(ctx,p.x,p.y,p.r,p.rot,p.c); p.y+=p.vy; p.x+=p.vx+Math.sin(f/40)*.3; p.rot+=p.rs;
+      if(p.y>canvas.height+40){p.y=-30;p.x=Math.random()*canvas.width;} });
+    f++;
+    if(f<480) requestAnimationFrame(tick);
+    else{ canvas.classList.remove('active'); ctx.clearRect(0,0,canvas.width,canvas.height); }
+  }
+  tick();
+}
+</script>
 </body>
 </html>
+ 
