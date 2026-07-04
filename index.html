@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -107,12 +106,27 @@ body::before{
   cursor:pointer;
   user-select:none;
   -webkit-user-select:none;
-  touch-action:manipulation;
+  touch-action:pan-y;
   -webkit-tap-highlight-color:transparent;
 }
  
-#bg-layer{position:absolute;inset:0;transition:opacity .55s ease;}
-#bg-layer svg{width:100%;height:100%;display:block;}
+#bg-layer{position:absolute;inset:0;transition:opacity .55s ease;overflow:hidden;}
+#bg-layer svg{
+  position:absolute;left:50%;top:50%;display:block;
+  transform:translate(-50%,-50%) translateX(var(--pan,0px));
+  transition:transform .35s ease;
+}
+#bg-layer.panning svg{transition:none;}
+#pan-hint{
+  position:absolute;top:14%;left:50%;transform:translateX(-50%);
+  z-index:27;pointer-events:none;
+  background:rgba(255,253,249,.94);border:2px solid var(--peach);
+  border-radius:26px;padding:8px 18px;white-space:nowrap;
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:14px;color:var(--ink);
+  box-shadow:0 8px 20px rgba(120,90,80,.18);
+  opacity:0;transition:opacity .5s ease;
+}
+#pan-hint.show{opacity:1;}
  
 /* screentone manhwa */
 #screentone{
@@ -555,6 +569,7 @@ body::before{
  
   <div id="rhythm"><div id="rt-count">0 / 5</div></div>
   <div id="paws"></div>
+  <div id="pan-hint">‹ 🐾 desliza para mirar alrededor ›</div>
  
   <div id="choices"></div>
   <div id="endbtn-wrap"><button class="end-btn" onclick="goFinale(event)">Ver el mensaje ✦</button></div>
@@ -831,6 +846,9 @@ function miki(expr, opts){
 /* modo noche: si Alison lo abre después de las 7pm o antes de las 6am, el mundo cambia */
 const NIGHT = (function(){ const h=new Date().getHours(); return h>=19 || h<6; })();
  
+/* pantalla vertical (celular): las escenas se recomponen y se puede panear */
+let PORTRAIT = window.innerWidth <= 640;
+ 
 function sparkleField(n, color){
   let s='';
   for(let i=0;i<n;i++){
@@ -854,7 +872,8 @@ const SCENES = {
       '<rect width="800" height="600" fill="url(#bw)"/>'+
       '<rect y="466" width="800" height="134" fill="#f3e0cc"/>'+
       '<rect y="466" width="800" height="7" fill="#e7d0b8" opacity=".6"/>'+
-      /* ventana */
+      /* ventana (en vertical se acerca al centro para que la luz se vea) */
+      '<g'+(PORTRAIT?' transform="translate(-120 0)"':'')+'>'+
       '<rect x="466" y="64" width="278" height="306" rx="18" fill="#f1d9c0"/>'+
       '<rect x="480" y="78" width="250" height="278" rx="12" fill="url(#sun)"/>'+
       '<circle cx="610" cy="196" r="120" fill="url(#sg)"/>'+
@@ -890,6 +909,7 @@ const SCENES = {
       /* cortinas */
       '<path d="M448 56 q22 170 -8 326 q44 -12 64 -326 Z" fill="#ffffff" opacity=".75"/>'+
       '<path d="M762 56 q-22 170 8 326 q-44 -12 -64 -326 Z" fill="#ffffff" opacity=".75"/>'+
+      '</g>'+
       /* cama */
       '<rect x="-30" y="416" width="340" height="200" rx="26" fill="#e6d6f0"/>'+
       '<rect x="-30" y="416" width="340" height="46" rx="22" fill="#d6c0ec"/>'+
@@ -1000,8 +1020,8 @@ const SCENES = {
       '<rect x="366" y="70" width="68" height="100" rx="34" fill="'+(NIGHT?'#9d92cc':'#dcecf4')+'"/>'+
       (NIGHT?'<circle cx="386" cy="98" r="10" fill="#fdf3d0" opacity=".9"/><text x="410" y="140" font-size="10" fill="#fff" opacity=".8">✦</text>':'')+
       '<path d="M400 70 L400 170 M366 120 L434 120" stroke="#e6eef6" stroke-width="6"/>'+
-      /* libro abierto flotante mágico — secreto táctil, arriba a la izquierda donde se ve claro */
-      '<g transform="translate(165,84) scale(1.12)">'+
+      /* libro abierto flotante mágico — secreto táctil (en vertical asoma arriba, invitando a explorar) */
+      '<g transform="'+(PORTRAIT?'translate(278,56) scale(.9)':'translate(165,84) scale(1.12)')+'">'+
       '<g class="egg" onpointerup="egg(event,this,\'book\')" style="cursor:pointer">'+
       '<circle cx="0" cy="16" r="62" fill="#d9cef2" opacity=".32"><animate attributeName="opacity" values=".32;.14;.32" dur="2.6s" repeatCount="indefinite"/></circle>'+
       '<circle cx="0" cy="16" r="44" fill="#e6ddfa" opacity=".3"/>'+
@@ -1149,6 +1169,7 @@ function startGame(){
   document.getElementById('vn').style.display='block';
   idx=0; render(idx);
   document.getElementById('vn').scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(showPanHint, 1400);   /* solo aparece si la escena está recortada */
 }
  
 function setScene(scene){
@@ -1159,6 +1180,7 @@ function setScene(scene){
     bgLayer.innerHTML = SCENES[scene]();
     bgLayer.style.opacity='1';
     charLayer.classList.remove('hide');
+    panX=0; fitBg();               /* cada escena empieza centrada */
   },300);
   startMusic(scene);
   const si=sceneOrder.indexOf(scene);
@@ -1302,6 +1324,7 @@ function recordEgg(name){
 }
 function egg(e, el, name){
   e.stopPropagation();
+  if(dragMoved){ dragMoved=false; return; }   /* era un paneo, no un toque */
   el.classList.remove('egg-hit'); void el.getBoundingClientRect(); el.classList.add('egg-hit');
   buzz(20);
   if(name==='clock'){ tone(1180,.06,.07,'square'); setTimeout(()=>tone(880,.06,.07,'square'),140); }
@@ -1311,15 +1334,16 @@ function egg(e, el, name){
 }
 function mikiNose(e){
   e.stopPropagation();
+  if(dragMoved){ dragMoved=false; return; }   /* era un paneo, no un toque */
   meow(); buzz([14,40,14]);
-  /* corazoncito flotando sobre Miki */
+  /* corazoncito flotando por delante de Miki, arriba de su cabeza */
   const el=document.createElement('div');
   el.className='sfx'; el.textContent='♥';
-  el.style.left=(44+Math.random()*8)+'%';
-  el.style.top='20%';
-  el.style.fontSize='clamp(28px,6vw,44px)';
+  el.style.left=(45+Math.random()*8)+'%';
+  el.style.top='11%';
+  el.style.fontSize='clamp(30px,6.5vw,46px)';
   el.style.color='#ec6f8e';
-  sfxLayer.appendChild(el);
+  document.getElementById('paws').appendChild(el);   /* capa frontal (z6), delante del gato */
   setTimeout(()=>{ el.style.transition='opacity .4s'; el.style.opacity='0'; },900);
   setTimeout(()=>el.remove(),1400);
   recordEgg('nose');
@@ -1360,6 +1384,36 @@ function pawTrail(){
       setTimeout(()=>p.remove(),1250);
     }, i*95);
   }
+}
+ 
+/* ══════════ CÁMARA: encuadre y paneo lateral ══════════ */
+let panX=0, panLimit=0, dragOn=false, dragMoved=false, dragX0=0, panX0=0, panHintShown=false;
+ 
+function fitBg(){
+  const svg=bgLayer.querySelector('svg'); if(!svg) return;
+  const W=bgLayer.clientWidth, H=bgLayer.clientHeight;
+  if(!W||!H) return;
+  const s=Math.max(W/800, H/600);           /* cover: el fondo siempre llena el marco */
+  svg.style.width=(800*s)+'px';
+  svg.style.height=(600*s)+'px';
+  panLimit=Math.max(0,(800*s-W)/2);
+  panX=Math.max(-panLimit, Math.min(panLimit, panX));
+  applyPan();
+}
+function applyPan(){ bgLayer.style.setProperty('--pan', panX.toFixed(1)+'px'); }
+ 
+window.addEventListener('resize', ()=>{
+  const p=window.innerWidth<=640;
+  if(p!==PORTRAIT){ PORTRAIT=p; if(curScene) bgLayer.innerHTML=SCENES[curScene](); }
+  fitBg();
+});
+ 
+function showPanHint(){
+  if(panHintShown || panLimit<=0) return;
+  panHintShown=true;
+  const h=document.getElementById('pan-hint');
+  h.classList.add('show');
+  setTimeout(()=>h.classList.remove('show'), 4200);
 }
  
 /* ══════════ DIARIO DE MIKI (se abre con los secretos) ══════════ */
@@ -1437,7 +1491,27 @@ document.addEventListener('keydown',(e)=>{
   const vn=document.getElementById('vn');
   let lock=false;
   function isUI(t){ return t.closest('.choice-btn, .end-btn, #sound-toggle, .rt'); }
+ 
+  /* arrastre horizontal = panear la escena */
+  vn.addEventListener('pointerdown',(e)=>{
+    if(gameActive || isUI(e.target)) return;
+    dragOn=true; dragMoved=false; dragX0=e.clientX; panX0=panX;
+  });
+  vn.addEventListener('pointermove',(e)=>{
+    if(!dragOn || panLimit<=0) return;
+    const dx=e.clientX-dragX0;
+    if(!dragMoved && Math.abs(dx)>12){ dragMoved=true; bgLayer.classList.add('panning'); }
+    if(dragMoved){
+      panX=Math.max(-panLimit, Math.min(panLimit, panX0+dx));
+      applyPan();
+    }
+  });
+  /* en captura: inmune a stopPropagation de los secretos */
+  window.addEventListener('pointerup',()=>{ dragOn=false; bgLayer.classList.remove('panning'); }, true);
+  window.addEventListener('pointercancel',()=>{ dragOn=false; dragMoved=false; bgLayer.classList.remove('panning'); }, true);
+ 
   vn.addEventListener('pointerup',(e)=>{
+    if(dragMoved){ dragMoved=false; return; }   /* venía paneando, no avanzar */
     if(isUI(e.target)) return;     /* botones manejan su propio click */
     if(gameActive) return;         /* durante el juego, los taps son del ritmo */
     if(lock) return;
@@ -1459,9 +1533,24 @@ function initAudio(){
     comp.ratio.value=8; comp.attack.value=.003; comp.release.value=.2;
     masterGain.connect(comp);
     comp.connect(audioCtx.destination);
-    if(audioCtx.state==='suspended') audioCtx.resume();
+    unlockAudio();
   }catch(e){}
 }
+/* Los navegadores móviles a veces suspenden el AudioContext aunque se cree en un gesto.
+   Este desbloqueo se reintenta con cada toque hasta que el audio corra de verdad. */
+function unlockAudio(){
+  if(!audioCtx || audioCtx.state==='running') return;
+  try{
+    /* truco iOS: reproducir un buffer silencioso dentro del gesto del usuario */
+    const b=audioCtx.createBuffer(1,1,22050);
+    const s=audioCtx.createBufferSource();
+    s.buffer=b; s.connect(audioCtx.destination); s.start(0);
+  }catch(e){}
+  audioCtx.resume().then(()=>{
+    if(music.name) startMusic(music.name, true);   /* realinear la música al despertar */
+  }).catch(()=>{});
+}
+document.addEventListener('pointerup', unlockAudio, true);
 function toggleSound(e){
   if(e) e.stopPropagation();
   soundOn=!soundOn;
@@ -1612,6 +1701,7 @@ function musTick(){
 function startRhythm(){
   if(gameActive) return;
   gameActive=true; rtHits=0; rtPerfects=0; rtDone=0;
+  panX=0; applyPan();                 /* cámara centrada para el baile */
   advance_.classList.remove('show');
   const layer=document.getElementById('rhythm');
   layer.classList.add('on');
