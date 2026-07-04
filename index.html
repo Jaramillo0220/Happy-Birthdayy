@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +8,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>La Misión de Miki ✦ Para Alison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -125,7 +128,7 @@ body::before{
 }
  
 #char-layer{
-  position:absolute;inset:0;
+  position:absolute;inset:0;z-index:2;
   display:flex;align-items:flex-end;justify-content:center;
   padding-bottom:30%;
   pointer-events:none;
@@ -140,7 +143,7 @@ body::before{
 #char-layer.hide{opacity:0;transform:translateY(30px);}
  
 /* SFX manhwa */
-#sfx-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+#sfx-layer{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
 .sfx{
   position:absolute;
   font-family:'Baloo 2',cursive;font-weight:800;
@@ -258,6 +261,124 @@ body::before{
 }
 #sound-toggle:hover{transform:scale(1.1);}
  
+/* ════════ JUEGO DE RITMO ════════ */
+#rhythm{
+  position:absolute;inset:0;z-index:28;
+  display:none;pointer-events:none;overflow:hidden;
+}
+#rhythm.on{display:block;}
+#rt-count{
+  position:absolute;top:52px;left:50%;transform:translateX(-50%);
+  background:rgba(255,253,249,.94);border:2px solid var(--lav);
+  border-radius:26px;padding:7px 20px;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:15px;
+  color:var(--lav-ink);white-space:nowrap;
+  box-shadow:0 8px 20px rgba(185,168,234,.28);
+}
+.rt{
+  position:absolute;width:86px;height:86px;
+  transform:translate(-50%,-50%);
+  pointer-events:auto;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.rt-core{
+  position:absolute;inset:14px;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%, #fce8ee 0%, var(--pink) 55%, var(--pink-deep) 100%);
+  border:3px solid #fff;
+  box-shadow:0 8px 20px rgba(236,159,176,.45), inset 0 -4px 8px rgba(184,93,118,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#fff;
+  text-shadow:0 2px 4px rgba(184,93,118,.4);
+  animation:rtPulse .55s ease-in-out infinite;
+}
+.rt-ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:3.5px solid var(--lav-deep);
+  box-shadow:0 0 12px rgba(185,168,234,.6);
+  animation:rtRing var(--dur) linear forwards;
+}
+.rt.hit .rt-core{animation:rtHit .32s cubic-bezier(.3,1.6,.5,1) forwards;}
+.rt.hit .rt-ring{opacity:0;}
+.rt.miss{animation:rtMiss .36s ease forwards;}
+.rt-pop{
+  position:absolute;transform:translate(-50%,-50%);
+  font-family:'Baloo 2',cursive;font-weight:800;
+  font-size:clamp(17px,4vw,24px);white-space:nowrap;
+  color:var(--pink-deep);
+  text-shadow:-2px -2px 0 #fff,2px -2px 0 #fff,-2px 2px 0 #fff,2px 2px 0 #fff,0 6px 12px rgba(120,90,80,.25);
+  animation:rtPopUp .7s cubic-bezier(.2,.9,.3,1) forwards;
+  pointer-events:none;
+}
+.rt-pop.perfect{color:var(--lav-ink);}
+@keyframes rtRing{from{transform:scale(2.35);opacity:.95;}to{transform:scale(1);opacity:1;}}
+@keyframes rtPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.07);}}
+@keyframes rtHit{0%{transform:scale(1);}45%{transform:scale(1.45);opacity:1;}100%{transform:scale(.2);opacity:0;}}
+@keyframes rtMiss{to{transform:translate(-50%,-30%) scale(.75);opacity:0;filter:grayscale(1);}}
+@keyframes rtPopUp{0%{opacity:0;transform:translate(-50%,-40%) scale(.6);}25%{opacity:1;transform:translate(-50%,-70%) scale(1.1);}100%{opacity:0;transform:translate(-50%,-130%) scale(1);}}
+
+/* ════════ SECRETOS, HUELLITAS Y DIARIO ════════ */
+.egg-hit{
+  animation:eggWiggle .7s ease;
+  transform-box:fill-box;transform-origin:center;
+}
+@keyframes eggWiggle{
+  0%,100%{transform:rotate(0) scale(1);}
+  20%{transform:rotate(-7deg) scale(1.08);}
+  45%{transform:rotate(6deg) scale(1.05);}
+  70%{transform:rotate(-3deg) scale(1.03);}
+}
+#paws{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden;}
+.paw{position:absolute;opacity:0;animation:pawStep 1.15s ease forwards;}
+@keyframes pawStep{
+  0%{opacity:0;transform:scale(.5) rotate(var(--r,30deg));}
+  22%{opacity:.9;transform:scale(1) rotate(var(--r,30deg));}
+  68%{opacity:.9;}
+  100%{opacity:0;transform:scale(1) rotate(var(--r,30deg));}
+}
+#diary{
+  position:fixed;inset:0;z-index:1200;display:none;
+  align-items:center;justify-content:center;
+  background:rgba(74,58,52,.38);backdrop-filter:blur(3px);
+  padding:1.2rem;
+}
+#diary.open{display:flex;}
+.diary-card{
+  background:var(--paper);border:2px solid var(--peach);
+  border-radius:22px;max-width:520px;width:100%;
+  max-height:82vh;overflow-y:auto;
+  padding:1.9rem 1.7rem 1.6rem;text-align:left;
+  box-shadow:0 24px 60px rgba(74,58,52,.3);
+  animation:floatUp .45s ease;
+}
+.diary-card h3{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:26px;color:var(--orange);margin-bottom:1.1rem;
+}
+.d-entry{
+  font-family:'Quicksand',sans-serif;font-weight:500;
+  font-size:15px;line-height:1.75;color:var(--ink);
+  margin-bottom:1rem;padding-left:14px;
+  border-left:3px solid var(--peach);
+}
+.d-entry b{font-family:'Baloo 2',cursive;color:var(--pink-deep);font-weight:700;}
+.d-hint{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:15px;color:var(--ink-soft);margin-bottom:1.1rem;
+}
+.d-entry .d-lock{display:none;color:var(--ink-soft);font-style:italic;font-size:14px;}
+.d-entry.locked{border-left-color:#ddd3c8;background:rgba(120,90,80,.045);
+  border-radius:0 12px 12px 0;padding-top:.5rem;padding-bottom:.5rem;padding-right:.7rem;}
+.d-entry.locked .d-lock{display:block;}
+.d-entry.locked .d-body{display:none;}
+.diary-card .end-btn{display:block;margin:1.2rem auto 0;}
+.d-reset{
+  display:block;margin:.9rem auto 0;
+  font-family:'Quicksand',sans-serif;font-weight:600;font-size:12px;
+  color:var(--ink-soft);background:transparent;border:none;
+  text-decoration:underline dotted;cursor:pointer;opacity:.75;
+}
+.d-reset:hover{opacity:1;color:var(--pink-ink);}
+
 /* ════════ FINAL ════════ */
 #finale{
   display:none;position:relative;z-index:10;
@@ -375,6 +496,10 @@ body::before{
   #sound-toggle{width:40px;height:40px;font-size:17px;top:10px;right:12px;}
  
   #toast{font-size:14px;padding:10px 20px;top:14px;}
+
+  /* objetivos del ritmo más grandes para el dedo */
+  .rt{width:96px;height:96px;}
+  #rt-count{top:58px;font-size:16px;}
  
   /* título */
   .title-main{font-size:clamp(40px,13vw,64px);}
@@ -409,7 +534,7 @@ body::before{
   <h1 class="title-main">La misión<br>de <em>Miki</em></h1>
   <p class="title-sub">Un mensaje muy especial para Alison Vega ✦</p>
   <button class="start-btn" onclick="startGame()">Comenzar la historia ✦</button>
-  <p class="title-hint">toca la pantalla o presiona espacio para avanzar el diálogo</p>
+  <p class="title-hint">toca la pantalla para avanzar · la historia tiene música 🔊</p>
 </div>
  
 <!-- ═══ NOVELA VISUAL ═══ -->
@@ -424,9 +549,12 @@ body::before{
     <div class="pip active"></div><div class="pip"></div>
     <div class="pip"></div><div class="pip"></div>
   </div>
-  <button id="sound-toggle" onclick="toggleSound(event)" aria-label="sonido">🔈</button>
+  <button id="sound-toggle" onclick="toggleSound(event)" aria-label="sonido">🔊</button>
  
   <div id="toast"></div>
+ 
+  <div id="rhythm"><div id="rt-count">0 / 5</div></div>
+  <div id="paws"></div>
  
   <div id="choices"></div>
   <div id="endbtn-wrap"><button class="end-btn" onclick="goFinale(event)">Ver el mensaje ✦</button></div>
@@ -453,6 +581,8 @@ body::before{
     <p class="firma">Con todo el cariño, Ángel 🧡</p>
   </div>
  
+  <p class="fin-sub" id="fin-dance" style="display:none;margin-top:1.6rem;margin-bottom:0;"></p>
+ 
   <div class="fin-stats">
     <div class="fstat"><div class="fstat-n">21</div><div class="fstat-l">Años</div></div>
     <div class="fstat"><div class="fstat-n" id="s-days">—</div><div class="fstat-l">Días vividos</div></div>
@@ -462,9 +592,40 @@ body::before{
  
   <div class="fin-btns">
     <button class="celebrate-btn" onclick="launchConfetti()">✦ celebrar ✦</button>
+    <button class="replay-btn" id="diary-btn" onclick="openDiary()">📖 diario de Miki</button>
     <button class="replay-btn" onclick="location.reload()">↺ volver a empezar</button>
   </div>
   <p class="fin-sign">— hecho con cariño por Ángel, para Alison</p>
+</div>
+
+<!-- ═══ DIARIO DE MIKI ═══ -->
+<div id="diary" onclick="closeDiary(event)">
+  <div class="diary-card" onclick="event.stopPropagation()">
+    <h3>📖 El diario secreto de Miki</h3>
+    <p class="d-hint">Cada secreto que descubras en la aventura abre una página...</p>
+    <div class="d-entry" data-key="nose">
+      <div class="d-lock">🔒 Página sellada — dicen que Miki guarda este secreto en la puntita de la nariz...</div>
+      <div class="d-body"><b>Día 1.</b> La humana me dio una probadita de su croissant. Decidí oficialmente que es mi persona favorita del universo. No le digan al croissant.</div>
+    </div>
+    <div class="d-entry" data-key="clock">
+      <div class="d-lock">🔒 Página sellada — algo que hace tic-tac en una mañana soleada sabe cómo abrirla...</div>
+      <div class="d-body"><b>Día 47.</b> Se aprendió una coreografía nueva. Yo también me la aprendí, pero solo la bailo cuando nadie me ve. Un gato tiene su dignidad.</div>
+    </div>
+    <div class="d-entry" data-key="cup">
+      <div class="d-lock">🔒 Página sellada — huele a algo calientito de la cafetería...</div>
+      <div class="d-body"><b>Día 112.</b> Hoy leyó hasta tardísimo. Me quedé dormido sobre la página 84. Ahora esa página huele a mí. De nada.</div>
+    </div>
+    <div class="d-entry" data-key="book">
+      <div class="d-lock">🔒 Página sellada — un libro que brilla entre los estantes conoce la respuesta...</div>
+      <div class="d-body"><b>Día 203.</b> Descubrí que cuando escucha a sus siete cantantes favoritos se pone muy feliz. Maullé el coro con todas mis fuerzas. Nadie me aplaudió. 💜</div>
+    </div>
+    <div class="d-entry" data-key="story">
+      <div class="d-lock">🔒 La última página — solo se abre cuando los cuatro secretos hayan sido descubiertos...</div>
+      <div class="d-body"><b>Día 365.</b> Conclusión del año: mi humana brilla más que todas mis estrellas juntas. Firmado: Miki, el gato más afortunado. 🧡</div>
+    </div>
+    <button class="end-btn" onclick="closeDiary()">cerrar ✦</button>
+    <button class="d-reset" onclick="resetEggs(event)">↺ sellar las páginas y buscar los secretos de nuevo</button>
+  </div>
 </div>
  
 <script>
@@ -602,6 +763,8 @@ function miki(expr, opts){
  
   /* cara */
   s += '<g class="face">'+(FACES[expr]||FACES.neutral)+'</g>';
+  /* secreto: tocar la nariz de Miki */
+  s += '<circle cx="110" cy="99" r="20" fill="transparent" style="pointer-events:auto;cursor:pointer" onpointerup="mikiNose(event)"/>';
  
   /* accesorios */
   if(acc === 'coffee'){
@@ -627,26 +790,28 @@ function miki(expr, opts){
       '<circle cx="84" cy="80" r="18" fill="#cfe3f5" opacity=".22"/><circle cx="136" cy="80" r="18" fill="#cfe3f5" opacity=".22"/>'+
       '<path d="M76 70 q6 -5 14 -2" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>';
   } else if(acc === 'lightstick'){
-    /* sable de luz pastel — guiño sutil a Star Wars */
-    s += '<g transform="translate(0,0)">'+
-      /* mango metálico */
-      '<rect x="172" y="118" width="14" height="34" rx="4" fill="#cdbfae"/>'+
-      '<rect x="172" y="118" width="14" height="34" rx="4" fill="none" stroke="#a9967f" stroke-width="1.5"/>'+
-      '<rect x="174" y="126" width="10" height="2.5" fill="#8a7660" opacity=".7"/>'+
-      '<rect x="174" y="133" width="10" height="2.5" fill="#8a7660" opacity=".7"/>'+
-      '<rect x="174" y="140" width="10" height="2.5" fill="#8a7660" opacity=".7"/>'+
-      '<circle cx="179" cy="146" r="2" fill="#ec9fb0"/>'+
-      /* emisor */
-      '<rect x="174" y="112" width="10" height="8" rx="2" fill="#e0cdb8"/>'+
-      /* halo de la hoja */
-      '<rect x="170" y="30" width="18" height="86" rx="9" fill="#f6c9d4" opacity=".4"/>'+
-      /* hoja pastel */
-      '<rect x="174" y="32" width="10" height="82" rx="5" fill="#fce8ee">'+
-        '<animate attributeName="opacity" values="1;.85;1" dur="1.6s" repeatCount="indefinite"/></rect>'+
-      '<rect x="176" y="34" width="6" height="78" rx="3" fill="#ffffff" opacity=".85"/>'+
-      /* punta brillante */
-      '<circle cx="179" cy="34" r="6" fill="#fff" opacity=".7"/>'+
-      '<text x="171" y="26" font-family="Baloo 2,cursive" font-size="13" fill="#ec9fb0" font-weight="800" opacity=".8">✦</text>'+
+    /* lightstick de orbe con halo morado — guiño para una ARMY 💜 */
+    s += '<g>'+
+      /* mango blanco perlado */
+      '<rect x="172" y="116" width="14" height="40" rx="6" fill="#f7f4fc" stroke="#cfc3ea" stroke-width="1.6"/>'+
+      '<rect x="174" y="127" width="10" height="3" fill="#b9a8ea" opacity=".8"/>'+
+      '<rect x="174" y="134" width="10" height="3" fill="#b9a8ea" opacity=".8"/>'+
+      '<circle cx="179" cy="147" r="2.2" fill="#8d7ad4"/>'+
+      /* halo morado que respira */
+      '<circle cx="179" cy="92" r="34" fill="#b9a8ea" opacity=".2">'+
+        '<animate attributeName="r" values="34;39;34" dur="1.9s" repeatCount="indefinite"/>'+
+        '<animate attributeName="opacity" values=".2;.32;.2" dur="1.9s" repeatCount="indefinite"/></circle>'+
+      '<circle cx="179" cy="92" r="26" fill="#c9bbf0" opacity=".32"/>'+
+      /* esfera */
+      '<circle cx="179" cy="92" r="20" fill="#ffffff" stroke="#d9cef2" stroke-width="2.2"/>'+
+      '<circle cx="179" cy="92" r="14" fill="#e9e1fb"/>'+
+      '<circle cx="179" cy="92" r="7" fill="#b9a8ea">'+
+        '<animate attributeName="opacity" values="1;.55;1" dur="1.5s" repeatCount="indefinite"/></circle>'+
+      '<circle cx="172" cy="85" r="4.5" fill="#fff" opacity=".9"/>'+
+      /* estrellitas moradas alrededor */
+      '<text x="150" y="66" font-family="Baloo 2,cursive" font-size="13" fill="#8d7ad4" font-weight="800" opacity=".85">✦</text>'+
+      '<text x="202" y="76" font-family="Baloo 2,cursive" font-size="10" fill="#b9a8ea" font-weight="800" opacity=".8">✦</text>'+
+      '<text x="198" y="122" font-family="Baloo 2,cursive" font-size="9" fill="#c9bbf0" font-weight="800" opacity=".7">✦</text>'+
       '</g>';
   } else if(acc === 'letter'){
     s += '<g transform="translate(0,4)">'+
@@ -663,6 +828,9 @@ function miki(expr, opts){
  
 /* ══════════ ESCENAS (fondos SVG) ══════════ */
  
+/* modo noche: si Alison lo abre después de las 7pm o antes de las 6am, el mundo cambia */
+const NIGHT = (function(){ const h=new Date().getHours(); return h>=19 || h<6; })();
+ 
 function sparkleField(n, color){
   let s='';
   for(let i=0;i<n;i++){
@@ -677,8 +845,11 @@ const SCENES = {
     return '<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'+
       '<defs>'+
       '<linearGradient id="bw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff8f0"/><stop offset="1" stop-color="#fdeede"/></linearGradient>'+
-      '<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe6c6"/><stop offset=".5" stop-color="#ffd2da"/><stop offset="1" stop-color="#fbe8e2"/></linearGradient>'+
-      '<radialGradient id="sg"><stop offset="0" stop-color="#fff3d6" stop-opacity=".95"/><stop offset="1" stop-color="#fff3d6" stop-opacity="0"/></radialGradient>'+
+      '<linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">'+(NIGHT
+        ? '<stop offset="0" stop-color="#8f86c2"/><stop offset=".5" stop-color="#a99ddb"/><stop offset="1" stop-color="#c4b7e6"/>'
+        : '<stop offset="0" stop-color="#ffe6c6"/><stop offset=".5" stop-color="#ffd2da"/><stop offset="1" stop-color="#fbe8e2"/>')+'</linearGradient>'+
+      '<radialGradient id="sg"><stop offset="0" stop-color="'+(NIGHT?'#f2ecff':'#fff3d6')+'" stop-opacity=".95"/><stop offset="1" stop-color="'+(NIGHT?'#f2ecff':'#fff3d6')+'" stop-opacity="0"/></radialGradient>'+
+      (NIGHT?'<mask id="mmoon"><rect x="540" y="126" width="150" height="146" fill="#fff"/><circle cx="629" cy="183" r="33" fill="#000"/></mask>':'')+
       '</defs>'+
       '<rect width="800" height="600" fill="url(#bw)"/>'+
       '<rect y="466" width="800" height="134" fill="#f3e0cc"/>'+
@@ -687,14 +858,35 @@ const SCENES = {
       '<rect x="466" y="64" width="278" height="306" rx="18" fill="#f1d9c0"/>'+
       '<rect x="480" y="78" width="250" height="278" rx="12" fill="url(#sun)"/>'+
       '<circle cx="610" cy="196" r="120" fill="url(#sg)"/>'+
-      '<circle cx="610" cy="196" r="44" fill="#ffd98e"/>'+
-      '<ellipse cx="540" cy="348" rx="120" ry="48" fill="#f6c6bd" opacity=".6"/>'+
-      '<ellipse cx="690" cy="352" rx="110" ry="42" fill="#f3b6ad" opacity=".5"/>'+
+      (NIGHT
+        ? '<circle cx="610" cy="196" r="40" fill="#fdf3d0" mask="url(#mmoon)"/>'+
+          '<text x="700" y="122" font-size="10" fill="#fff" opacity=".75">✦</text><text x="524" y="128" font-size="12" fill="#fff" opacity=".85">✦</text>'+
+          /* constelación oculta: un caza estelar con alas en X vuela en la noche ⭐ */
+          '<g>'+
+          '<g stroke="#fff" stroke-width="1" opacity=".26" fill="none">'+
+          '<path d="M574 296 L558 293 L542 296 L526 296"/>'+
+          '<path d="M526 296 L506 278"/><path d="M526 296 L506 314"/>'+
+          '<path d="M522 296 L510 288"/><path d="M522 296 L510 304"/>'+
+          '</g>'+
+          '<circle cx="574" cy="296" r="2.4" fill="#fff"><animate attributeName="opacity" values="1;.45;1" dur="2.4s" repeatCount="indefinite"/></circle>'+
+          '<circle cx="558" cy="293" r="1.8" fill="#fff" opacity=".9"/>'+
+          '<circle cx="542" cy="296" r="1.8" fill="#fff" opacity=".85"/>'+
+          '<circle cx="526" cy="296" r="2" fill="#fff" opacity=".9"/>'+
+          '<circle cx="506" cy="278" r="2.2" fill="#fff"><animate attributeName="opacity" values=".9;.4;.9" dur="3.1s" repeatCount="indefinite"/></circle>'+
+          '<circle cx="506" cy="314" r="2.2" fill="#fff" opacity=".9"/>'+
+          '<circle cx="510" cy="288" r="1.5" fill="#fce8ee" opacity=".85"/>'+
+          '<circle cx="510" cy="304" r="1.5" fill="#fce8ee" opacity=".85"/>'+
+          '</g>'
+        : '<circle cx="610" cy="196" r="44" fill="#ffce74"/><circle cx="602" cy="188" r="28" fill="#ffe4a6"/><circle cx="596" cy="182" r="14" fill="#fff2cf" opacity=".9"/>')+
+      '<g fill="'+(NIGHT?'#b3a6d8':'#f6c6bd')+'" opacity=".55">'+
+      '<ellipse cx="540" cy="352" rx="86" ry="28"/><ellipse cx="502" cy="336" rx="44" ry="22"/><ellipse cx="576" cy="338" rx="38" ry="18"/></g>'+
+      '<g fill="'+(NIGHT?'#a597ce':'#f3b6ad')+'" opacity=".5">'+
+      '<ellipse cx="690" cy="356" rx="78" ry="24"/><ellipse cx="658" cy="342" rx="36" ry="17"/><ellipse cx="716" cy="341" rx="32" ry="15"/></g>'+
       '<path d="M520 150 q9 -9 18 0 q9 -9 18 0" stroke="#d8a89c" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".7"/>'+
       '<rect x="600" y="78" width="14" height="278" fill="#f1d9c0"/>'+
       '<rect x="480" y="210" width="250" height="14" fill="#f1d9c0"/>'+
       /* haz de luz */
-      '<polygon points="480,356 730,356 800,600 380,600" fill="#fff1d4" opacity=".4"/>'+
+      '<polygon points="480,356 730,356 800,600 380,600" fill="'+(NIGHT?'#e6ddfa':'#fff1d4')+'" opacity="'+(NIGHT?'.3':'.4')+'"/>'+
       /* cortinas */
       '<path d="M448 56 q22 170 -8 326 q44 -12 64 -326 Z" fill="#ffffff" opacity=".75"/>'+
       '<path d="M762 56 q-22 170 8 326 q-44 -12 -64 -326 Z" fill="#ffffff" opacity=".75"/>'+
@@ -709,11 +901,13 @@ const SCENES = {
       '<path d="M388 486 q-30 -46 -8 -78 q14 22 8 78" fill="#9fcfae"/>'+
       '<path d="M388 486 q26 -40 6 -70 q-12 20 -6 70" fill="#8fc6a0"/>'+
       '<path d="M388 486 q2 -56 -22 -64 q8 30 22 64" fill="#aedabb"/>'+
-      /* reloj */
+      /* reloj — secreto táctil */
+      '<g class="egg" onpointerup="egg(event,this,\'clock\')" style="cursor:pointer">'+
       '<circle cx="248" cy="128" r="44" fill="#fffdf9" stroke="#e7d0b8" stroke-width="4"/>'+
       '<circle cx="248" cy="128" r="4" fill="#b85d76"/>'+
       '<path d="M248 128 L248 100" stroke="#b85d76" stroke-width="3.5" stroke-linecap="round"/>'+
       '<path d="M248 128 L268 136" stroke="#b85d76" stroke-width="3" stroke-linecap="round"/>'+
+      '</g>'+
       sparkleField(7,'#ec9fb0')+
       '</svg>';
   },
@@ -726,7 +920,8 @@ const SCENES = {
       '<rect width="800" height="600" fill="url(#cw)"/>'+
       /* ventana lateral */
       '<rect x="40" y="80" width="180" height="220" rx="14" fill="#e9f1e2"/>'+
-      '<rect x="52" y="92" width="156" height="196" rx="8" fill="#dcecf4"/>'+
+      '<rect x="52" y="92" width="156" height="196" rx="8" fill="'+(NIGHT?'#9d92cc':'#dcecf4')+'"/>'+
+      (NIGHT?'<text x="80" y="130" font-size="11" fill="#fff" opacity=".85">✦</text><text x="168" y="160" font-size="9" fill="#fff" opacity=".7">✦</text><circle cx="140" cy="120" r="12" fill="#fdf3d0" opacity=".9"/>':'')+
       '<rect x="124" y="92" width="10" height="196" fill="#e9f1e2"/>'+
       '<rect x="52" y="182" width="156" height="10" fill="#e9f1e2"/>'+
       /* repisa con tazas/frascos */
@@ -749,7 +944,8 @@ const SCENES = {
       '<rect y="440" width="800" height="160" fill="#dcb98e"/>'+
       '<rect y="440" width="800" height="14" fill="#caa078"/>'+
       '<rect y="454" width="800" height="6" fill="#b88f63" opacity=".5"/>'+
-      /* taza grande sobre mostrador */
+      /* taza grande sobre mostrador — secreto táctil */
+      '<g class="egg" onpointerup="egg(event,this,\'cup\')" style="cursor:pointer">'+
       '<ellipse cx="400" cy="438" rx="70" ry="14" fill="#caa078" opacity=".4"/>'+
       '<path d="M356 388 h88 l-9 50 q-2 8 -10 8 h-50 q-8 0 -10 -8 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2.5"/>'+
       '<ellipse cx="400" cy="390" rx="44" ry="9" fill="#c68a5a"/>'+
@@ -757,6 +953,7 @@ const SCENES = {
       '<path d="M444 398 q22 3 22 22 q0 16 -18 18" fill="none" stroke="#e0cdb8" stroke-width="5"/>'+
       '<path d="M384 372 Q387 360 384 350" stroke="#e6d4c2" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"><animate attributeName="opacity" values=".8;.2;.8" dur="2.2s" repeatCount="indefinite"/></path>'+
       '<path d="M416 372 Q419 360 416 350" stroke="#e6d4c2" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"><animate attributeName="opacity" values=".7;.15;.7" dur="2.6s" repeatCount="indefinite"/></path>'+
+      '</g>'+
       /* bokeh */
       '<circle cx="120" cy="360" r="22" fill="#fbe2c4" opacity=".5"/>'+
       '<circle cx="700" cy="300" r="28" fill="#f6dcc0" opacity=".4"/>'+
@@ -800,15 +997,19 @@ const SCENES = {
       /* ventana central arriba */
       '<circle cx="400" cy="150" r="150" fill="url(#rg)"/>'+
       '<rect x="356" y="60" width="88" height="120" rx="44" fill="#e6eef6"/>'+
-      '<rect x="366" y="70" width="68" height="100" rx="34" fill="#dcecf4"/>'+
+      '<rect x="366" y="70" width="68" height="100" rx="34" fill="'+(NIGHT?'#9d92cc':'#dcecf4')+'"/>'+
+      (NIGHT?'<circle cx="386" cy="98" r="10" fill="#fdf3d0" opacity=".9"/><text x="410" y="140" font-size="10" fill="#fff" opacity=".8">✦</text>':'')+
       '<path d="M400 70 L400 170 M366 120 L434 120" stroke="#e6eef6" stroke-width="6"/>'+
-      /* libro abierto flotante mágico */
-      '<g transform="translate(400,250)">'+
+      /* libro abierto flotante mágico — secreto táctil, arriba a la izquierda donde se ve claro */
+      '<g transform="translate(165,84) scale(1.12)">'+
+      '<g class="egg" onpointerup="egg(event,this,\'book\')" style="cursor:pointer">'+
+      '<circle cx="0" cy="16" r="62" fill="#d9cef2" opacity=".32"><animate attributeName="opacity" values=".32;.14;.32" dur="2.6s" repeatCount="indefinite"/></circle>'+
+      '<circle cx="0" cy="16" r="44" fill="#e6ddfa" opacity=".3"/>'+
       '<path d="M0 -8 L-58 6 L-58 46 L0 34 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2.5"/>'+
       '<path d="M0 -8 L58 6 L58 46 L0 34 Z" fill="#fdf5ec" stroke="#e0cdb8" stroke-width="2.5"/>'+
       '<g stroke="#d9b9c8" stroke-width="1.8" opacity=".7"><path d="M-46 14 L-12 6"/><path d="M-46 24 L-12 16"/><path d="M-46 34 L-12 26"/><path d="M12 6 L46 14"/><path d="M12 16 L46 24"/><path d="M12 26 L46 34"/></g>'+
       '<text x="0" y="-18" text-anchor="middle" font-family="Baloo 2,cursive" font-size="22" fill="#b9a8ea" font-weight="800">✦</text>'+
-      '</g>'+
+      '</g></g>'+
       /* sillón pista */
       '<path d="M610 470 q0 -70 70 -70 q70 0 70 70 Z" fill="#e6d6f0"/>'+
       '<rect x="600" y="450" width="160" height="40" rx="14" fill="#d6c0ec"/>'+
@@ -824,9 +1025,10 @@ const SCENES = {
     for(let i=0;i<14;i++){
       const x=40+i*54, h=40+Math.random()*24;
       crowd+='<ellipse cx="'+x+'" cy="'+(580).toFixed(0)+'" rx="26" ry="'+h+'" fill="#e7d6ea" opacity=".55"/>';
-      const lc=['#f6c9d4','#d9cef2','#cae9d8','#f8d3b6','#cfe3f5'][i%5];
+      const lc=['#b9a8ea','#c9bbf0','#8d7ad4','#d9cef2','#a893e8'][i%5];
       crowd+='<line x1="'+(x+14)+'" y1="540" x2="'+(x+18)+'" y2="500" stroke="'+lc+'" stroke-width="4" stroke-linecap="round"/>';
-      crowd+='<circle cx="'+(x+19)+'" cy="498" r="6" fill="'+lc+'"/>';
+      crowd+='<circle cx="'+(x+19)+'" cy="496" r="7" fill="#fff" stroke="'+lc+'" stroke-width="2.5"/>';
+      crowd+='<circle cx="'+(x+19)+'" cy="496" r="3" fill="'+lc+'"/>';
     }
     return '<svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">'+
       '<defs>'+
@@ -865,7 +1067,9 @@ const SCENES = {
  
 const beats = [
   /* DORMITORIO */
-  {sc:'bedroom', expr:'sleep', narr:true, text:'Amanece despacio. La primera luz se cuela por la ventana y cae justo sobre una bolita naranja que duerme hecha un ovillo.'},
+  {sc:'bedroom', expr:'sleep', narr:true, text: NIGHT
+    ? 'Cae la noche despacio. La luz de la luna se cuela por la ventana y baña una bolita naranja que duerme hecha un ovillo.'
+    : 'Amanece despacio. La primera luz se cuela por la ventana y cae justo sobre una bolita naranja que duerme hecha un ovillo.'},
   {sc:'bedroom', expr:'sleep', name:'Miki', text:'...mnh... cinco minutos más, humana...'},
   {sc:'bedroom', expr:'wake', name:'Miki', text:'...¿Eh? Espera. ¿Qué día es hoy?'},
   {sc:'bedroom', expr:'surprised', name:'Miki', text:'¡La fecha del calendario! Hoy es... ¡2 de junio!', sfx:'¡PUM!'},
@@ -874,12 +1078,12 @@ const beats = [
   {sc:'bedroom', expr:'thinking', name:'Miki', text:'Cuentan que hay un mensaje secreto, partido en tres fragmentos, escondido en sus tres lugares favoritos...'},
   {sc:'bedroom', expr:'happy', name:'Miki', text:'Si reúno los tres, podré entregarle el mensaje de cumpleaños más bonito de su vida. ¡Misión en marcha!'},
   {sc:'bedroom', expr:'neutral', name:'Miki', choice:{q:'¿Por dónde empezamos la aventura?', opts:[
-    {label:'☕  Por la cafetería', reply:'¡Buena idea! Nada como arrancar el día con olor a café. ¡Vamos!', expr:'happy'},
+    {label:'☕  Por la cafetería', reply:'¡Buena idea! '+(NIGHT?'Nada como el aroma del café, a la hora que sea. ¡Vamos!':'Nada como arrancar el día con olor a café. ¡Vamos!'), expr:'happy'},
     {label:'📚  Por la biblioteca', reply:'Mmm... aunque pensándolo bien, el aroma del café me llama primero. ¡Empecemos por ahí!', expr:'happy'}
   ]}},
  
   /* CAFETERÍA */
-  {sc:'cafe', expr:'neutral', narr:true, text:'La cafetería del barrio huele a granos recién tostados y a mañanas tranquilas. Aquí Alison siempre pide lo mismo.'},
+  {sc:'cafe', expr:'neutral', narr:true, text:'La cafetería del barrio huele a granos recién tostados y a '+(NIGHT?'noches tranquilas':'mañanas tranquilas')+'. Aquí Alison siempre pide lo mismo.'},
   {sc:'cafe', expr:'excited', name:'Miki', acc:'coffee', text:'¡Ahí está! Una taza recién servida... y mira, hay algo escrito en el vapor.'},
   {sc:'cafe', expr:'happy', name:'Miki', acc:'coffee', text:'El primer fragmento dice: «Que tus días tengan siempre la calidez de tu café favorito...»', toast:'💌 Fragmento 1 de 3 reunido'},
   {sc:'cafe', expr:'determined', name:'Miki', text:'¡Una parte lista! Ahora, al lugar donde viven todas las historias.'},
@@ -895,6 +1099,7 @@ const beats = [
   {sc:'stage', expr:'neutral', narr:true, text:'Las luces del escenario se encienden. Aquí, bailando K-pop, Alison se transforma en pura energía y luz.'},
   {sc:'stage', expr:'determined', name:'Miki', pose:'dance', acc:'lightstick', text:'El último fragmento no se entrega gratis... ¡aquí hay que ganárselo bailando! Muy bien, a calentar las patitas.'},
   {sc:'stage', expr:'excited', name:'Miki', pose:'dance', acc:'lightstick', text:'¡Cinco, seis, siete, ocho! 🐾✨', sfx:'♪ ♫ ♪'},
+  {sc:'stage', expr:'determined', name:'Miki', pose:'dance', acc:'lightstick', game:'rhythm', text:'¡Baila conmigo! Toca las estrellas justo cuando el anillo se cierre sobre ellas. ¿Lista? ¡Ya!'},
   {sc:'stage', expr:'love', name:'Miki', text:'¡El público enloquece! Y entre todas las luces de colores aparece, brillando, el tercer fragmento...'},
   {sc:'stage', expr:'happy', name:'Miki', text:'«...porque cuando tú brillas, iluminas a todos a tu alrededor.»', toast:'💌 Fragmento 3 de 3 reunido'},
   {sc:'stage', expr:'excited', name:'Miki', acc:'letter', text:'¡Los tres fragmentos, completos! Ya puedo unirlos en un solo mensaje. Acompáñame al gran final...', endBtn:true}
@@ -904,7 +1109,9 @@ const beats = [
  
 let idx=0, typing=false, fullText='', typeTimer=null;
 let curScene=null, awaitChoice=false, pendingNext=false, endLocked=false;
-let soundOn=false, audioCtx=null;
+let soundOn=true, audioCtx=null, masterGain=null;
+let gameActive=false, rtHits=0, rtPerfects=0, rtDone=0, rhythmStars=0;
+const RT_TOTAL=5, RT_BPM=112;
  
 const bgLayer=document.getElementById('bg-layer');
 const charLayer=document.getElementById('char-layer');
@@ -945,6 +1152,7 @@ function startGame(){
 }
  
 function setScene(scene){
+  if(curScene) pawTrail();     /* Miki camina al siguiente lugar 🐾 */
   bgLayer.style.opacity='0';
   charLayer.classList.add('hide');
   setTimeout(()=>{
@@ -952,6 +1160,7 @@ function setScene(scene){
     bgLayer.style.opacity='1';
     charLayer.classList.remove('hide');
   },300);
+  startMusic(scene);
   const si=sceneOrder.indexOf(scene);
   pips.forEach((p,i)=>p.classList.toggle('active', i===si));
 }
@@ -984,7 +1193,8 @@ function render(i){
   advance_.classList.remove('show');
  
   typewrite(beat.text, ()=>{
-    if(beat.choice){ showChoices(beat.choice); }
+    if(beat.game){ setTimeout(startRhythm, 500); }
+    else if(beat.choice){ showChoices(beat.choice); }
     else if(beat.endBtn){ endbtnWrap.classList.add('show'); endLocked=true; }
     else { advance_.classList.add('show'); }
   });
@@ -1006,7 +1216,8 @@ function typewrite(text, done){
 function finishTyping(){
   clearInterval(typeTimer); dtext.textContent=fullText; typing=false;
   const beat=beats[idx];
-  if(beat.choice) showChoices(beat.choice);
+  if(beat.game && !pendingNext){ if(!gameActive) setTimeout(startRhythm, 400); }
+  else if(beat.choice && !pendingNext) showChoices(beat.choice);
   else if(beat.endBtn){ endbtnWrap.classList.add('show'); endLocked=true; }
   else advance_.classList.add('show');
 }
@@ -1028,15 +1239,17 @@ function showChoices(choice){
 }
  
 function pickChoice(opt){
-  awaitChoice=false;
+  awaitChoice=false; buzz(15);
   choicesEl.classList.remove('show'); choicesEl.innerHTML='';
-  charLayer.innerHTML = miki(opt.expr||'happy',{});
+  const cur=beats[idx]||{};
+  charLayer.innerHTML = miki(opt.expr||'happy',{acc:cur.acc, pose:cur.pose});
   charLayer.classList.remove('pop'); void charLayer.offsetWidth; charLayer.classList.add('pop');
   typewrite(opt.reply, ()=>{ advance_.classList.add('show'); });
   pendingNext=true;
 }
  
 function advance(){
+  if(gameActive) return;
   if(typing){ finishTyping(); return; }
   if(awaitChoice) return;
   if(endLocked) return;
@@ -1047,8 +1260,10 @@ function advance(){
 function showSfx(txt){
   const el=document.createElement('div');
   el.className='sfx'; el.textContent=txt;
-  el.style.left=(20+Math.random()*45)+'%';
-  el.style.top=(16+Math.random()*22)+'%';
+  /* bandas laterales: nunca sobre Miki (que va centrado en móvil) */
+  const left = Math.random()<.5;
+  el.style.left = left ? (3+Math.random()*14)+'%' : (58+Math.random()*20)+'%';
+  el.style.top=(7+Math.random()*20)+'%';
   const cols=['#ec9fb0','#b9a8ea','#8fcfa8','#eab78a'];
   el.style.color=cols[Math.floor(Math.random()*cols.length)];
   sfxLayer.appendChild(el);
@@ -1060,18 +1275,139 @@ function showSfx(txt){
 function showToast(txt){
   toastEl.textContent=txt;
   toastEl.classList.add('show');
-  sparkleSound();
+  sparkleSound(); buzz(40);
   setTimeout(()=>toastEl.classList.remove('show'),2400);
+}
+ 
+/* ══════════ SECRETOS TÁCTILES (4 en total) ══════════ */
+const eggsFound = new Set();
+/* los secretos se guardan en el teléfono: rejugar no los borra */
+(function(){ try{ JSON.parse(localStorage.getItem('miki_eggs')||'[]').forEach(x=>eggsFound.add(x)); }catch(e){} })();
+function saveEggs(){ try{ localStorage.setItem('miki_eggs', JSON.stringify([...eggsFound])); }catch(e){} }
+function recordEgg(name){
+  if(eggsFound.has(name)){
+    showToast('🔍 Ese secreto ya está en el diario de Miki ✦');
+    return;
+  }
+  eggsFound.add(name); saveEggs();
+  showToast('🔍 Secreto '+eggsFound.size+' de 4 encontrado ✦ · abre una página del diario');
+  if(eggsFound.size===4){
+    setTimeout(()=>{
+      showSfx('¡✦!');
+      showToast('🏆 ¡Los 4 secretos! La última página del diario se abrió ✦');
+      buzz([30,40,70]);
+      finaleSound();
+    },2600);
+  }
+}
+function egg(e, el, name){
+  e.stopPropagation();
+  el.classList.remove('egg-hit'); void el.getBoundingClientRect(); el.classList.add('egg-hit');
+  buzz(20);
+  if(name==='clock'){ tone(1180,.06,.07,'square'); setTimeout(()=>tone(880,.06,.07,'square'),140); }
+  else if(name==='cup'){ tone(520,.3,.05,'sine'); sparkleSound(); }
+  else{ ding(); sparkleSound(); }
+  recordEgg(name);
+}
+function mikiNose(e){
+  e.stopPropagation();
+  meow(); buzz([14,40,14]);
+  /* corazoncito flotando sobre Miki */
+  const el=document.createElement('div');
+  el.className='sfx'; el.textContent='♥';
+  el.style.left=(44+Math.random()*8)+'%';
+  el.style.top='20%';
+  el.style.fontSize='clamp(28px,6vw,44px)';
+  el.style.color='#ec6f8e';
+  sfxLayer.appendChild(el);
+  setTimeout(()=>{ el.style.transition='opacity .4s'; el.style.opacity='0'; },900);
+  setTimeout(()=>el.remove(),1400);
+  recordEgg('nose');
+}
+function meow(){
+  if(!audioCtx||!masterGain) return;
+  try{
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.type='triangle';
+    const t=audioCtx.currentTime;
+    o.frequency.setValueAtTime(640,t);
+    o.frequency.linearRampToValueAtTime(920,t+.12);
+    o.frequency.linearRampToValueAtTime(460,t+.36);
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(.09*VOL_BOOST,t+.04);
+    g.gain.exponentialRampToValueAtTime(.001,t+.42);
+    o.connect(g); g.connect(masterGain);
+    o.start(t); o.stop(t+.45);
+  }catch(e){}
+}
+ 
+/* ══════════ HUELLITAS entre escenas ══════════ */
+const PAW_SVG='<svg width="27" height="27" viewBox="0 0 24 24"><g fill="#f0a868" opacity=".92"><ellipse cx="12" cy="15.5" rx="6" ry="5"/><circle cx="5.5" cy="9" r="2.7"/><circle cx="12" cy="6.8" r="2.7"/><circle cx="18.5" cy="9" r="2.7"/></g></svg>';
+function pawTrail(){
+  const layer=document.getElementById('paws');
+  const steps=7;
+  for(let i=0;i<steps;i++){
+    setTimeout(()=>{
+      const p=document.createElement('div');
+      p.className='paw';
+      const t=i/(steps-1);
+      const off=(i%2 ? -1 : 1)*4;
+      p.style.left=(8+t*76)+'%';
+      p.style.top=(74-t*54+off)+'%';
+      p.style.setProperty('--r',(38+(i%2?-16:6))+'deg');
+      p.innerHTML=PAW_SVG;
+      layer.appendChild(p);
+      setTimeout(()=>p.remove(),1250);
+    }, i*95);
+  }
+}
+ 
+/* ══════════ DIARIO DE MIKI (se abre con los secretos) ══════════ */
+function updateDiary(){
+  const all4 = eggsFound.size>=4;
+  document.querySelectorAll('.d-entry').forEach(el=>{
+    const k=el.dataset.key;
+    const open = (k==='story') ? all4 : eggsFound.has(k);
+    el.classList.toggle('locked', !open);
+  });
+  const n = Math.min(eggsFound.size,4) + (all4?1:0);
+  const btn=document.getElementById('diary-btn');
+  if(btn) btn.textContent='📖 diario de Miki ('+n+'/5)';
+}
+function openDiary(){
+  updateDiary();
+  document.getElementById('diary').classList.add('open');
+  sparkleSound(); buzz(15);
+}
+function closeDiary(e){
+  document.getElementById('diary').classList.remove('open');
+}
+function resetEggs(e){
+  if(e) e.stopPropagation();
+  if(!confirm('¿Sellar las páginas del diario y esconder los 4 secretos otra vez?')) return;
+  eggsFound.clear();
+  try{ localStorage.removeItem('miki_eggs'); }catch(err){}
+  updateDiary();
+  sparkleSound(); buzz(25);
 }
  
 function goFinale(e){
   if(e) e.stopPropagation();
+  stopMusic(); buzz([30,50,90]);
   document.getElementById('vn').style.display='none';
   document.getElementById('finale').style.display='flex';
   computeStats();
+  updateDiary();
   document.getElementById('finale').scrollIntoView({behavior:'smooth',block:'start'});
   setTimeout(launchConfetti,800);
-  finaleSound();
+  setTimeout(letterChime,950);   /* justo cuando la carta entra en pantalla */
+}
+ 
+/* campanita de caja de música: cuatro notas ascendentes sobre un acorde cálido */
+function letterChime(){
+  [[1046.5,0],[1318.5,.17],[1568,.34],[2093,.54]].forEach(p=>
+    setTimeout(()=>tone(p[0],.9,.04,'sine'), p[1]*1000));
+  [261.6,329.6,392].forEach(f=>tone(f,2.4,.016,'triangle'));
 }
  
 function computeStats(){
@@ -1082,6 +1418,11 @@ function computeStats(){
   document.getElementById('s-coffee').textContent=Math.floor(days*1.4).toLocaleString('es-MX');
   document.getElementById('s-songs').textContent=Math.floor(days*0.3).toLocaleString('es-MX');
   document.getElementById('fin-sub').textContent='21 vueltas al sol · '+days.toLocaleString('es-MX')+' días siendo increíble ✦';
+  if(rhythmStars>0){
+    const fd=document.getElementById('fin-dance');
+    fd.textContent='y bailaste con Miki: '+rtHits+' de '+RT_TOTAL+' al ritmo '+'✦'.repeat(rhythmStars);
+    fd.style.display='block';
+  }
 }
  
 /* teclado */
@@ -1095,39 +1436,266 @@ document.addEventListener('keydown',(e)=>{
 (function(){
   const vn=document.getElementById('vn');
   let lock=false;
-  function isUI(t){ return t.closest('.choice-btn, .end-btn, #sound-toggle'); }
+  function isUI(t){ return t.closest('.choice-btn, .end-btn, #sound-toggle, .rt'); }
   vn.addEventListener('pointerup',(e)=>{
     if(isUI(e.target)) return;     /* botones manejan su propio click */
+    if(gameActive) return;         /* durante el juego, los taps son del ritmo */
     if(lock) return;
     lock=true; setTimeout(()=>lock=false,180);
     advance();
   });
 })();
  
-/* ══════════ SONIDO (opcional, off por defecto) ══════════ */
-function initAudio(){ try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
+/* ══════════ SONIDO Y MÚSICA (on por defecto, se activa con el primer tap) ══════════ */
+const VOL_BOOST=2.4;   /* refuerzo para altavoces de teléfono */
+function initAudio(){
+  try{
+    audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    masterGain=audioCtx.createGain();
+    masterGain.gain.value = soundOn?1:0;
+    /* compresor: permite subir el volumen sin que sature */
+    const comp=audioCtx.createDynamicsCompressor();
+    comp.threshold.value=-20; comp.knee.value=18;
+    comp.ratio.value=8; comp.attack.value=.003; comp.release.value=.2;
+    masterGain.connect(comp);
+    comp.connect(audioCtx.destination);
+    if(audioCtx.state==='suspended') audioCtx.resume();
+  }catch(e){}
+}
 function toggleSound(e){
   if(e) e.stopPropagation();
   soundOn=!soundOn;
   document.getElementById('sound-toggle').textContent = soundOn?'🔊':'🔈';
+  if(masterGain) masterGain.gain.value = soundOn?1:0;
   if(soundOn && audioCtx && audioCtx.state==='suspended') audioCtx.resume();
 }
+function buzz(p){ try{ if(navigator.vibrate) navigator.vibrate(p); }catch(e){} }
 function tone(freq,dur,vol,type){
-  if(!soundOn||!audioCtx) return;
+  if(!audioCtx||!masterGain) return;
   try{
     const o=audioCtx.createOscillator(), g=audioCtx.createGain();
     o.type=type||'sine'; o.frequency.value=freq;
-    g.gain.value=0; o.connect(g); g.connect(audioCtx.destination);
+    g.gain.value=0; o.connect(g); g.connect(masterGain);
     const t=audioCtx.currentTime;
-    g.gain.linearRampToValueAtTime(vol||.05,t+.01);
+    g.gain.linearRampToValueAtTime((vol||.05)*VOL_BOOST,t+.01);
     g.gain.exponentialRampToValueAtTime(.0001,t+dur);
     o.start(t); o.stop(t+dur);
   }catch(e){}
 }
-function blip(){ if(Math.random()<.5) tone(620+Math.random()*60,.05,.018,'sine'); }
+function blip(){ if(Math.random()<.5) tone(620+Math.random()*60,.05,.014,'sine'); }
 function ding(){ tone(880,.18,.06,'triangle'); }
 function sparkleSound(){ [880,1100,1320].forEach((f,i)=>setTimeout(()=>tone(f,.18,.05,'sine'),i*70)); }
 function finaleSound(){ [523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.4,.06,'triangle'),i*140)); }
+ 
+/* ── secuenciador: una atmósfera musical por escena ── */
+function mf(m){ return 440*Math.pow(2,(m-69)/12); }   /* midi → Hz */
+let noiseBuf=null;
+function getNoise(){
+  if(!noiseBuf){
+    noiseBuf=audioCtx.createBuffer(1, Math.floor(audioCtx.sampleRate*.3), audioCtx.sampleRate);
+    const d=noiseBuf.getChannelData(0);
+    for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1;
+  }
+  return noiseBuf;
+}
+ 
+/* patrones: b=pulso, m=nota midi, d=duración en pulsos, v=volumen, w=onda, k=percusión */
+function chordBar(s, notes, v){ return notes.map(m=>({b:s, m:m, d:3.4, v:v, w:'sine'})); }
+ 
+const PATTERNS = {
+  /* dormitorio: caja de música somnolienta */
+  bedroom:{bpm:66, len:16, ev:[
+    {b:0,m:60,d:8,v:.02,w:'sine'},{b:8,m:57,d:8,v:.02,w:'sine'},
+    {b:0,m:76,d:1.6,v:.045,w:'triangle'},{b:2,m:79,d:1.6,v:.038,w:'triangle'},
+    {b:4,m:84,d:2.2,v:.045,w:'triangle'},{b:7,m:83,d:1,v:.032,w:'triangle'},
+    {b:8,m:81,d:1.6,v:.045,w:'triangle'},{b:10,m:79,d:1.6,v:.038,w:'triangle'},
+    {b:12,m:76,d:3.4,v:.045,w:'triangle'},{b:15,m:88,d:1,v:.02,w:'triangle'}
+  ]},
+  /* cafetería: lo-fi cálido (Fmaj7 · Em7 · Dm7 · Cmaj7) */
+  cafe:{bpm:82, len:16, ev:[].concat(
+    chordBar(0,[53,57,60,64],.02), chordBar(4,[52,55,59,62],.02),
+    chordBar(8,[50,53,57,60],.02), chordBar(12,[48,52,55,59],.02),
+    [{b:0,m:53,d:1.6,v:.055,w:'triangle'},{b:2.5,m:60,d:1,v:.04,w:'triangle'},
+     {b:4,m:52,d:1.6,v:.055,w:'triangle'},{b:6.5,m:59,d:1,v:.04,w:'triangle'},
+     {b:8,m:50,d:1.6,v:.055,w:'triangle'},{b:10.5,m:57,d:1,v:.04,w:'triangle'},
+     {b:12,m:48,d:1.6,v:.055,w:'triangle'},{b:14.5,m:55,d:1,v:.04,w:'triangle'},
+     {b:1.5,k:'hat'},{b:3.5,k:'hat'},{b:5.5,k:'hat'},{b:7.5,k:'hat'},
+     {b:9.5,k:'hat'},{b:11.5,k:'hat'},{b:13.5,k:'hat'},{b:15.5,k:'hat'}]
+  )},
+  /* biblioteca: arpegio tranquilo entre páginas (Am · F · C · G) */
+  library:{bpm:60, len:16, ev:[
+    {b:0,m:57,d:1.8,v:.04,w:'sine'},{b:1,m:60,d:1.8,v:.036,w:'sine'},
+    {b:2,m:64,d:1.8,v:.04,w:'sine'},{b:3,m:69,d:1.8,v:.033,w:'sine'},
+    {b:4,m:53,d:1.8,v:.04,w:'sine'},{b:5,m:57,d:1.8,v:.036,w:'sine'},
+    {b:6,m:60,d:1.8,v:.04,w:'sine'},{b:7,m:65,d:1.8,v:.033,w:'sine'},
+    {b:8,m:60,d:1.8,v:.04,w:'sine'},{b:9,m:64,d:1.8,v:.036,w:'sine'},
+    {b:10,m:67,d:1.8,v:.04,w:'sine'},{b:11,m:72,d:1.8,v:.033,w:'sine'},
+    {b:12,m:55,d:1.8,v:.04,w:'sine'},{b:13,m:59,d:1.8,v:.036,w:'sine'},
+    {b:14,m:62,d:1.8,v:.04,w:'sine'},{b:15,m:67,d:1.8,v:.033,w:'sine'},
+    {b:7.5,m:88,d:1.2,v:.022,w:'triangle'},{b:15.5,m:91,d:1.2,v:.02,w:'triangle'}
+  ]},
+  /* escenario: beat K-pop — mismo BPM que el juego de ritmo */
+  stage:{bpm:RT_BPM, len:8, ev:[
+    {b:0,k:'kick'},{b:1,k:'kick'},{b:2,k:'kick'},{b:3,k:'kick'},
+    {b:4,k:'kick'},{b:5,k:'kick'},{b:6,k:'kick'},{b:7,k:'kick'},
+    {b:.5,k:'hat'},{b:1.5,k:'hat'},{b:2.5,k:'hat'},{b:3.5,k:'hat'},
+    {b:4.5,k:'hat'},{b:5.5,k:'hat'},{b:6.5,k:'hat'},{b:7.5,k:'hat'},
+    {b:1,k:'snare'},{b:3,k:'snare'},{b:5,k:'snare'},{b:7,k:'snare'},
+    {b:0,m:57,d:.6,v:.06,w:'triangle'},{b:1,m:57,d:.6,v:.06,w:'triangle'},
+    {b:2,m:60,d:.6,v:.06,w:'triangle'},{b:3,m:62,d:.6,v:.06,w:'triangle'},
+    {b:4,m:57,d:.6,v:.06,w:'triangle'},{b:5,m:57,d:.6,v:.06,w:'triangle'},
+    {b:6,m:64,d:.6,v:.06,w:'triangle'},{b:7,m:62,d:.6,v:.06,w:'triangle'},
+    {b:0,m:69,d:.5,v:.028,w:'square'},{b:.5,m:72,d:.5,v:.028,w:'square'},
+    {b:1,m:76,d:1,v:.03,w:'square'},{b:2.5,m:74,d:.5,v:.026,w:'square'},
+    {b:3,m:72,d:1,v:.028,w:'square'},{b:4.5,m:72,d:.5,v:.026,w:'square'},
+    {b:5,m:76,d:.5,v:.028,w:'square'},{b:5.5,m:79,d:1.2,v:.03,w:'square'},
+    {b:7,m:76,d:1,v:.028,w:'square'}
+  ]}
+};
+ 
+let music={timer:null, pattern:null, i:0, loop:0, start:0, name:null};
+function voice(t, ev, bpm){
+  if(!audioCtx||!masterGain) return;
+  try{
+    if(ev.k==='kick'){
+      const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+      o.type='sine';
+      o.frequency.setValueAtTime(170,t);
+      o.frequency.exponentialRampToValueAtTime(55,t+.11);
+      g.gain.setValueAtTime(.13*VOL_BOOST,t);
+      g.gain.exponentialRampToValueAtTime(.001,t+.16);
+      o.connect(g); g.connect(masterGain); o.start(t); o.stop(t+.18);
+      return;
+    }
+    if(ev.k==='hat'||ev.k==='snare'){
+      const s=audioCtx.createBufferSource(); s.buffer=getNoise();
+      const f=audioCtx.createBiquadFilter(), g=audioCtx.createGain();
+      if(ev.k==='hat'){ f.type='highpass'; f.frequency.value=7200; g.gain.setValueAtTime(.04*VOL_BOOST,t); g.gain.exponentialRampToValueAtTime(.001,t+.05); }
+      else{ f.type='bandpass'; f.frequency.value=1800; f.Q.value=.8; g.gain.setValueAtTime(.08*VOL_BOOST,t); g.gain.exponentialRampToValueAtTime(.001,t+.13); }
+      s.connect(f); f.connect(g); g.connect(masterGain); s.start(t); s.stop(t+.2);
+      return;
+    }
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.type=ev.w||'sine'; o.frequency.value=mf(ev.m);
+    const d=(ev.d||1)*(60/bpm), v=(ev.v||.045)*VOL_BOOST;
+    g.gain.setValueAtTime(0,t);
+    g.gain.linearRampToValueAtTime(v,t+.02);
+    g.gain.exponentialRampToValueAtTime(.001,t+d);
+    o.connect(g); g.connect(masterGain); o.start(t); o.stop(t+d+.06);
+  }catch(e){}
+}
+function startMusic(name, force){
+  if(!audioCtx||!PATTERNS[name]) return;
+  if(music.name===name && music.timer && !force) return;
+  stopMusic();
+  const p=PATTERNS[name];
+  p.ev.sort((a,b)=>a.b-b.b);
+  music={timer:null, pattern:p, i:0, loop:0, start:audioCtx.currentTime+.08, name:name};
+  music.timer=setInterval(musTick,30);
+}
+function stopMusic(){ if(music.timer){ clearInterval(music.timer); music.timer=null; } music.name=null; }
+function musTick(){
+  if(!audioCtx||!music.pattern) return;
+  const p=music.pattern, spb=60/p.bpm, ahead=audioCtx.currentTime+.2;
+  let guard=0;
+  while(guard++<80){
+    const ev=p.ev[music.i];
+    const t=music.start + (music.loop*p.len + ev.b)*spb;
+    if(t>ahead) break;
+    voice(t, ev, p.bpm);
+    music.i++;
+    if(music.i>=p.ev.length){ music.i=0; music.loop++; }
+  }
+}
+ 
+/* ══════════ JUEGO DE RITMO ✦ escenario ══════════ */
+function startRhythm(){
+  if(gameActive) return;
+  gameActive=true; rtHits=0; rtPerfects=0; rtDone=0;
+  advance_.classList.remove('show');
+  const layer=document.getElementById('rhythm');
+  layer.classList.add('on');
+  document.getElementById('rt-count').textContent='0 / '+RT_TOTAL;
+  startMusic('stage', true);          /* realinear la música con el juego */
+  const spb=60/RT_BPM, interval=spb*4*1000, ringDur=spb*2*1000;
+  let n=0;
+  (function spawn(){
+    if(!gameActive) return;
+    if(n>=RT_TOTAL) return;
+    n++;
+    makeTarget(ringDur);
+    if(n<RT_TOTAL) setTimeout(spawn, interval);
+  })();
+}
+let lastRtX=50, lastRtY=32;
+function makeTarget(dur){
+  const layer=document.getElementById('rhythm');
+  const t=document.createElement('div'); t.className='rt';
+  /* posición nueva, lejos de la anterior y de la caja de diálogo */
+  let x,y,tries=0;
+  do{
+    x=12+Math.random()*76; y=12+Math.random()*40; tries++;
+  }while(tries<12 && Math.abs(x-lastRtX)<20 && Math.abs(y-lastRtY)<16);
+  lastRtX=x; lastRtY=y;
+  t.style.left=x+'%'; t.style.top=y+'%';
+  t.style.setProperty('--dur', dur+'ms');
+  t.innerHTML='<div class="rt-ring"></div><div class="rt-core">✦</div>';
+  const born=performance.now();
+  let resolved=false;
+  t.addEventListener('pointerdown',(e)=>{
+    e.stopPropagation(); e.preventDefault();
+    if(resolved) return;
+    resolved=true;
+    const off=Math.abs((performance.now()-born)-dur);
+    const perfect = off<210;
+    rtHits++; if(perfect) rtPerfects++;
+    rtPop(x, y, perfect);
+    tone(perfect?1318.5:987.8,.14,.07,'triangle');
+    if(perfect) tone(1568,.18,.04,'sine');
+    buzz(perfect?[12,30,12]:18);
+    t.classList.add('hit');
+    setTimeout(()=>t.remove(),380);
+    rtTally();
+  });
+  layer.appendChild(t);
+  setTimeout(()=>{
+    if(resolved) return;
+    resolved=true;
+    t.classList.add('miss');
+    setTimeout(()=>t.remove(),420);
+    rtTally();
+  }, dur+340);
+}
+function rtPop(x, y, perfect){
+  const layer=document.getElementById('rhythm');
+  const el=document.createElement('div');
+  el.className='rt-pop'+(perfect?' perfect':'');
+  el.textContent = perfect ? '¡PERFECTO! ✦' : '¡BIEN!';
+  el.style.left=x+'%'; el.style.top=y+'%';
+  layer.appendChild(el);
+  setTimeout(()=>el.remove(),750);
+}
+function rtTally(){
+  rtDone++;
+  document.getElementById('rt-count').textContent=rtHits+' / '+RT_TOTAL;
+  if(rtDone>=RT_TOTAL) setTimeout(endRhythm, 700);
+}
+function endRhythm(){
+  gameActive=false;
+  document.getElementById('rhythm').classList.remove('on');
+  rhythmStars = rtHits>=RT_TOTAL ? 3 : rtHits>=RT_TOTAL-1 ? 2 : 1;
+  showSfx(rhythmStars===3?'¡LEGENDARIO!':rhythmStars===2?'¡INCREÍBLE!':'¡BRAVO!');
+  buzz([30,50,80]);
+  const msg = rhythmStars===3
+    ? '¡'+rtHits+' de '+RT_TOTAL+'! El público no deja de aplaudir. ¡Bailas tan bien como mi humana!'
+    : rhythmStars===2
+    ? '¡'+rtHits+' de '+RT_TOTAL+'! ¡Qué gran show! El escenario entero quedó brillando.'
+    : '¡Lo lograste! Lo importante es bailar con el corazón... y vaya que lo hiciste. ✦';
+  charLayer.innerHTML = miki('excited',{pose:'dance', acc:'lightstick'});
+  charLayer.classList.remove('pop'); void charLayer.offsetWidth; charLayer.classList.add('pop');
+  typewrite(msg, ()=>{ advance_.classList.add('show'); });
+  pendingNext=true;
+}
  
 /* ══════════ CONFETTI (estrellas) ══════════ */
 function launchConfetti(){
@@ -1135,6 +1703,7 @@ function launchConfetti(){
   canvas.classList.add('active');
   canvas.width=window.innerWidth; canvas.height=window.innerHeight;
   const ctx=canvas.getContext('2d');
+  if(!ctx) return;
   const pal=['#f6c9d4','#d9cef2','#cae9d8','#f8d3b6','#cfe3f5','#ecc285','#ec9fb0'];
   function star(ctx,x,y,r,rot,c){
     ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.fillStyle=c; ctx.beginPath();
@@ -1143,14 +1712,25 @@ function launchConfetti(){
   }
   const ps=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:-30-Math.random()*240,r:6+Math.random()*9,
     c:pal[Math.floor(Math.random()*pal.length)],vy:1.4+Math.random()*2.4,vx:(Math.random()-.5)*1.4,
-    rot:Math.random()*6.28,rs:(Math.random()-.5)*.12}));
-  let f=0;
+    rot:Math.random()*6.28,rs:(Math.random()-.5)*.12,
+    a:1, fade:.004+Math.random()*.012}));   /* cada estrella se apaga a su propio ritmo */
+  let f=0, fading=false;
   function tick(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    ps.forEach(p=>{ star(ctx,p.x,p.y,p.r,p.rot,p.c); p.y+=p.vy; p.x+=p.vx+Math.sin(f/40)*.3; p.rot+=p.rs;
-      if(p.y>canvas.height+40){p.y=-30;p.x=Math.random()*canvas.width;} });
+    if(f>=380) fading=true;               /* fase final: dejan de nacer y se van apagando */
+    let alive=0;
+    ps.forEach(p=>{
+      if(p.a<=0) return;
+      alive++;
+      if(fading){ p.a-=p.fade; if(p.a<0)p.a=0; p.vy*=.985; }  /* caen más lento mientras se apagan */
+      ctx.globalAlpha=p.a;
+      star(ctx,p.x,p.y,p.r,p.rot,p.c);
+      p.y+=p.vy; p.x+=p.vx+Math.sin(f/40)*.3; p.rot+=p.rs;
+      if(!fading && p.y>canvas.height+40){p.y=-30;p.x=Math.random()*canvas.width;}
+    });
+    ctx.globalAlpha=1;
     f++;
-    if(f<480) requestAnimationFrame(tick);
+    if(alive>0) requestAnimationFrame(tick);
     else{ canvas.classList.remove('active'); ctx.clearRect(0,0,canvas.width,canvas.height); }
   }
   tick();
@@ -1158,4 +1738,3 @@ function launchConfetti(){
 </script>
 </body>
 </html>
- 
