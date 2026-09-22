@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#fdf5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>La Misión de Miki ✦ Flores amarillas para Alison</title>
+<title>La Misión de Miki ✦ Para Alison</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
  
@@ -25,7 +25,6 @@
   --sky:#cfe3f5; --sky-deep:#9cc6ec;
   --gold:#ecc285;
   --orange:#f0a868;
-  --sun:#f9dc6b; --sun-deep:#eec23a; --sun-ink:#a97f12;
 }
  
 html,body{
@@ -43,9 +42,9 @@ body::before{
     radial-gradient(ellipse 50% 40% at 12% 10%, rgba(217,206,242,.45) 0%, transparent 65%),
     radial-gradient(ellipse 45% 35% at 88% 18%, rgba(246,201,212,.45) 0%, transparent 65%),
     radial-gradient(ellipse 40% 35% at 85% 88%, rgba(202,233,216,.4) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 35% at 10% 90%, rgba(248,211,182,.4) 0%, transparent 65%),
-    radial-gradient(ellipse 38% 30% at 50% 55%, rgba(249,220,107,.22) 0%, transparent 70%);
+    radial-gradient(ellipse 40% 35% at 10% 90%, rgba(248,211,182,.4) 0%, transparent 65%);
 }
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
 #pagestars{position:fixed;inset:0;z-index:1;pointer-events:none;}
 .pstar{position:absolute;color:var(--pink-deep);animation:twinkle 3.5s ease-in-out infinite;}
  
@@ -135,7 +134,7 @@ body::before{
   position:absolute;inset:0;pointer-events:none;
   background-image:radial-gradient(circle, rgba(120,90,80,.5) 0.7px, transparent 0.9px);
   background-size:7px 7px;
-  opacity:.05;mix-blend-mode:multiply;
+  opacity:.05;
 }
 #vignette{
   position:absolute;inset:0;pointer-events:none;
@@ -193,7 +192,6 @@ body::before{
   padding:18px 24px 22px;
   min-height:118px;
   box-shadow:0 -2px 0 rgba(236,159,176,.25), 0 16px 36px rgba(120,90,80,.16);
-  backdrop-filter:blur(4px);
 }
 #dialogue::before{
   content:'';position:absolute;top:0;left:30px;right:30px;height:4px;
@@ -299,12 +297,12 @@ body::before{
 }
 .rt-core{
   position:absolute;inset:14px;border-radius:50%;
-  background:radial-gradient(circle at 34% 30%, #fff6cf 0%, var(--sun) 55%, var(--sun-deep) 100%);
+  background:radial-gradient(circle at 34% 30%, #fce8ee 0%, var(--pink) 55%, var(--pink-deep) 100%);
   border:3px solid #fff;
-  box-shadow:0 8px 20px rgba(238,194,58,.45), inset 0 -4px 8px rgba(169,127,18,.25);
+  box-shadow:0 8px 20px rgba(236,159,176,.45), inset 0 -4px 8px rgba(184,93,118,.25);
   display:flex;align-items:center;justify-content:center;
   font-size:22px;color:#fff;
-  text-shadow:0 2px 4px rgba(169,127,18,.45);
+  text-shadow:0 2px 4px rgba(184,93,118,.4);
   animation:rtPulse .55s ease-in-out infinite;
 }
 .rt-ring{
@@ -417,26 +415,26 @@ body::before{
 #fin-cat svg{height:150px;filter:drop-shadow(0 12px 20px rgba(120,90,80,.18));}
 .letter{
   background:var(--paper);border-radius:24px;
-  border:2px solid var(--sun);
+  border:2px solid var(--pink);
   padding:2.2rem 2.4rem;max-width:560px;width:100%;
   box-shadow:0 18px 50px rgba(120,90,80,.16);
   position:relative;text-align:left;
   opacity:0;animation:floatUp .9s .9s forwards;
 }
-.letter::before{content:'✿';position:absolute;top:14px;right:22px;color:var(--sun-deep);font-size:28px;}
+.letter::before{content:'✦';position:absolute;top:18px;right:24px;color:var(--pink);font-size:22px;}
 .letter h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
   font-size:24px;color:var(--pink-deep);margin-bottom:1rem;}
 .letter p{font-family:'Quicksand',sans-serif;font-weight:500;
   font-size:15.5px;line-height:1.85;color:var(--ink);margin-bottom:1rem;}
 .letter .msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;
   color:var(--ink);line-height:1.7;
-  border-left:3px solid var(--sun-deep);padding-left:16px;margin:1.2rem 0;}
+  border-left:3px solid var(--pink);padding-left:16px;margin:1.2rem 0;}
 .letter .firma{font-family:'Cormorant Garamond',serif;font-style:italic;
   font-size:19px;color:var(--pink-deep);margin-top:.6rem;margin-bottom:0;}
 .fin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
   max-width:560px;width:100%;margin-top:1.4rem;
   opacity:0;animation:floatUp .8s 1.2s forwards;}
-.fstat{background:var(--paper);border:1.5px solid var(--sun);border-radius:16px;
+.fstat{background:var(--paper);border:1.5px solid var(--pink);border-radius:16px;
   padding:.9rem .4rem;}
 .fstat-n{font-family:'Baloo 2',cursive;font-weight:800;font-size:clamp(18px,4vw,26px);
   color:var(--pink-deep);line-height:1;}
@@ -545,10 +543,10 @@ body::before{
  
 <!-- ═══ TÍTULO ═══ -->
 <div id="title-screen">
-  <div class="title-tag">una novela visual de flores amarillas</div>
+  <div class="title-tag">una novela visual de cumpleaños</div>
   <div id="title-cat"></div>
   <h1 class="title-main">La misión<br>de <em>Miki</em></h1>
-  <p class="title-sub">Un ramo muy especial para Alison Vega 🌼</p>
+  <p class="title-sub">Un mensaje muy especial para Alison Vega ✦</p>
   <button class="start-btn" onclick="startGame()">Comenzar la historia ✦</button>
   <p class="title-hint">toca la pantalla para avanzar · la historia tiene música 🔊</p>
 </div>
@@ -574,11 +572,12 @@ body::before{
   <div id="pan-hint">‹ 🐾 desliza para mirar alrededor ›</div>
  
   <div id="choices"></div>
-  <div id="endbtn-wrap"><button class="end-btn" onclick="goFinale(event)">Recibir las flores 🌼</button></div>
+  <div id="endbtn-wrap"><button class="end-btn" onclick="goFinale(event)">Ver el mensaje ✦</button></div>
  
   <div id="dialogue">
     <div id="nametag">Miki</div>
     <div id="dtext"></div>
+    <div id="sr-line" class="sr-only" aria-live="polite"></div>
     <div id="advance">▼</div>
   </div>
 </div>
@@ -586,22 +585,22 @@ body::before{
 <!-- ═══ FINAL ═══ -->
 <div id="finale">
   <div class="fin-tag">✦ fin de la misión ✦</div>
-  <h1 class="fin-title">Flores amarillas<br>para <em>Alison</em></h1>
+  <h1 class="fin-title">¡Feliz cumpleaños,<br><em>Alison</em>!</h1>
   <p class="fin-sub" id="fin-sub"></p>
   <div id="fin-cat"></div>
  
   <div class="letter">
     <h3>Querida Alison,</h3>
-    <p>Hoy tocaba regalar flores amarillas, pero Miki insistió en ir él mismo por ellas. Después de recorrer tus lugares favoritos (y de no morder ninguna), volvió con este ramo:</p>
-    <p class="msg">"Una flor por la calidez que llevas a todas partes, otra por todas las historias que todavía te faltan por vivir, y la última por esa luz tuya que se nota en cuanto pisas un escenario."</p>
-    <p>Las flores de verdad duran unos cuantos días; estas se quedan aquí, para que vuelvas a ellas cuando quieras. Ojalá te saquen una sonrisa hoy y cada vez que las abras.</p>
-    <p class="firma">Con cariño, Ángel 🌼</p>
+    <p>Hoy cumples 21 años, y Miki cruzó media ciudad para reunir, fragmento por fragmento, este mensaje hecho solo para ti:</p>
+    <p class="msg">"Que tus días tengan siempre la calidez de tu café favorito, y que cada capítulo de este nuevo año te lleve a lugares maravillosos... porque cuando tú brillas, iluminas a todos a tu alrededor."</p>
+    <p>Gracias por ser tan auténticamente tú: la que baila sin miedo en el escenario, la que se pierde durante horas entre libros, la que cuida de Miki como nadie más podría. Que este año esté lleno de escenarios, páginas nuevas y muchas tazas de café compartidas.</p>
+    <p class="firma">Con todo el cariño, Ángel 🧡</p>
   </div>
  
   <p class="fin-sub" id="fin-dance" style="display:none;margin-top:1.6rem;margin-bottom:0;"></p>
  
   <div class="fin-stats">
-    <div class="fstat"><div class="fstat-n">3</div><div class="fstat-l">Flores 🌼</div></div>
+    <div class="fstat"><div class="fstat-n">21</div><div class="fstat-l">Años</div></div>
     <div class="fstat"><div class="fstat-n" id="s-days">—</div><div class="fstat-l">Días vividos</div></div>
     <div class="fstat"><div class="fstat-n" id="s-coffee">—</div><div class="fstat-l">Cafés ☕</div></div>
     <div class="fstat"><div class="fstat-n" id="s-songs">—</div><div class="fstat-l">Canciones ♪</div></div>
@@ -612,7 +611,7 @@ body::before{
     <button class="replay-btn" id="diary-btn" onclick="openDiary()">📖 diario de Miki</button>
     <button class="replay-btn" onclick="location.reload()">↺ volver a empezar</button>
   </div>
-  <p class="fin-sign">— hecho con cariño por Ángel, para Alison · 21 de septiembre</p>
+  <p class="fin-sign">— hecho con cariño por Ángel, para Alison</p>
 </div>
 
 <!-- ═══ DIARIO DE MIKI ═══ -->
@@ -646,22 +645,6 @@ body::before{
 </div>
  
 <script>
-/* ══════════ FLOR AMARILLA (se usa en Miki, escenas y confeti) ══════════ */
-function yflower(cx, cy, r, rot){
-  let p='';
-  for(let i=0;i<8;i++){
-    const a=i*45+(rot||0);
-    p+='<ellipse cx="0" cy="'+(-r*.62).toFixed(1)+'" rx="'+(r*.34).toFixed(1)+'" ry="'+(r*.56).toFixed(1)+'" fill="#f9dc6b" stroke="#eec23a" stroke-width="1.2" transform="rotate('+a+')"/>';
-  }
-  return '<g transform="translate('+cx+','+cy+')">'+p+
-    '<circle r="'+(r*.34).toFixed(1)+'" fill="#d9913f"/>'+
-    '<circle r="'+(r*.2).toFixed(1)+'" fill="#b8702c" opacity=".55"/>'+
-    '<circle cx="'+(-r*.1).toFixed(1)+'" cy="'+(-r*.12).toFixed(1)+'" r="'+(r*.07).toFixed(1)+'" fill="#fff3c4" opacity=".8"/></g>';
-}
-function stem(x1,y1,x2,y2){
-  return '<path d="M'+x1+' '+y1+' Q'+((x1+x2)/2+4)+' '+((y1+y2)/2)+' '+x2+' '+y2+'" stroke="#8fc6a0" stroke-width="3.2" fill="none" stroke-linecap="round"/>';
-}
-
 /* ══════════ MIKI — gato naranja con 9 expresiones ══════════ */
  
 const NOSE = '<path d="M103 96 Q110 91 117 96 Q114 105 110 106 Q106 105 103 96 Z" fill="#ef96a6"/>';
@@ -689,8 +672,8 @@ const FACES = {
     '<path d="M73 81 Q84 89 95 81" stroke="#3f312b" stroke-width="4" fill="none" stroke-linecap="round"/>'+
     '<path d="M125 81 Q136 89 147 81" stroke="#3f312b" stroke-width="4" fill="none" stroke-linecap="round"/>'+
     NOSE+'<path d="M105 106 Q110 110 115 106" stroke="#7a4a3a" stroke-width="2.2" fill="none" stroke-linecap="round"/>'+
-    '<text x="150" y="46" font-family="Baloo 2,cursive" font-size="20" fill="#b9a8ea" font-weight="800" opacity=".8">z</text>'+
-    '<text x="166" y="32" font-family="Baloo 2,cursive" font-size="14" fill="#b9a8ea" font-weight="800" opacity=".6">z</text>'+WHISK,
+    '<text x="150" y="46" font-family="\'Baloo 2\',cursive" font-size="20" fill="#b9a8ea" font-weight="800" opacity=".8">z</text>'+
+    '<text x="166" y="32" font-family="\'Baloo 2\',cursive" font-size="14" fill="#b9a8ea" font-weight="800" opacity=".6">z</text>'+WHISK,
   wake:
     '<path d="M72 78 Q84 73 96 78" stroke="#3f312b" stroke-width="3.5" fill="none" stroke-linecap="round"/>'+
     '<path d="M124 78 Q136 73 148 78" stroke="#3f312b" stroke-width="3.5" fill="none" stroke-linecap="round"/>'+
@@ -721,7 +704,7 @@ const FACES = {
     '<ellipse cx="84" cy="78" rx="10" ry="13" fill="#3f312b"/><ellipse cx="136" cy="78" rx="10" ry="13" fill="#3f312b"/>'+
     '<circle cx="80" cy="71" r="4" fill="#fff"/><circle cx="132" cy="71" r="4" fill="#fff"/>'+
     NOSE+'<path d="M100 108 q5 -4 9 0 q4 4 9 0" stroke="#7a4a3a" stroke-width="2.4" fill="none" stroke-linecap="round"/>'+
-    '<text x="152" y="48" font-family="Baloo 2,cursive" font-size="26" fill="#b9a8ea" font-weight="800">?</text>'+WHISK,
+    '<text x="152" y="48" font-family="\'Baloo 2\',cursive" font-size="26" fill="#b9a8ea" font-weight="800">?</text>'+WHISK,
   determined:
     '<path d="M70 64 L96 72" stroke="#3f312b" stroke-width="3.5" stroke-linecap="round"/>'+
     '<path d="M150 64 L124 72" stroke="#3f312b" stroke-width="3.5" stroke-linecap="round"/>'+
@@ -797,7 +780,8 @@ function miki(expr, opts){
   /* cara */
   s += '<g class="face">'+(FACES[expr]||FACES.neutral)+'</g>';
   /* secreto: tocar la nariz de Miki */
-  s += '<circle cx="110" cy="99" r="20" fill="transparent" style="pointer-events:auto;cursor:pointer" onpointerup="mikiNose(event)"/>';
+  if(opts.interactive !== false)
+    s += '<circle cx="110" cy="99" r="20" fill="transparent" style="pointer-events:auto;cursor:pointer" onpointerup="mikiNose(event)"/>';
  
   /* accesorios */
   if(acc === 'coffee'){
@@ -814,7 +798,7 @@ function miki(expr, opts){
       '<path d="M110 214 L72 224 L72 264 L110 256 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2"/>'+
       '<path d="M110 214 L148 224 L148 264 L110 256 Z" fill="#fdf5ec" stroke="#e0cdb8" stroke-width="2"/>'+
       '<g stroke="#d9b9c8" stroke-width="1.6" opacity=".7"><path d="M80 232 L104 226"/><path d="M80 240 L104 234"/><path d="M80 248 L104 242"/><path d="M116 226 L140 232"/><path d="M116 234 L140 240"/><path d="M116 242 L140 248"/></g>'+
-      '<text x="100" y="210" font-family="Baloo 2,cursive" font-size="16" fill="#b9a8ea" font-weight="800">✦</text>'+
+      '<text x="100" y="210" font-family="\'Baloo 2\',cursive" font-size="16" fill="#b9a8ea" font-weight="800">✦</text>'+
       '</g>';
   } else if(acc === 'glasses'){
     s += '<g fill="none" stroke="#8a6f5f" stroke-width="2.6" opacity=".9">'+
@@ -842,24 +826,9 @@ function miki(expr, opts){
         '<animate attributeName="opacity" values="1;.55;1" dur="1.5s" repeatCount="indefinite"/></circle>'+
       '<circle cx="172" cy="85" r="4.5" fill="#fff" opacity=".9"/>'+
       /* estrellitas moradas alrededor */
-      '<text x="150" y="66" font-family="Baloo 2,cursive" font-size="13" fill="#8d7ad4" font-weight="800" opacity=".85">✦</text>'+
-      '<text x="202" y="76" font-family="Baloo 2,cursive" font-size="10" fill="#b9a8ea" font-weight="800" opacity=".8">✦</text>'+
-      '<text x="198" y="122" font-family="Baloo 2,cursive" font-size="9" fill="#c9bbf0" font-weight="800" opacity=".7">✦</text>'+
-      '</g>';
-  } else if(acc === 'flower'){
-    /* una flor amarilla sostenida entre las patitas */
-    s += '<g>'+stem(110,266,112,222)+
-      '<path d="M111 246 q-14 -4 -18 -14 q12 0 18 10 Z" fill="#9fcfae"/>'+
-      yflower(112,212,20,10)+'</g>';
-  } else if(acc === 'bouquet'){
-    /* el ramo completo: tres flores envueltas en papel con moño */
-    s += '<g>'+
-      stem(110,262,94,214)+stem(110,262,128,212)+stem(110,262,111,196)+
-      '<path d="M84 226 L136 226 L118 272 L102 272 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2" stroke-linejoin="round"/>'+
-      '<path d="M84 226 L102 272" stroke="#f1e4d4" stroke-width="2"/>'+
-      '<path d="M110 252 q-12 -10 -16 -2 q2 8 16 2 q12 -10 16 -2 q-2 8 -16 2" fill="#f6c9d4" stroke="#ec9fb0" stroke-width="1.5"/>'+
-      '<circle cx="110" cy="252" r="3.5" fill="#ec9fb0"/>'+
-      yflower(94,214,15,5)+yflower(128,212,15,25)+yflower(111,196,16,15)+
+      '<text x="150" y="66" font-family="\'Baloo 2\',cursive" font-size="13" fill="#8d7ad4" font-weight="800" opacity=".85">✦</text>'+
+      '<text x="202" y="76" font-family="\'Baloo 2\',cursive" font-size="10" fill="#b9a8ea" font-weight="800" opacity=".8">✦</text>'+
+      '<text x="198" y="122" font-family="\'Baloo 2\',cursive" font-size="9" fill="#c9bbf0" font-weight="800" opacity=".7">✦</text>'+
       '</g>';
   } else if(acc === 'letter'){
     s += '<g transform="translate(0,4)">'+
@@ -954,7 +923,6 @@ const SCENES = {
       '<path d="M388 486 q-30 -46 -8 -78 q14 22 8 78" fill="#9fcfae"/>'+
       '<path d="M388 486 q26 -40 6 -70 q-12 20 -6 70" fill="#8fc6a0"/>'+
       '<path d="M388 486 q2 -56 -22 -64 q8 30 22 64" fill="#aedabb"/>'+
-      yflower(368,420,13,0)+yflower(404,410,11,20)+
       /* reloj — secreto táctil */
       '<g class="egg" onpointerup="egg(event,this,\'clock\')" style="cursor:pointer">'+
       '<circle cx="248" cy="128" r="44" fill="#fffdf9" stroke="#e7d0b8" stroke-width="4"/>'+
@@ -989,7 +957,7 @@ const SCENES = {
       /* pizarra menú */
       '<rect x="290" y="74" width="200" height="150" rx="12" fill="#bcd6c2"/>'+
       '<rect x="302" y="86" width="176" height="126" rx="6" fill="#a9c8b0"/>'+
-      '<text x="390" y="124" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="30" fill="#fdf5ec">Café ✦</text>'+
+      '<text x="390" y="124" text-anchor="middle" font-family="\'Cormorant Garamond\',serif" font-style="italic" font-size="30" fill="#fdf5ec">Café ✦</text>'+
       '<g stroke="#fdf5ec" stroke-width="3" opacity=".7" stroke-linecap="round"><path d="M324 150 L456 150"/><path d="M324 168 L430 168"/><path d="M324 186 L446 186"/></g>'+
       /* lámparas colgantes */
       '<g><line x1="200" y1="0" x2="200" y2="64" stroke="#caa583" stroke-width="3"/><circle cx="200" cy="120" r="60" fill="url(#lampg)"/><path d="M178 50 h44 l-10 26 h-24 Z" fill="#eab78a"/></g>'+
@@ -1008,10 +976,6 @@ const SCENES = {
       '<path d="M384 372 Q387 360 384 350" stroke="#e6d4c2" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"><animate attributeName="opacity" values=".8;.2;.8" dur="2.2s" repeatCount="indefinite"/></path>'+
       '<path d="M416 372 Q419 360 416 350" stroke="#e6d4c2" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"><animate attributeName="opacity" values=".7;.15;.7" dur="2.6s" repeatCount="indefinite"/></path>'+
       '</g>'+
-      /* florerito con flores amarillas */
-      '<g>'+stem(560,420,548,370)+stem(560,420,576,364)+stem(560,420,562,350)+
-      '<path d="M546 398 h28 l-4 40 q-1 4 -5 4 h-10 q-4 0 -5 -4 Z" fill="#cfe3f5" stroke="#a9c8e0" stroke-width="2" opacity=".95"/>'+
-      yflower(548,368,14,0)+yflower(576,362,13,20)+yflower(562,346,15,10)+'</g>'+
       /* bokeh */
       '<circle cx="120" cy="360" r="22" fill="#fbe2c4" opacity=".5"/>'+
       '<circle cx="700" cy="300" r="28" fill="#f6dcc0" opacity=".4"/>'+
@@ -1066,7 +1030,7 @@ const SCENES = {
       '<path d="M0 -8 L-58 6 L-58 46 L0 34 Z" fill="#fffdf9" stroke="#e0cdb8" stroke-width="2.5"/>'+
       '<path d="M0 -8 L58 6 L58 46 L0 34 Z" fill="#fdf5ec" stroke="#e0cdb8" stroke-width="2.5"/>'+
       '<g stroke="#d9b9c8" stroke-width="1.8" opacity=".7"><path d="M-46 14 L-12 6"/><path d="M-46 24 L-12 16"/><path d="M-46 34 L-12 26"/><path d="M12 6 L46 14"/><path d="M12 16 L46 24"/><path d="M12 26 L46 34"/></g>'+
-      '<text x="0" y="-18" text-anchor="middle" font-family="Baloo 2,cursive" font-size="22" fill="#b9a8ea" font-weight="800">✦</text>'+
+      '<text x="0" y="-18" text-anchor="middle" font-family="\'Baloo 2\',cursive" font-size="22" fill="#b9a8ea" font-weight="800">✦</text>'+
       '</g></g>'+
       /* sillón pista */
       '<path d="M610 470 q0 -70 70 -70 q70 0 70 70 Z" fill="#e6d6f0"/>'+
@@ -1075,7 +1039,6 @@ const SCENES = {
       '<rect x="120" y="430" width="48" height="42" rx="7" fill="#eab78a"/>'+
       '<path d="M144 430 q-26 -40 -6 -68 q12 20 6 68" fill="#9fcfae"/>'+
       '<path d="M144 430 q24 -36 4 -64 q-10 18 -4 64" fill="#8fc6a0"/>'+
-      yflower(136,368,11,0)+yflower(156,374,10,20)+
       sparkleField(8,'#b9a8ea')+
       '</svg>';
   },
@@ -1106,7 +1069,7 @@ const SCENES = {
       '<path d="M120 60 L680 60 L660 110 L140 110 Z" fill="#fffdf9" stroke="#f6c9d4" stroke-width="3"/>'+
       '<path d="M120 60 L100 96 L140 110 Z" fill="#ec9fb0"/>'+
       '<path d="M680 60 L700 96 L660 110 Z" fill="#ec9fb0"/>'+
-      '<text x="400" y="96" text-anchor="middle" font-family="Cormorant Garamond,serif" font-style="italic" font-size="36" fill="#b85d76">Flores amarillas 🌼</text>'+
+      '<text x="400" y="96" text-anchor="middle" font-family="\'Cormorant Garamond\',serif" font-style="italic" font-size="36" fill="#b85d76">Happy Birthday ✦</text>'+
       /* piso escenario */
       '<rect y="430" width="800" height="170" fill="#f0dce4"/>'+
       '<rect y="430" width="800" height="10" fill="#e6c8d4"/>'+
@@ -1114,10 +1077,9 @@ const SCENES = {
       /* público */
       '<g>'+crowd+'</g>'+
       /* notas musicales */
-      '<text x="120" y="200" font-family="Baloo 2,cursive" font-size="34" fill="#b9a8ea" font-weight="800" opacity=".7">♪</text>'+
-      '<text x="660" y="170" font-family="Baloo 2,cursive" font-size="30" fill="#ec9fb0" font-weight="800" opacity=".7">♫</text>'+
-      '<text x="240" y="150" font-family="Baloo 2,cursive" font-size="24" fill="#8fcfa8" font-weight="800" opacity=".6">♩</text>'+
-      yflower(60,452,14,0)+yflower(740,456,13,20)+yflower(96,466,10,10)+yflower(704,470,10,30)+
+      '<text x="120" y="200" font-family="\'Baloo 2\',cursive" font-size="34" fill="#b9a8ea" font-weight="800" opacity=".7">♪</text>'+
+      '<text x="660" y="170" font-family="\'Baloo 2\',cursive" font-size="30" fill="#ec9fb0" font-weight="800" opacity=".7">♫</text>'+
+      '<text x="240" y="150" font-family="\'Baloo 2\',cursive" font-size="24" fill="#8fcfa8" font-weight="800" opacity=".6">♩</text>'+
       sparkleField(9,'#ec9fb0')+
       '</svg>';
   }
@@ -1128,40 +1090,41 @@ const SCENES = {
 const beats = [
   /* DORMITORIO */
   {sc:'bedroom', expr:'sleep', narr:true, text: NIGHT
-    ? 'Cae la noche despacio. La luz de la luna se cuela por la ventana y baña una bolita naranja que duerme junto a la maceta.'
-    : 'Amanece despacio. La primera luz se cuela por la ventana y cae justo sobre una bolita naranja que duerme junto a la maceta.'},
+    ? 'Cae la noche despacio. La luz de la luna se cuela por la ventana y baña una bolita naranja que duerme hecha un ovillo.'
+    : 'Amanece despacio. La primera luz se cuela por la ventana y cae justo sobre una bolita naranja que duerme hecha un ovillo.'},
   {sc:'bedroom', expr:'sleep', name:'Miki', text:'...mnh... cinco minutos más, humana...'},
-  {sc:'bedroom', expr:'wake', name:'Miki', text:'...¿Eh? La plantita de la ventana amaneció con flores amarillas. Espera... ¿qué día es hoy?'},
-  {sc:'bedroom', expr:'surprised', name:'Miki', text:'¡Hoy es 21 de septiembre!', sfx:'¡PUM!'},
-  {sc:'bedroom', expr:'excited', name:'Miki', text:'¡El día de las flores amarillas! Y mi humana merece el ramo más bonito de todos.', sfx:'🌼✦🌼'},
-  {sc:'bedroom', expr:'thinking', name:'Miki', text:'¿Te acuerdas de la misión de tu cumpleaños? Pues volví. Pero esta vez no busco fragmentos de un mensaje...'},
-  {sc:'bedroom', expr:'determined', name:'Miki', text:'...busco flores. Tres flores amarillas, una en cada uno de tus lugares favoritos, para armarte un ramo.'},
-  {sc:'bedroom', expr:'neutral', name:'Miki', choice:{q:'¿Dónde buscamos la primera flor?', opts:[
-    {label:'☕  En la cafetería', reply:'¡Buena idea! '+(NIGHT?'A esta hora el café huele todavía mejor. ¡Vamos!':'Nada como empezar el día con olor a café. ¡Vamos!'), expr:'happy'},
-    {label:'📚  En la biblioteca', reply:'Mmm... aunque pensándolo bien, algo amarillo me está llamando desde la cafetería. ¡Empecemos por ahí!', expr:'happy'}
+  {sc:'bedroom', expr:'wake', name:'Miki', text:'...¿Eh? Espera. ¿Qué día es hoy?'},
+  {sc:'bedroom', expr:'surprised', name:'Miki', text:'¡La fecha del calendario! Hoy es... ¡2 de junio!', sfx:'¡PUM!'},
+  {sc:'bedroom', expr:'excited', name:'Miki', text:'¡ES EL CUMPLEAÑOS DE ALISON! ¡Mi humana favorita en todo el universo cumple 21 años!', sfx:'✦✦✦'},
+  {sc:'bedroom', expr:'determined', name:'Miki', text:'Un día así no puede pasar sin un regalo digno. Y yo, Miki, el mejor gato del mundo, le tengo el plan perfecto.'},
+  {sc:'bedroom', expr:'thinking', name:'Miki', text:'Cuentan que hay un mensaje secreto, partido en tres fragmentos, escondido en sus tres lugares favoritos...'},
+  {sc:'bedroom', expr:'happy', name:'Miki', text:'Si reúno los tres, podré entregarle el mensaje de cumpleaños más bonito de su vida. ¡Misión en marcha!'},
+  {sc:'bedroom', expr:'neutral', name:'Miki', choice:{q:'¿Por dónde empezamos la aventura?', opts:[
+    {label:'☕  Por la cafetería', reply:'¡Buena idea! '+(NIGHT?'Nada como el aroma del café, a la hora que sea. ¡Vamos!':'Nada como arrancar el día con olor a café. ¡Vamos!'), expr:'happy'},
+    {label:'📚  Por la biblioteca', reply:'Mmm... aunque pensándolo bien, el aroma del café me llama primero. ¡Empecemos por ahí!', expr:'happy'}
   ]}},
-
+ 
   /* CAFETERÍA */
-  {sc:'cafe', expr:'neutral', narr:true, text:'La cafetería del barrio huele a granos recién tostados. En la barra, junto a la taza de siempre, alguien dejó un florerito.'},
-  {sc:'cafe', expr:'excited', name:'Miki', acc:'coffee', text:'¡Ahí está! Una flor amarilla, tan calientita como tu café favorito.'},
-  {sc:'cafe', expr:'happy', name:'Miki', acc:'flower', text:'La primera es por la calidez que llevas a todas partes. La llevo con muchísimo cuidado... prometo no morderla.', toast:'🌼 Flor 1 de 3 reunida'},
-  {sc:'cafe', expr:'determined', name:'Miki', acc:'flower', text:'¡Una lista! Ahora, al lugar donde viven todas las historias.'},
-
+  {sc:'cafe', expr:'neutral', narr:true, text:'La cafetería del barrio huele a granos recién tostados y a '+(NIGHT?'noches tranquilas':'mañanas tranquilas')+'. Aquí Alison siempre pide lo mismo.'},
+  {sc:'cafe', expr:'excited', name:'Miki', acc:'coffee', text:'¡Ahí está! Una taza recién servida... y mira, hay algo escrito en el vapor.'},
+  {sc:'cafe', expr:'happy', name:'Miki', acc:'coffee', text:'El primer fragmento dice: «Que tus días tengan siempre la calidez de tu café favorito...»', toast:'💌 Fragmento 1 de 3 reunido'},
+  {sc:'cafe', expr:'determined', name:'Miki', text:'¡Una parte lista! Ahora, al lugar donde viven todas las historias.'},
+ 
   /* BIBLIOTECA */
   {sc:'library', expr:'neutral', narr:true, text:'Estanterías que llegan hasta el techo. Aquí Alison se pierde durante horas, viajando entre mundos de papel.'},
-  {sc:'library', expr:'thinking', name:'Miki', acc:'glasses', text:'Una flor escondida entre miles de libros... esto requiere toda mi concentración de gato lector.'},
+  {sc:'library', expr:'thinking', name:'Miki', acc:'glasses', text:'Un mensaje escondido entre miles de libros... esto requiere toda mi concentración de gato lector.'},
   {sc:'library', expr:'surprised', name:'Miki', acc:'glasses', text:'¡Ahí! Un libro brilla en el estante más alto, como llamándome.', sfx:'✦'},
-  {sc:'library', expr:'happy', name:'Miki', acc:'book', text:'Entre sus páginas había una flor amarilla guardada. La segunda es por todas las historias que todavía te faltan por vivir.', toast:'🌼 Flor 2 de 3 reunida'},
-  {sc:'library', expr:'excited', name:'Miki', acc:'flower', text:'¡Dos de tres! Solo falta el lugar donde brillas más que nadie en el mundo.'},
-
+  {sc:'library', expr:'happy', name:'Miki', acc:'book', text:'El segundo fragmento: «...y que cada capítulo de este nuevo año te lleve a lugares maravillosos...»', toast:'💌 Fragmento 2 de 3 reunido'},
+  {sc:'library', expr:'excited', name:'Miki', text:'¡Dos de tres! Solo falta el lugar donde Alison brilla más que nadie en el mundo.'},
+ 
   /* ESCENARIO */
   {sc:'stage', expr:'neutral', narr:true, text:'Las luces del escenario se encienden. Aquí, bailando K-pop, Alison se transforma en pura energía y luz.'},
-  {sc:'stage', expr:'determined', name:'Miki', pose:'dance', acc:'lightstick', text:'La última flor no se entrega gratis... ¡aquí hay que ganársela bailando! Muy bien, a calentar las patitas.'},
+  {sc:'stage', expr:'determined', name:'Miki', pose:'dance', acc:'lightstick', text:'El último fragmento no se entrega gratis... ¡aquí hay que ganárselo bailando! Muy bien, a calentar las patitas.'},
   {sc:'stage', expr:'excited', name:'Miki', pose:'dance', acc:'lightstick', text:'¡Cinco, seis, siete, ocho! 🐾✨', sfx:'♪ ♫ ♪'},
-  {sc:'stage', expr:'determined', name:'Miki', pose:'dance', acc:'lightstick', game:'rhythm', text:'¡Baila conmigo! Toca las flores justo cuando el anillo se cierre sobre ellas. ¿Lista? ¡Ya!'},
-  {sc:'stage', expr:'love', name:'Miki', text:'¡El público enloquece! Y desde las gradas, alguien lanza una flor amarilla directo a mis patitas...'},
-  {sc:'stage', expr:'happy', name:'Miki', acc:'flower', text:'La tercera es por esa luz tuya que se nota en cuanto pisas un escenario.', toast:'🌼 Flor 3 de 3 reunida'},
-  {sc:'stage', expr:'excited', name:'Miki', acc:'bouquet', text:'¡El ramo está completo! Ahora sí, acompáñame... tengo algo que entregarte.', endBtn:true}
+  {sc:'stage', expr:'determined', name:'Miki', pose:'dance', acc:'lightstick', game:'rhythm', text:'¡Baila conmigo! Toca las estrellas justo cuando el anillo se cierre sobre ellas. ¿Lista? ¡Ya!'},
+  {sc:'stage', expr:'love', name:'Miki', text:'¡El público enloquece! Y entre todas las luces de colores aparece, brillando, el tercer fragmento...'},
+  {sc:'stage', expr:'happy', name:'Miki', text:'«...porque cuando tú brillas, iluminas a todos a tu alrededor.»', toast:'💌 Fragmento 3 de 3 reunido'},
+  {sc:'stage', expr:'excited', name:'Miki', acc:'letter', text:'¡Los tres fragmentos, completos! Ya puedo unirlos en un solo mensaje. Acompáñame al gran final...', endBtn:true}
 ];
  
 /* ══════════ MOTOR ══════════ */
@@ -1169,7 +1132,7 @@ const beats = [
 let idx=0, typing=false, fullText='', typeTimer=null;
 let curScene=null, awaitChoice=false, pendingNext=false, endLocked=false;
 let soundOn=true, audioCtx=null, masterGain=null;
-let gameActive=false, rtHits=0, rtPerfects=0, rtDone=0, rhythmStars=0;
+let gameActive=false, gameQueued=false, rtHits=0, rtPerfects=0, rtDone=0, rhythmStars=0;
 const RT_TOTAL=5, RT_BPM=112;
  
 const bgLayer=document.getElementById('bg-layer');
@@ -1186,19 +1149,19 @@ const sceneOrder=['bedroom','cafe','library','stage'];
  
 /* portada y final: dibujar gatos */
 document.getElementById('title-cat').innerHTML =
-  '<div style="width:170px">'+miki('happy',{acc:'flower'})+'</div>';
-document.getElementById('fin-cat').innerHTML = miki('love',{acc:'bouquet'});
+  '<div style="width:170px">'+miki('happy',{interactive:false})+'</div>';
+document.getElementById('fin-cat').innerHTML = miki('love',{acc:'letter', interactive:false});
  
 /* estrellas de la página */
 (function(){
   const pf=document.getElementById('pagestars');
-  const cs=['#ec9fb0','#b9a8ea','#eec23a','#8fcfa8','#eec23a','#9cc6ec'];
+  const cs=['#ec9fb0','#b9a8ea','#8fcfa8','#eab78a','#9cc6ec'];
   for(let i=0;i<28;i++){
     const s=document.createElement('div'); s.className='pstar'; s.textContent='✦';
     s.style.left=(Math.random()*100)+'%'; s.style.top=(Math.random()*100)+'%';
     s.style.color=cs[i%cs.length]; s.style.fontSize=(8+Math.random()*15)+'px';
     s.style.animationDelay=(Math.random()*3.5)+'s'; s.style.animationDuration=(2.5+Math.random()*3)+'s';
-    s.style.opacity=(.25+Math.random()*.4); pf.appendChild(s);
+    pf.appendChild(s);
   }
 })();
  
@@ -1254,7 +1217,7 @@ function render(i){
   advance_.classList.remove('show');
  
   typewrite(beat.text, ()=>{
-    if(beat.game){ setTimeout(startRhythm, 500); }
+    if(beat.game){ queueRhythm(500); }
     else if(beat.choice){ showChoices(beat.choice); }
     else if(beat.endBtn){ endbtnWrap.classList.add('show'); endLocked=true; }
     else { advance_.classList.add('show'); }
@@ -1266,10 +1229,9 @@ function render(i){
  
 function typewrite(text, done){
   clearInterval(typeTimer);
-  text = text || '';
   typing=true; fullText=text; dtext.textContent='';
-  const chars = Array.from(text);   /* por caracteres reales: no parte los emojis */
-  if(!chars.length){ typing=false; done&&done(); return; }
+  document.getElementById('sr-line').textContent=text;
+  const chars=Array.from(text);   /* no parte emojis en dos mitades */
   let i=0;
   typeTimer=setInterval(()=>{
     dtext.textContent += chars[i]; i++;
@@ -1280,7 +1242,7 @@ function typewrite(text, done){
 function finishTyping(){
   clearInterval(typeTimer); dtext.textContent=fullText; typing=false;
   const beat=beats[idx];
-  if(beat.game && !pendingNext){ if(!gameActive) setTimeout(startRhythm, 400); }
+  if(beat.game && !pendingNext){ queueRhythm(400); }
   else if(beat.choice && !pendingNext) showChoices(beat.choice);
   else if(beat.endBtn){ endbtnWrap.classList.add('show'); endLocked=true; }
   else advance_.classList.add('show');
@@ -1292,6 +1254,7 @@ function showChoices(choice){
   nametag.textContent='Miki';
   dtext.classList.remove('narr');
   dtext.textContent=choice.q;
+  document.getElementById('sr-line').textContent=choice.q;
   choicesEl.innerHTML='';
   choice.opts.forEach(opt=>{
     const b=document.createElement('button');
@@ -1312,11 +1275,16 @@ function pickChoice(opt){
   pendingNext=true;
 }
  
+function queueRhythm(ms){
+  if(gameQueued || gameActive) return;
+  gameQueued=true;
+  setTimeout(startRhythm, ms);
+}
+
 function advance(){
-  if(gameActive) return;
+  if(gameActive || gameQueued) return;
   if(typing){ finishTyping(); return; }
   if(awaitChoice) return;
-  if(beats[idx] && beats[idx].game && !pendingNext) return;   /* el juego está por empezar */
   if(endLocked) return;
   if(pendingNext){ pendingNext=false; idx++; render(idx); return; }
   if(idx < beats.length-1){ idx++; render(idx); }
@@ -1337,19 +1305,20 @@ function showSfx(txt){
   setTimeout(()=>el.remove(),1600);
 }
  
+let toastTimer=null;
 function showToast(txt){
+  clearTimeout(toastTimer);
   toastEl.textContent=txt;
   toastEl.classList.add('show');
   sparkleSound(); buzz(40);
-  clearTimeout(showToast.t);
-  showToast.t=setTimeout(()=>toastEl.classList.remove('show'),2400);
+  toastTimer=setTimeout(()=>toastEl.classList.remove('show'),2400);
 }
  
 /* ══════════ SECRETOS TÁCTILES (4 en total) ══════════ */
 const eggsFound = new Set();
 /* los secretos se guardan en el teléfono: rejugar no los borra */
-(function(){ try{ JSON.parse(localStorage.getItem('miki_eggs_flores')||'[]').forEach(x=>eggsFound.add(x)); }catch(e){} })();
-function saveEggs(){ try{ localStorage.setItem('miki_eggs_flores', JSON.stringify([...eggsFound])); }catch(e){} }
+(function(){ try{ JSON.parse(localStorage.getItem('miki_eggs')||'[]').forEach(x=>eggsFound.add(x)); }catch(e){} })();
+function saveEggs(){ try{ localStorage.setItem('miki_eggs', JSON.stringify([...eggsFound])); }catch(e){} }
 function recordEgg(name){
   if(eggsFound.has(name)){
     showToast('🔍 Ese secreto ya está en el diario de Miki ✦');
@@ -1393,7 +1362,7 @@ function mikiNose(e){
   recordEgg('nose');
 }
 function meow(){
-  if(!audioCtx||!masterGain) return;
+  if(!audioCtx||!masterGain||!soundOn) return;
   try{
     const o=audioCtx.createOscillator(), g=audioCtx.createGain();
     o.type='triangle';
@@ -1484,7 +1453,7 @@ function resetEggs(e){
   if(e) e.stopPropagation();
   if(!confirm('¿Sellar las páginas del diario y esconder los 4 secretos otra vez?')) return;
   eggsFound.clear();
-  try{ localStorage.removeItem('miki_eggs_flores'); }catch(err){}
+  try{ localStorage.removeItem('miki_eggs'); }catch(err){}
   updateDiary();
   sparkleSound(); buzz(25);
 }
@@ -1515,10 +1484,10 @@ function computeStats(){
   document.getElementById('s-days').textContent=days.toLocaleString('es-MX');
   document.getElementById('s-coffee').textContent=Math.floor(days*1.4).toLocaleString('es-MX');
   document.getElementById('s-songs').textContent=Math.floor(days*0.3).toLocaleString('es-MX');
-  document.getElementById('fin-sub').textContent='21 de septiembre · '+days.toLocaleString('es-MX')+' días siendo increíble 🌼';
+  document.getElementById('fin-sub').textContent='21 vueltas al sol · '+days.toLocaleString('es-MX')+' días siendo increíble ✦';
   if(rhythmStars>0){
     const fd=document.getElementById('fin-dance');
-    fd.textContent='y bailaste con Miki por la última flor: '+rtHits+' de '+RT_TOTAL+' al ritmo '+'✦'.repeat(rhythmStars);
+    fd.textContent='y bailaste con Miki: '+rtHits+' de '+RT_TOTAL+' al ritmo '+'✦'.repeat(rhythmStars);
     fd.style.display='block';
   }
 }
@@ -1526,7 +1495,7 @@ function computeStats(){
 /* teclado */
 document.addEventListener('keydown',(e)=>{
   if(document.getElementById('vn').style.display==='block'){
-    if(e.target && e.target.closest && e.target.closest('button')) return;
+    if(e.target.closest && e.target.closest('button')) return;   /* el botón con foco maneja su propia tecla */
     if(e.code==='Space'||e.code==='Enter'){ e.preventDefault(); advance(); }
   }
 });
@@ -1568,7 +1537,6 @@ document.addEventListener('keydown',(e)=>{
 /* ══════════ SONIDO Y MÚSICA (on por defecto, se activa con el primer tap) ══════════ */
 const VOL_BOOST=2.4;   /* refuerzo para altavoces de teléfono */
 function initAudio(){
-  if(audioCtx) return;
   try{
     audioCtx=new (window.AudioContext||window.webkitAudioContext)();
     masterGain=audioCtx.createGain();
@@ -1597,21 +1565,31 @@ function unlockAudio(){
   }).catch(()=>{});
 }
 document.addEventListener('pointerup', unlockAudio, true);
-/* pausar el audio al salir de la pestaña o cambiar de app (ahorra batería) */
+/* pestaña oculta: congelar el reloj de audio en vez de acumular notas atrasadas */
 document.addEventListener('visibilitychange', ()=>{
   if(!audioCtx) return;
-  try{ if(document.hidden) audioCtx.suspend(); else audioCtx.resume().catch(()=>{}); }catch(e){}
+  if(document.hidden){ audioCtx.suspend().catch(()=>{}); }
+  else { audioCtx.resume().catch(()=>{}); }
 });
+let mutedMusic=null;   /* escena cuya música quedó en pausa por el silencio */
 function toggleSound(e){
   if(e) e.stopPropagation();
   soundOn=!soundOn;
   document.getElementById('sound-toggle').textContent = soundOn?'🔊':'🔈';
   if(masterGain) masterGain.gain.value = soundOn?1:0;
-  if(soundOn && audioCtx && audioCtx.state==='suspended') audioCtx.resume();
+  if(soundOn){
+    if(audioCtx && audioCtx.state==='suspended') audioCtx.resume();
+    const m=mutedMusic; mutedMusic=null;
+    if(m) startMusic(m, true);
+  } else {
+    const m=music.name;
+    stopMusic();
+    mutedMusic=m;
+  }
 }
 function buzz(p){ try{ if(navigator.vibrate) navigator.vibrate(p); }catch(e){} }
 function tone(freq,dur,vol,type){
-  if(!audioCtx||!masterGain) return;
+  if(!audioCtx||!masterGain||!soundOn) return;
   try{
     const o=audioCtx.createOscillator(), g=audioCtx.createGain();
     o.type=type||'sine'; o.frequency.value=freq;
@@ -1693,9 +1671,11 @@ const PATTERNS = {
   ]}
 };
  
+Object.values(PATTERNS).forEach(p=>p.ev.sort((a,b)=>a.b-b.b));   /* una sola vez */
+
 let music={timer:null, pattern:null, i:0, loop:0, start:0, name:null};
 function voice(t, ev, bpm){
-  if(!audioCtx||!masterGain) return;
+  if(!audioCtx||!masterGain||!soundOn) return;
   try{
     if(ev.k==='kick'){
       const o=audioCtx.createOscillator(), g=audioCtx.createGain();
@@ -1726,14 +1706,14 @@ function voice(t, ev, bpm){
 }
 function startMusic(name, force){
   if(!audioCtx||!PATTERNS[name]) return;
+  if(!soundOn){ mutedMusic=name; return; }   /* en silencio: recordar la escena, no programar nada */
   if(music.name===name && music.timer && !force) return;
   stopMusic();
   const p=PATTERNS[name];
-  p.ev.sort((a,b)=>a.b-b.b);
   music={timer:null, pattern:p, i:0, loop:0, start:audioCtx.currentTime+.08, name:name};
   music.timer=setInterval(musTick,30);
 }
-function stopMusic(){ if(music.timer){ clearInterval(music.timer); music.timer=null; } music.name=null; }
+function stopMusic(){ if(music.timer){ clearInterval(music.timer); music.timer=null; } music.name=null; mutedMusic=null; }
 function musTick(){
   if(!audioCtx||!music.pattern) return;
   const p=music.pattern, spb=60/p.bpm, ahead=audioCtx.currentTime+.2;
@@ -1742,7 +1722,7 @@ function musTick(){
     const ev=p.ev[music.i];
     const t=music.start + (music.loop*p.len + ev.b)*spb;
     if(t>ahead) break;
-    if(t > audioCtx.currentTime - .05) voice(t, ev, p.bpm);   /* las notas atrasadas se saltan */
+    if(t >= audioCtx.currentTime - .03) voice(t, ev, p.bpm);   /* los eventos atrasados se saltan, no se amontonan */
     music.i++;
     if(music.i>=p.ev.length){ music.i=0; music.loop++; }
   }
@@ -1750,6 +1730,7 @@ function musTick(){
  
 /* ══════════ JUEGO DE RITMO ✦ escenario ══════════ */
 function startRhythm(){
+  gameQueued=false;
   if(gameActive) return;
   gameActive=true; rtHits=0; rtPerfects=0; rtDone=0;
   panX=0; applyPan();                 /* cámara centrada para el baile */
@@ -1758,18 +1739,26 @@ function startRhythm(){
   layer.classList.add('on');
   document.getElementById('rt-count').textContent='0 / '+RT_TOTAL;
   startMusic('stage', true);          /* realinear la música con el juego */
-  const spb=60/RT_BPM, interval=spb*4*1000, ringDur=spb*2*1000;
+
+  /* un solo reloj para música, anillos y evaluación: el de audio si está sonando */
+  const spb=60/RT_BPM;
+  const useAudio = !!(audioCtx && audioCtx.state==='running' && music.name==='stage');
+  const clock = useAudio ? ()=>audioCtx.currentTime : ()=>performance.now()/1000;
+  const lat = useAudio ? (audioCtx.outputLatency || audioCtx.baseLatency || 0) : 0;
+  const t0 = useAudio ? music.start : clock()+.08;
   let n=0;
-  (function spawn(){
-    if(!gameActive) return;
-    if(n>=RT_TOTAL) return;
+  (function schedule(){
+    if(!gameActive || n>=RT_TOTAL) return;
+    const hitAt = t0 + (4 + n*4)*spb + lat;   /* cada anillo cierra justo en un tiempo fuerte */
+    const wait = (hitAt - 2*spb - clock())*1000;
+    if(wait>8){ setTimeout(schedule, Math.min(wait, 250)); return; }   /* re-chequeo corto: no acumula deriva */
     n++;
-    makeTarget(ringDur);
-    if(n<RT_TOTAL) setTimeout(spawn, interval);
+    makeTarget(hitAt, clock);
+    schedule();
   })();
 }
 let lastRtX=50, lastRtY=32;
-function makeTarget(dur){
+function makeTarget(hitAt, clock){
   const layer=document.getElementById('rhythm');
   const t=document.createElement('div'); t.className='rt';
   /* posición nueva, lejos de la anterior y de la caja de diálogo */
@@ -1778,16 +1767,16 @@ function makeTarget(dur){
     x=12+Math.random()*76; y=12+Math.random()*40; tries++;
   }while(tries<12 && Math.abs(x-lastRtX)<20 && Math.abs(y-lastRtY)<16);
   lastRtX=x; lastRtY=y;
+  const dur=Math.max(hitAt-clock(), .15)*1000;
   t.style.left=x+'%'; t.style.top=y+'%';
   t.style.setProperty('--dur', dur+'ms');
-  t.innerHTML='<div class="rt-ring"></div><div class="rt-core">✿</div>';
-  const born=performance.now();
+  t.innerHTML='<div class="rt-ring"></div><div class="rt-core">✦</div>';
   let resolved=false;
   t.addEventListener('pointerdown',(e)=>{
     e.stopPropagation(); e.preventDefault();
     if(resolved) return;
     resolved=true;
-    const off=Math.abs((performance.now()-born)-dur);
+    const off=Math.abs(clock()-hitAt)*1000;
     const perfect = off<210;
     rtHits++; if(perfect) rtPerfects++;
     rtPop(x, y, perfect);
@@ -1839,41 +1828,30 @@ function endRhythm(){
 }
  
 /* ══════════ CONFETTI (estrellas) ══════════ */
-let confettiRun=0;
+let confettiRunning=false;
 function launchConfetti(){
-  const run=++confettiRun;           /* si se vuelve a tocar "celebrar", la anterior se detiene */
+  if(confettiRunning) return;          /* evita bucles en paralelo sobre el mismo canvas */
   const canvas=document.getElementById('confetti');
+  const ctx=canvas.getContext('2d');
+  if(!ctx) return;
+  confettiRunning=true;
   canvas.classList.add('active');
   const dpr=Math.min(window.devicePixelRatio||1, 2);
   const W=window.innerWidth, H=window.innerHeight;
-  canvas.width=W*dpr; canvas.height=H*dpr;
-  canvas.style.width=W+'px'; canvas.style.height=H+'px';
-  const ctx=canvas.getContext('2d');
-  if(!ctx) return;
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  const pal=['#f9dc6b','#f7d04a','#fbe590','#eec23a','#f9dc6b','#f6c9d4','#fff1b8'];
-  function flower(ctx,x,y,r,rot,c){
-    ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.fillStyle=c;
-    for(let i=0;i<5;i++){ ctx.rotate(Math.PI*2/5); ctx.beginPath(); ctx.ellipse(0,-r*.55,r*.32,r*.52,0,0,Math.PI*2); ctx.fill(); }
-    ctx.fillStyle='#d9913f'; ctx.beginPath(); ctx.arc(0,0,r*.28,0,Math.PI*2); ctx.fill();
-    ctx.restore();
-  }
-  function petal(ctx,x,y,r,rot,c){
-    ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.fillStyle=c;
-    ctx.beginPath(); ctx.ellipse(0,0,r*.38,r*.8,0,0,Math.PI*2); ctx.fill(); ctx.restore();
-  }
+  canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);   /* dibujamos en px CSS, el canvas tiene resolución real */
+  const pal=['#f6c9d4','#d9cef2','#cae9d8','#f8d3b6','#cfe3f5','#ecc285','#ec9fb0'];
   function star(ctx,x,y,r,rot,c){
     ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.fillStyle=c; ctx.beginPath();
     for(let i=0;i<10;i++){ const a=(Math.PI/5)*i, rr=i%2===0?r:r*.45; ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr); }
     ctx.closePath(); ctx.fill(); ctx.restore();
   }
   const ps=Array.from({length:150},()=>({x:Math.random()*W,y:-30-Math.random()*240,r:6+Math.random()*9,
-    c:pal[Math.floor(Math.random()*pal.length)],k:Math.random(),vy:1.4+Math.random()*2.4,vx:(Math.random()-.5)*1.4,
+    c:pal[Math.floor(Math.random()*pal.length)],vy:1.4+Math.random()*2.4,vx:(Math.random()-.5)*1.4,
     rot:Math.random()*6.28,rs:(Math.random()-.5)*.12,
     a:1, fade:.004+Math.random()*.012}));   /* cada estrella se apaga a su propio ritmo */
   let f=0, fading=false;
   function tick(){
-    if(run!==confettiRun) return;
     ctx.clearRect(0,0,W,H);
     if(f>=380) fading=true;               /* fase final: dejan de nacer y se van apagando */
     let alive=0;
@@ -1882,16 +1860,14 @@ function launchConfetti(){
       alive++;
       if(fading){ p.a-=p.fade; if(p.a<0)p.a=0; p.vy*=.985; }  /* caen más lento mientras se apagan */
       ctx.globalAlpha=p.a;
-      if(p.k<.45) flower(ctx,p.x,p.y,p.r*1.15,p.rot,p.c);
-      else if(p.k<.85) petal(ctx,p.x,p.y,p.r,p.rot,p.c);
-      else star(ctx,p.x,p.y,p.r*.8,p.rot,'#fffdf9');
+      star(ctx,p.x,p.y,p.r,p.rot,p.c);
       p.y+=p.vy; p.x+=p.vx+Math.sin(f/40)*.3; p.rot+=p.rs;
       if(!fading && p.y>H+40){p.y=-30;p.x=Math.random()*W;}
     });
     ctx.globalAlpha=1;
     f++;
     if(alive>0) requestAnimationFrame(tick);
-    else{ canvas.classList.remove('active'); ctx.clearRect(0,0,W,H); }
+    else{ canvas.classList.remove('active'); ctx.clearRect(0,0,W,H); confettiRunning=false; }
   }
   tick();
 }
