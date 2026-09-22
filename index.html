@@ -329,7 +329,7 @@ body::before{
 @keyframes rtHit{0%{transform:scale(1);}45%{transform:scale(1.45);opacity:1;}100%{transform:scale(.2);opacity:0;}}
 @keyframes rtMiss{to{transform:translate(-50%,-30%) scale(.75);opacity:0;filter:grayscale(1);}}
 @keyframes rtPopUp{0%{opacity:0;transform:translate(-50%,-40%) scale(.6);}25%{opacity:1;transform:translate(-50%,-70%) scale(1.1);}100%{opacity:0;transform:translate(-50%,-130%) scale(1);}}
-
+ 
 /* ════════ SECRETOS, HUELLITAS Y DIARIO ════════ */
 .egg-hit{
   animation:eggWiggle .7s ease;
@@ -392,7 +392,7 @@ body::before{
   text-decoration:underline dotted;cursor:pointer;opacity:.75;
 }
 .d-reset:hover{opacity:1;color:var(--pink-ink);}
-
+ 
 /* ════════ FINAL ════════ */
 #finale{
   display:none;position:relative;z-index:10;
@@ -510,7 +510,7 @@ body::before{
   #sound-toggle{width:40px;height:40px;font-size:17px;top:10px;right:12px;}
  
   #toast{font-size:14px;padding:10px 20px;top:14px;}
-
+ 
   /* objetivos del ritmo más grandes para el dedo */
   .rt{width:96px;height:96px;}
   #rt-count{top:58px;font-size:16px;}
@@ -613,7 +613,7 @@ body::before{
   </div>
   <p class="fin-sign">— hecho con cariño por Ángel, para Alison</p>
 </div>
-
+ 
 <!-- ═══ DIARIO DE MIKI ═══ -->
 <div id="diary" onclick="closeDiary(event)">
   <div class="diary-card" onclick="event.stopPropagation()">
@@ -1280,7 +1280,7 @@ function queueRhythm(ms){
   gameQueued=true;
   setTimeout(startRhythm, ms);
 }
-
+ 
 function advance(){
   if(gameActive || gameQueued) return;
   if(typing){ finishTyping(); return; }
@@ -1672,7 +1672,7 @@ const PATTERNS = {
 };
  
 Object.values(PATTERNS).forEach(p=>p.ev.sort((a,b)=>a.b-b.b));   /* una sola vez */
-
+ 
 let music={timer:null, pattern:null, i:0, loop:0, start:0, name:null};
 function voice(t, ev, bpm){
   if(!audioCtx||!masterGain||!soundOn) return;
@@ -1739,7 +1739,7 @@ function startRhythm(){
   layer.classList.add('on');
   document.getElementById('rt-count').textContent='0 / '+RT_TOTAL;
   startMusic('stage', true);          /* realinear la música con el juego */
-
+ 
   /* un solo reloj para música, anillos y evaluación: el de audio si está sonando */
   const spb=60/RT_BPM;
   const useAudio = !!(audioCtx && audioCtx.state==='running' && music.name==='stage');
