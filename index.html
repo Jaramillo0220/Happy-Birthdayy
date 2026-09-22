@@ -1266,12 +1266,15 @@ function render(i){
  
 function typewrite(text, done){
   clearInterval(typeTimer);
+  text = text || '';
   typing=true; fullText=text; dtext.textContent='';
+  const chars = Array.from(text);   /* por caracteres reales: no parte los emojis */
+  if(!chars.length){ typing=false; done&&done(); return; }
   let i=0;
   typeTimer=setInterval(()=>{
-    dtext.textContent += text[i]; i++;
+    dtext.textContent += chars[i]; i++;
     if(i%2===0) blip();
-    if(i>=text.length){ clearInterval(typeTimer); typing=false; done&&done(); }
+    if(i>=chars.length){ clearInterval(typeTimer); typing=false; done&&done(); }
   }, 22);
 }
 function finishTyping(){
@@ -1313,6 +1316,7 @@ function advance(){
   if(gameActive) return;
   if(typing){ finishTyping(); return; }
   if(awaitChoice) return;
+  if(beats[idx] && beats[idx].game && !pendingNext) return;   /* el juego está por empezar */
   if(endLocked) return;
   if(pendingNext){ pendingNext=false; idx++; render(idx); return; }
   if(idx < beats.length-1){ idx++; render(idx); }
@@ -1337,7 +1341,8 @@ function showToast(txt){
   toastEl.textContent=txt;
   toastEl.classList.add('show');
   sparkleSound(); buzz(40);
-  setTimeout(()=>toastEl.classList.remove('show'),2400);
+  clearTimeout(showToast.t);
+  showToast.t=setTimeout(()=>toastEl.classList.remove('show'),2400);
 }
  
 /* ══════════ SECRETOS TÁCTILES (4 en total) ══════════ */
@@ -1521,6 +1526,7 @@ function computeStats(){
 /* teclado */
 document.addEventListener('keydown',(e)=>{
   if(document.getElementById('vn').style.display==='block'){
+    if(e.target && e.target.closest && e.target.closest('button')) return;
     if(e.code==='Space'||e.code==='Enter'){ e.preventDefault(); advance(); }
   }
 });
@@ -1562,6 +1568,7 @@ document.addEventListener('keydown',(e)=>{
 /* ══════════ SONIDO Y MÚSICA (on por defecto, se activa con el primer tap) ══════════ */
 const VOL_BOOST=2.4;   /* refuerzo para altavoces de teléfono */
 function initAudio(){
+  if(audioCtx) return;
   try{
     audioCtx=new (window.AudioContext||window.webkitAudioContext)();
     masterGain=audioCtx.createGain();
@@ -1590,6 +1597,11 @@ function unlockAudio(){
   }).catch(()=>{});
 }
 document.addEventListener('pointerup', unlockAudio, true);
+/* pausar el audio al salir de la pestaña o cambiar de app (ahorra batería) */
+document.addEventListener('visibilitychange', ()=>{
+  if(!audioCtx) return;
+  try{ if(document.hidden) audioCtx.suspend(); else audioCtx.resume().catch(()=>{}); }catch(e){}
+});
 function toggleSound(e){
   if(e) e.stopPropagation();
   soundOn=!soundOn;
@@ -1730,7 +1742,7 @@ function musTick(){
     const ev=p.ev[music.i];
     const t=music.start + (music.loop*p.len + ev.b)*spb;
     if(t>ahead) break;
-    voice(t, ev, p.bpm);
+    if(t > audioCtx.currentTime - .05) voice(t, ev, p.bpm);   /* las notas atrasadas se saltan */
     music.i++;
     if(music.i>=p.ev.length){ music.i=0; music.loop++; }
   }
@@ -1827,12 +1839,18 @@ function endRhythm(){
 }
  
 /* ══════════ CONFETTI (estrellas) ══════════ */
+let confettiRun=0;
 function launchConfetti(){
+  const run=++confettiRun;           /* si se vuelve a tocar "celebrar", la anterior se detiene */
   const canvas=document.getElementById('confetti');
   canvas.classList.add('active');
-  canvas.width=window.innerWidth; canvas.height=window.innerHeight;
+  const dpr=Math.min(window.devicePixelRatio||1, 2);
+  const W=window.innerWidth, H=window.innerHeight;
+  canvas.width=W*dpr; canvas.height=H*dpr;
+  canvas.style.width=W+'px'; canvas.style.height=H+'px';
   const ctx=canvas.getContext('2d');
   if(!ctx) return;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
   const pal=['#f9dc6b','#f7d04a','#fbe590','#eec23a','#f9dc6b','#f6c9d4','#fff1b8'];
   function flower(ctx,x,y,r,rot,c){
     ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.fillStyle=c;
@@ -1849,13 +1867,14 @@ function launchConfetti(){
     for(let i=0;i<10;i++){ const a=(Math.PI/5)*i, rr=i%2===0?r:r*.45; ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr); }
     ctx.closePath(); ctx.fill(); ctx.restore();
   }
-  const ps=Array.from({length:150},()=>({x:Math.random()*canvas.width,y:-30-Math.random()*240,r:6+Math.random()*9,
+  const ps=Array.from({length:150},()=>({x:Math.random()*W,y:-30-Math.random()*240,r:6+Math.random()*9,
     c:pal[Math.floor(Math.random()*pal.length)],k:Math.random(),vy:1.4+Math.random()*2.4,vx:(Math.random()-.5)*1.4,
     rot:Math.random()*6.28,rs:(Math.random()-.5)*.12,
     a:1, fade:.004+Math.random()*.012}));   /* cada estrella se apaga a su propio ritmo */
   let f=0, fading=false;
   function tick(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(run!==confettiRun) return;
+    ctx.clearRect(0,0,W,H);
     if(f>=380) fading=true;               /* fase final: dejan de nacer y se van apagando */
     let alive=0;
     ps.forEach(p=>{
@@ -1867,12 +1886,12 @@ function launchConfetti(){
       else if(p.k<.85) petal(ctx,p.x,p.y,p.r,p.rot,p.c);
       else star(ctx,p.x,p.y,p.r*.8,p.rot,'#fffdf9');
       p.y+=p.vy; p.x+=p.vx+Math.sin(f/40)*.3; p.rot+=p.rs;
-      if(!fading && p.y>canvas.height+40){p.y=-30;p.x=Math.random()*canvas.width;}
+      if(!fading && p.y>H+40){p.y=-30;p.x=Math.random()*W;}
     });
     ctx.globalAlpha=1;
     f++;
     if(alive>0) requestAnimationFrame(tick);
-    else{ canvas.classList.remove('active'); ctx.clearRect(0,0,canvas.width,canvas.height); }
+    else{ canvas.classList.remove('active'); ctx.clearRect(0,0,W,H); }
   }
   tick();
 }
